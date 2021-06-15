@@ -1,12 +1,9 @@
 using UnityEngine;
 using System.Runtime.InteropServices;
 using UnityEngine.EventSystems;
-using System;
 
-public abstract class WebGLFileUploadButton : MonoBehaviour, IPointerDownHandler
+public class AudioClipUploadButton : MonoBehaviour, IPointerDownHandler
 {
-    public abstract void FileSelected(string url);
-
     [DllImport("__Internal")] private static extern void FileUploaderCaptureClick(string objectName);
 
     public void OnPointerDown(PointerEventData eventData)
@@ -19,5 +16,10 @@ public abstract class WebGLFileUploadButton : MonoBehaviour, IPointerDownHandler
         Debug.Log("Sending image to " + gameObject.name);
         FileUploaderCaptureClick(gameObject.name);
 #endif
+    }
+
+    public void FileSelected(string url)
+    {
+        StartCoroutine(CreatorAssetLoadService.Instance.LoadAudioClip(url));
     }
 }
