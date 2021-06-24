@@ -6,9 +6,17 @@ public class AssetDeletionWindow : MonoBehaviour
 {
     [SerializeField] private TMP_Text assetTitleText = null;
     [SerializeField] private Image assetImage = null;
+    [SerializeField] private RectTransform assetImageRectTransform;
     [SerializeField] private CanvasGroup canvasGroup = null;
 
     private FileSlot fileSlot;
+    private Vector2 thumbnailSize;
+
+    private void Awake()
+    {
+        thumbnailSize = assetImageRectTransform.sizeDelta;
+        CloseWindow();
+    }
 
     public void OpenWindow(FileSlot fileSlot)
     {
@@ -16,6 +24,7 @@ public class AssetDeletionWindow : MonoBehaviour
         assetTitleText.text = fileSlot.SpriteAsset.assetName;
         assetImage.sprite = fileSlot.SpriteAsset.sprite;
         assetImage.SetNativeSize();
+        Utils.ConstrainRectTransformToSize(assetImageRectTransform, thumbnailSize);
         Utils.SetCanvasGroupEnabled(canvasGroup, true);
     }
 
