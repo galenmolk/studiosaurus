@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
@@ -33,30 +32,30 @@ public class CreatorAssetLibrary : MonoBehaviour
 
     public void AddNewSprite(Sprite sprite, string filePath)
     {
-        if (spritesInMemory.ContainsKey(filePath))
-        {
-            spritesInMemory.Remove(filePath);
-            Debug.Log("Replacing sprite " + filePath);
-        }
+        string fileName = Path.GetFileName(filePath);
 
-        string fileName = GetFileName(filePath);
         if (fileName == string.Empty)
-            fileName = GenerateFileName(SPRITE_FILENAME, spritesInMemory.Count);
+            fileName = SPRITE_FILENAME + spritesInMemory.Count;
+
+        if (spritesInMemory.ContainsKey(fileName))
+        {
+            spritesInMemory.Remove(fileName);
+            Debug.Log("Replacing sprite " + fileName);
+        }
 
         SpriteAsset spriteAsset = new SpriteAsset(fileName, sprite);
 
-        spritesInMemory.Add(filePath, spriteAsset);
+        spritesInMemory.Add(fileName, spriteAsset);
 
         FileGallery.Instance.AddNewFile(spriteAsset);
     }
 
-    private string GetFileName(string filePath)
+    public void DeleteSprite(SpriteAsset spriteAsset)
     {
-        return Path.GetFileName(filePath);
-    }
-
-    private string GenerateFileName(string fileType, int fileIndex)
-    {
-        return fileType + fileIndex;
+        if (spritesInMemory.ContainsKey(spriteAsset.assetName))
+        {
+            spritesInMemory.Remove(spriteAsset.assetName);
+            Debug.Log("Deleting sprite " + spriteAsset.assetName);
+        }
     }
 }

@@ -1,5 +1,5 @@
-using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class FileGallery : MonoBehaviour
@@ -17,6 +17,8 @@ public class FileGallery : MonoBehaviour
     }
 
     [SerializeField] private FileSlot fileSlotPrefab = null;
+    [SerializeField] private TMP_Text uploadPromptText = null;
+    [SerializeField] private AssetDeletionWindow assetDeletionWindow = null;
 
     private List<FileSlot> openFileSlots = new List<FileSlot>();
 
@@ -29,15 +31,29 @@ public class FileGallery : MonoBehaviour
 
     public void AddNewFile(SpriteAsset spriteAsset)
     {
+        if (uploadPromptText.gameObject.activeInHierarchy)
+            uploadPromptText.gameObject.SetActive(false);
+
         FileSlot newFileSlot = Instantiate(fileSlotPrefab, transform);
         newFileSlot.DisplayFile(spriteAsset);
     }
 
     public void FileSelected(FileSlot fileSlot)
     {
-        if (selectedSlot != null)
+        if (selectedSlot != null && selectedSlot != fileSlot)
             selectedSlot.DeselectSlot();
 
         selectedSlot = fileSlot;
+    }
+
+    public void ConfirmDeleteSlot(FileSlot fileSlot)
+    {
+        assetDeletionWindow.OpenWindow(fileSlot);
+    }
+
+    public void DeleteSlot(FileSlot fileSlot)
+    {
+        CreatorAssetLibrary.Instance.DeleteSprite(fileSlot.SpriteAsset);
+        Destroy(fileSlot.gameObject);
     }
 }

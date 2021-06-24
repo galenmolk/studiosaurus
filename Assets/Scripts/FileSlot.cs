@@ -9,16 +9,25 @@ public class FileSlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     [SerializeField] private Image fileThumbnail = null;
     [SerializeField] private Image slotOutline = null;
     [SerializeField] private Image slotSelectionBox = null;
+    [SerializeField] private Button deleteButton = null;
 
-    private RectTransform thumbnailRT;
-    [SerializeField] private Vector2 constrainingSize = new Vector2(115, 115f);
+    private RectTransform thumbnailRectTransform;
+    [SerializeField] private Vector2 thumbnailSize = new Vector2(115, 115f);
 
     private void Awake()
     {
-        thumbnailRT = fileThumbnail.transform as RectTransform;
+        thumbnailRectTransform = fileThumbnail.transform as RectTransform;
     }
 
     private SpriteAsset spriteAsset;
+    public SpriteAsset SpriteAsset
+    {
+        get
+        {
+            return spriteAsset;
+        }
+    }
+
     private bool slotSelected;
 
     public void DisplayFile(SpriteAsset spriteAsset)
@@ -28,32 +37,22 @@ public class FileSlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
         fileNameText.text = spriteAsset.assetName;
         fileThumbnail.sprite = spriteAsset.sprite;
         fileThumbnail.SetNativeSize();
-        ScaleToSlotSize();
+        Utils.ConstrainRectTransformToSize(thumbnailRectTransform, thumbnailSize);
         gameObject.SetActive(true);
-    }
-
-    private void ScaleToSlotSize()
-    {
-        float xScaleFactor = 1f, yScaleFactor = 1f;
-        Vector2 imageSize = thumbnailRT.sizeDelta;
-        if (imageSize.x > constrainingSize.x)
-            xScaleFactor = constrainingSize.x / imageSize.x;
-
-        if (imageSize.y > constrainingSize.y)
-            yScaleFactor = constrainingSize.y / imageSize.y;
-
-        thumbnailRT.sizeDelta = xScaleFactor < yScaleFactor ? imageSize * xScaleFactor : imageSize * yScaleFactor;
     }
 
     public void OnPointerEnter(PointerEventData eventData)
     {
         if (!slotSelected)
             slotOutline.color = Color.black;
+
+        deleteButton.gameObject.SetActive(true);
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
         slotOutline.color = Color.clear;
+        deleteButton.gameObject.SetActive(false);
     }
 
     public void OnPointerDown(PointerEventData eventData)
@@ -73,5 +72,10 @@ public class FileSlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     {
         slotSelected = false;
         slotSelectionBox.color = Color.clear;
+    }
+
+    public void TrashButtonClicked()
+    {
+        FileGallery.Instance.ConfirmDeleteSlot(this);
     }
 }
