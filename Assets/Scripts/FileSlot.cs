@@ -3,7 +3,7 @@ using TMPro;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 
-public class FileSlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerDownHandler
+public class FileSlot : SpriteAssetObject, IPointerEnterHandler, IPointerExitHandler, IPointerDownHandler
 {
     [SerializeField] private TMP_Text fileNameText = null;
     [SerializeField] private Image fileThumbnail = null;
@@ -19,21 +19,17 @@ public class FileSlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
         thumbnailRectTransform = fileThumbnail.transform as RectTransform;
     }
 
-    private SpriteAsset spriteAsset;
-    public SpriteAsset SpriteAsset
-    {
-        get
-        {
-            return spriteAsset;
-        }
-    }
-
     private bool slotSelected;
 
-    public void DisplayFile(SpriteAsset spriteAsset)
+    public override void UpdateSpriteAsset(SpriteAsset spriteAsset)
+    {
+        base.UpdateSpriteAsset(spriteAsset);
+        DisplayFile();
+    }
+
+    private void DisplayFile()
     {
         gameObject.SetActive(false);
-        this.spriteAsset = spriteAsset;
         fileNameText.text = spriteAsset.assetName;
         fileThumbnail.sprite = spriteAsset.sprite;
         fileThumbnail.SetNativeSize();

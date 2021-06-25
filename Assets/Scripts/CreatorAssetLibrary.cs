@@ -18,16 +18,9 @@ public class CreatorAssetLibrary : MonoBehaviour
 
     private Dictionary<string, SpriteAsset> spritesInMemory = new Dictionary<string, SpriteAsset>();
 
-    private const string SPRITE_FILENAME = "Image";
-
     private void Awake()
     {
         sharedInstance = this;
-    }
-
-    public bool HasSpriteBeenLoaded(string url)
-    {
-        return spritesInMemory.ContainsKey(url);
     }
 
     public void AddNewSprite(Sprite sprite, string filePath)
@@ -35,27 +28,35 @@ public class CreatorAssetLibrary : MonoBehaviour
         string fileName = Path.GetFileName(filePath);
 
         if (fileName == string.Empty)
-            fileName = SPRITE_FILENAME + spritesInMemory.Count;
+            fileName = filePath;
 
-        if (spritesInMemory.ContainsKey(fileName))
+        SpriteAsset newSpriteAsset = new SpriteAsset(fileName, sprite, filePath);
+
+        if (spritesInMemory.ContainsKey(filePath))
         {
-            spritesInMemory.Remove(fileName);
-            Debug.Log("Replacing sprite " + fileName);
+            ReplaceSpriteAssetWithNewVersion(spritesInMemory[filePath], newSpriteAsset);
+            spritesInMemory.Remove(filePath);
+            Debug.Log("Replacing sprite " + filePath);
         }
-
-        SpriteAsset spriteAsset = new SpriteAsset(fileName, sprite);
-
-        spritesInMemory.Add(fileName, spriteAsset);
-
-        FileGallery.Instance.AddNewFile(spriteAsset);
+        
+        spritesInMemory.Add(filePath, newSpriteAsset);
+        FileGallery.Instance.AddFile(newSpriteAsset);
     }
 
     public void DeleteSprite(SpriteAsset spriteAsset)
     {
-        if (spritesInMemory.ContainsKey(spriteAsset.assetName))
+        if (spritesInMemory.ContainsKey(spriteAsset.path))
         {
-            spritesInMemory.Remove(spriteAsset.assetName);
+            spritesInMemory.Remove(spriteAsset.path);
             Debug.Log("Deleting sprite " + spriteAsset.assetName);
+        }
+    }
+
+    private void ReplaceSpriteAssetWithNewVersion(SpriteAsset oldSprite, SpriteAsset newSprite)
+    {
+        foreach (SpriteAssetObject spriteAssetObject in oldSprite.spriteAssetObjects)
+        {
+            spriteAssetObject.UpdateSpriteAsset(newSprite);
         }
     }
 }

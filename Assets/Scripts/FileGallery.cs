@@ -22,8 +22,9 @@ public class FileGallery : MonoBehaviour
     [SerializeField] private AssetDeletionWindow assetDeletionWindow = null;
     [SerializeField] private Button selectButton = null;
     [SerializeField] private TMP_Text selectButtonText = null;
+    [SerializeField] private Transform fileSlotContainer = null;
 
-    private List<FileSlot> openFileSlots = new List<FileSlot>();
+    private Dictionary<string, FileSlot> spriteSlotPairs = new Dictionary<string, FileSlot>();
     private FileSlot selectedSlot;
 
     private const string SELECT_BUTTON_TEXT = "Select";
@@ -35,13 +36,18 @@ public class FileGallery : MonoBehaviour
         UpdateSelectButton();
     }
 
-    public void AddNewFile(SpriteAsset spriteAsset)
+    public void AddFile(SpriteAsset spriteAsset)
     {
         if (uploadPromptText.gameObject.activeInHierarchy)
             uploadPromptText.gameObject.SetActive(false);
 
-        FileSlot newFileSlot = Instantiate(fileSlotPrefab, transform);
-        newFileSlot.DisplayFile(spriteAsset);
+        if (!spriteSlotPairs.TryGetValue(spriteAsset.path, out FileSlot fileSlot))
+        {
+            fileSlot = Instantiate(fileSlotPrefab, fileSlotContainer);
+            spriteSlotPairs.Add(spriteAsset.path, fileSlot);
+        }
+
+        fileSlot.UpdateSpriteAsset(spriteAsset);
     }
 
     public void FileSelected(FileSlot fileSlot)
@@ -60,6 +66,7 @@ public class FileGallery : MonoBehaviour
 
     public void DeleteSlot(FileSlot fileSlot)
     {
+        spriteSlotPairs.Remove(fileSlot.SpriteAsset.path);
         CreatorAssetLibrary.Instance.DeleteSprite(fileSlot.SpriteAsset);
 
         if (selectedSlot != null && selectedSlot == fileSlot)
@@ -67,6 +74,9 @@ public class FileGallery : MonoBehaviour
 
         UpdateSelectButton();
         Destroy(fileSlot.gameObject);
+
+        if (spriteSlotPairs.Count == 0)
+            uploadPromptText.gameObject.SetActive(true);
     }
 
     private void UpdateSelectButton()

@@ -1,10 +1,22 @@
 using UnityEngine;
-using System.Runtime.InteropServices;
 using UnityEngine.EventSystems;
 
-public class SpriteUploadButton : MonoBehaviour, IPointerDownHandler
+#if !UNITY_EDITOR
+using System.Runtime.InteropServices;
+#endif
+
+public class SpriteUploadButton : MonoBehaviour, IPointerDownHandler, IPointerEnterHandler, IPointerExitHandler
 {
+#if !UNITY_EDITOR
     [DllImport("__Internal")] private static extern void FileUploaderCaptureClick(string objectName);
+#endif
+
+    [SerializeField] private Animator animator = null;
+
+    private void Awake()
+    {
+        animator.speed = 0f;
+    }
 
     public void OnPointerDown(PointerEventData eventData)
     {
@@ -21,5 +33,15 @@ public class SpriteUploadButton : MonoBehaviour, IPointerDownHandler
     public void FileSelected(string url)
     {
         StartCoroutine(CreatorAssetLoadService.Instance.LoadSprite(url));
+    }
+
+    public void OnPointerEnter(PointerEventData eventData)
+    {
+        animator.speed = 1f;
+    }
+
+    public void OnPointerExit(PointerEventData eventData)
+    {
+        animator.speed = 0f;
     }
 }
