@@ -23,8 +23,11 @@ public class FileGallery : MonoBehaviour
     [SerializeField] private Button selectButton = null;
     [SerializeField] private TMP_Text selectButtonText = null;
     [SerializeField] private Transform fileSlotContainer = null;
+    [SerializeField] private CanvasGroup canvasGroup = null;
 
     private Dictionary<string, FileSlot> spriteSlotPairs = new Dictionary<string, FileSlot>();
+
+    private DoItObject selectedDoItObject;
     private FileSlot selectedSlot;
 
     private const string SELECT_BUTTON_TEXT = "Select";
@@ -34,6 +37,38 @@ public class FileGallery : MonoBehaviour
     {
         sharedInstance = this;
         UpdateSelectButton();
+    }
+
+    public void Open(DoItObject doItObject)
+    {
+        Utils.SetCanvasGroupEnabled(canvasGroup, true);
+
+        selectedDoItObject = doItObject;
+    }
+
+    public void Select()
+    {
+        Utils.SetCanvasGroupEnabled(canvasGroup, false);
+
+        if (selectedSlot != null && selectedDoItObject != null)
+        {
+            selectedDoItObject.UpdateSpriteAsset(selectedSlot.SpriteAsset);
+            selectedSlot.DeselectSlot();
+        }
+
+        selectedSlot = null;
+        selectedDoItObject = null;
+    }
+
+    public void Cancel()
+    {
+        Utils.SetCanvasGroupEnabled(canvasGroup, false);
+
+        if (selectedSlot != null)
+            selectedSlot.DeselectSlot();
+
+        selectedSlot = null;
+        selectedDoItObject = null;
     }
 
     public void AddFile(SpriteAsset spriteAsset)
@@ -73,7 +108,6 @@ public class FileGallery : MonoBehaviour
             selectedSlot = null;
 
         UpdateSelectButton();
-        Destroy(fileSlot.gameObject);
 
         if (spriteSlotPairs.Count == 0)
             uploadPromptText.gameObject.SetActive(true);

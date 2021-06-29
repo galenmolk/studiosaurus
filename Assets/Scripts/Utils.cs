@@ -9,6 +9,12 @@ public static class Utils
         canvasGroup.blocksRaycasts = isEnabled;
     }
 
+    public static void SetCanvasGroupRaycastsAndVisibility(CanvasGroup canvasGroup, bool isEnabled)
+    {
+        canvasGroup.alpha = isEnabled ? 1f : 0f;
+        canvasGroup.blocksRaycasts = isEnabled;
+    }
+
     public static void ConstrainRectTransformToSize(RectTransform rectTransform, Vector2 constrainingSize)
     {
         float xScaleFactor = 1f, yScaleFactor = 1f;

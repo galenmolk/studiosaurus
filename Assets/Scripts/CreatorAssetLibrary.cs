@@ -34,7 +34,7 @@ public class CreatorAssetLibrary : MonoBehaviour
 
         if (spritesInMemory.ContainsKey(filePath))
         {
-            ReplaceSpriteAssetWithNewVersion(spritesInMemory[filePath], newSpriteAsset);
+            ReplaceSpriteAsset(spritesInMemory[filePath], newSpriteAsset);
             spritesInMemory.Remove(filePath);
             Debug.Log("Replacing sprite " + filePath);
         }
@@ -49,10 +49,12 @@ public class CreatorAssetLibrary : MonoBehaviour
         {
             spritesInMemory.Remove(spriteAsset.path);
             Debug.Log("Deleting sprite " + spriteAsset.assetName);
+
+            ReplaceSpriteAsset(spriteAsset);
         }
     }
 
-    private void ReplaceSpriteAssetWithNewVersion(SpriteAsset oldSprite, SpriteAsset newSprite)
+    private void ReplaceSpriteAsset(SpriteAsset oldSprite, SpriteAsset newSprite = null)
     {
         foreach (SpriteAssetObject spriteAssetObject in oldSprite.spriteAssetObjects)
         {

@@ -13,18 +13,29 @@ public class FileSlot : SpriteAssetObject, IPointerEnterHandler, IPointerExitHan
 
     private RectTransform thumbnailRectTransform;
     [SerializeField] private Vector2 thumbnailSize = new Vector2(115, 115f);
+    private bool slotSelected;
 
     private void Awake()
     {
         thumbnailRectTransform = fileThumbnail.transform as RectTransform;
     }
 
-    private bool slotSelected;
-
     public override void UpdateSpriteAsset(SpriteAsset spriteAsset)
     {
+        if (spriteAsset == null)
+        {
+            DeleteSpriteAsset();
+            return;
+        }
+
         base.UpdateSpriteAsset(spriteAsset);
         DisplayFile();
+    }
+
+    public override void DeleteSpriteAsset()
+    {
+        base.DeleteSpriteAsset();
+        Destroy(gameObject);
     }
 
     private void DisplayFile()

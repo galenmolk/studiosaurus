@@ -26,6 +26,12 @@ public abstract class SpriteAssetObject : MonoBehaviour
 
     public virtual void UpdateSpriteAsset(SpriteAsset spriteAsset)
     {
+        spriteAsset.spriteAssetObjects.Add(this);
         this.spriteAsset = spriteAsset;
+    }
+
+    public virtual void DeleteSpriteAsset()
+    {
+        spriteAsset = null;
     }
 }
