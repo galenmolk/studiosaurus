@@ -3,82 +3,76 @@ using UnityEngine.EventSystems;
 
 public class Handles : MonoBehaviour
 {
-    [SerializeField] private ContextMenu contextMenuPrefab = null;
+    [SerializeField] private CanvasGroup canvasGroup = null;
 
     private DoItObject doItObject;
-    private RectTransform objectRectTransform;
-    private Canvas canvas;
-    private ContextMenu contextMenu;
 
     private void Awake()
     {
         doItObject = transform.parent.GetComponent<DoItObject>();
-        objectRectTransform = doItObject.transform as RectTransform;
-        canvas = FindObjectOfType<Canvas>();
     }
 
-    public void OpenContextMenu()
+    public void OpenContextMenu(PointerEventData eventData)
     {
-        contextMenu = Instantiate(contextMenuPrefab, doItObject.transform);
-        contextMenu.Open(doItObject);
-    }
-
-    public void CloseContextMenu()
-    {
-        if (contextMenu != null)
-            contextMenu.Close();
+        doItObject.OpenContextMenu(eventData);
     }
 
     public void MoveObject(PointerEventData eventData)
     {
-        objectRectTransform.anchoredPosition += eventData.delta / canvas.scaleFactor;
+        Vector2 newPosition = doItObject.AnchoredPosition += eventData.delta / StudioCanvas.Instance.ScaleFactor;
+        doItObject.AnchoredPosition = StudioCanvas.Instance.ConstrainPositionToCanvas(newPosition);
     }
 
     public void AdjustLeftEdge(PointerEventData eventData)
     {
-        objectRectTransform.anchoredPosition += new Vector2(eventData.delta.x / canvas.scaleFactor, 0f) / 2f;
-        objectRectTransform.sizeDelta += new Vector2(-eventData.delta.x / canvas.scaleFactor, 0f);
+        doItObject.AnchoredPosition += new Vector2(eventData.delta.x / StudioCanvas.Instance.ScaleFactor, 0f) / 2f;
+        doItObject.SizeDelta += new Vector2(-eventData.delta.x / StudioCanvas.Instance.ScaleFactor, 0f);
     }
 
     public void AdjustRightEdge(PointerEventData eventData)
     {
-        objectRectTransform.anchoredPosition += new Vector2(eventData.delta.x / canvas.scaleFactor, 0f) / 2f;
-        objectRectTransform.sizeDelta += new Vector2(eventData.delta.x / canvas.scaleFactor, 0f);
+        doItObject.AnchoredPosition += new Vector2(eventData.delta.x / StudioCanvas.Instance.ScaleFactor, 0f) / 2f;
+        doItObject.SizeDelta += new Vector2(eventData.delta.x / StudioCanvas.Instance.ScaleFactor, 0f);
     }
 
     public void AdjustTopEdge(PointerEventData eventData)
     {
-        objectRectTransform.anchoredPosition += new Vector2(0f, eventData.delta.y / canvas.scaleFactor) / 2f;
-        objectRectTransform.sizeDelta += new Vector2(0f, eventData.delta.y / canvas.scaleFactor);
+        doItObject.AnchoredPosition += new Vector2(0f, eventData.delta.y / StudioCanvas.Instance.ScaleFactor) / 2f;
+        doItObject.SizeDelta += new Vector2(0f, eventData.delta.y / StudioCanvas.Instance.ScaleFactor);
     }
 
     public void AdjustBottomEdge(PointerEventData eventData)
     {
-        objectRectTransform.anchoredPosition += new Vector2(0f, eventData.delta.y / canvas.scaleFactor) / 2f;
-        objectRectTransform.sizeDelta += new Vector2(0f, -eventData.delta.y / canvas.scaleFactor);
+        doItObject.AnchoredPosition += new Vector2(0f, eventData.delta.y / StudioCanvas.Instance.ScaleFactor) / 2f;
+        doItObject.SizeDelta += new Vector2(0f, -eventData.delta.y / StudioCanvas.Instance.ScaleFactor);
     }
 
     public void AdjustTopLeftCorner(PointerEventData eventData)
     {
-        objectRectTransform.anchoredPosition += eventData.delta / canvas.scaleFactor / 2f;
-        objectRectTransform.sizeDelta += new Vector2(-eventData.delta.x, eventData.delta.y) / canvas.scaleFactor;
+        doItObject.AnchoredPosition += eventData.delta / StudioCanvas.Instance.ScaleFactor / 2f;
+        doItObject.SizeDelta += new Vector2(-eventData.delta.x, eventData.delta.y) / StudioCanvas.Instance.ScaleFactor;
     }
 
     public void AdjustTopRightCorner(PointerEventData eventData)
     {
-        objectRectTransform.anchoredPosition += eventData.delta / canvas.scaleFactor / 2f;
-        objectRectTransform.sizeDelta += eventData.delta / canvas.scaleFactor;
+        doItObject.AnchoredPosition += eventData.delta / StudioCanvas.Instance.ScaleFactor / 2f;
+        doItObject.SizeDelta += eventData.delta / StudioCanvas.Instance.ScaleFactor;
     }
 
     public void AdjustBottomLeftCorner(PointerEventData eventData)
     {
-        objectRectTransform.anchoredPosition += eventData.delta / canvas.scaleFactor / 2f;
-        objectRectTransform.sizeDelta -= eventData.delta / canvas.scaleFactor;
+        doItObject.AnchoredPosition += eventData.delta / StudioCanvas.Instance.ScaleFactor / 2f;
+        doItObject.SizeDelta -= eventData.delta / StudioCanvas.Instance.ScaleFactor;
     }
 
     public void AdjustBottomRightCorner(PointerEventData eventData)
     {
-        objectRectTransform.anchoredPosition += eventData.delta / canvas.scaleFactor / 2f;
-        objectRectTransform.sizeDelta += new Vector2(eventData.delta.x, -eventData.delta.y) / canvas.scaleFactor;
+        doItObject.AnchoredPosition += eventData.delta / StudioCanvas.Instance.ScaleFactor / 2f;
+        doItObject.SizeDelta += new Vector2(eventData.delta.x, -eventData.delta.y) / StudioCanvas.Instance.ScaleFactor;
+    }
+
+    public void SetHandlesVisibility(bool isVisible)
+    {
+        canvasGroup.alpha = isVisible ? 1f : 0f;
     }
 }

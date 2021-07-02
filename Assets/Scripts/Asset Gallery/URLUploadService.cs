@@ -6,7 +6,7 @@ using UnityEngine.UI;
 using System.Runtime.InteropServices;
 #endif
 
-public class UploadURL : MonoBehaviour
+public class URLUploadService : MonoBehaviour
 {
 #if !UNITY_EDITOR
     [DllImport("__Internal")] private static extern void PasteHereWindow(string getText);

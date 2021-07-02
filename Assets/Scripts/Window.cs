@@ -4,7 +4,7 @@ public abstract class Window : MonoBehaviour
 {
     [SerializeField] private ClosePanel closePanelPrefab = null;
 
-    private ClosePanel closePanel;
+    protected ClosePanel closePanel;
 
     protected void ActivateClosePanel(Transform windowScope)
     {
@@ -14,9 +14,9 @@ public abstract class Window : MonoBehaviour
         closePanel.transform.SetSiblingIndex(siblingIndex--);
     }
 
-    public virtual void Close()
+    public void Close()
     {
-        if (closePanel != null)
-            Destroy(closePanel);
+        Destroy(closePanel.gameObject);
+        Destroy(gameObject);
     }
 } 

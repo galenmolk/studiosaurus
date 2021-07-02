@@ -7,7 +7,7 @@ public class CreatorAssetLoadService : MonoBehaviour
 {
     private Texture2D texture;
 
-    static CreatorAssetLoadService sharedInstance;
+    private static CreatorAssetLoadService sharedInstance;
     public static CreatorAssetLoadService Instance
     {
         get

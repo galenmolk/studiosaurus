@@ -6,7 +6,6 @@ public class ClosePanel : MonoBehaviour
 
     public void CloseWindow()
     {
-        if (CurrentWindow != null)
-            CurrentWindow.Close();
+        CurrentWindow.Close();
     }
 }

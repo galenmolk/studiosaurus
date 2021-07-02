@@ -88,6 +88,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e6440ea11be65451f85315ba7d1a3d3d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  contextMenuPrefab: {fileID: 2120588949231371061, guid: a2751917ab21f47e8ac5ed89342a4fe8, type: 3}
   doItObjectName: 
-  doItObjectSprite: {fileID: 0}
   handlesPrefab: {fileID: 2378587697726777810, guid: 047c7cd91e47847ebaca82138bc54c6e, type: 3}
+  controlSections:
+  - {fileID: 738531953086555695, guid: 31c50fb58a5934ee19e264efbde87e33, type: 3}

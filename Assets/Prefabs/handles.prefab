@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 8653748361358409543}
   - component: {fileID: 7766883165170030307}
   - component: {fileID: 6441100746076639495}
-  - component: {fileID: 4136255590241455137}
   m_Layer: 5
   m_Name: left
   m_TagString: Untagged
@@ -91,19 +90,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   onPointerDown:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 2378587697726777810}
-        m_TargetAssemblyTypeName: Handles, Assembly-CSharp
-        m_MethodName: CloseContextMenu
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
   onPointerUp:
     m_PersistentCalls:
       m_Calls: []
@@ -122,14 +109,13 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  canvasGroup: {fileID: 4136255590241455137}
   onRightClick:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 2378587697726777810}
         m_TargetAssemblyTypeName: Handles, Assembly-CSharp
         m_MethodName: OpenContextMenu
-        m_Mode: 1
+        m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -144,7 +130,7 @@ MonoBehaviour:
       - m_Target: {fileID: 2378587697726777810}
         m_TargetAssemblyTypeName: Handles, Assembly-CSharp
         m_MethodName: OpenContextMenu
-        m_Mode: 1
+        m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -153,18 +139,36 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!225 &4136255590241455137
-CanvasGroup:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 503311903012554458}
-  m_Enabled: 1
-  m_Alpha: 0
-  m_Interactable: 1
-  m_BlocksRaycasts: 1
-  m_IgnoreParentGroups: 0
+  onPointerEnter:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2378587697726777810}
+        m_TargetAssemblyTypeName: Handles, Assembly-CSharp
+        m_MethodName: SetHandlesVisibility
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+  onPointerExit:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2378587697726777810}
+        m_TargetAssemblyTypeName: Handles, Assembly-CSharp
+        m_MethodName: SetHandlesVisibility
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &1990431579537823437
 GameObject:
   m_ObjectHideFlags: 0
@@ -177,7 +181,6 @@ GameObject:
   - component: {fileID: 7500761060748462465}
   - component: {fileID: 7369004038719820388}
   - component: {fileID: 227406055279176627}
-  - component: {fileID: 4401919620008307667}
   m_Layer: 5
   m_Name: bottom-left
   m_TagString: Untagged
@@ -256,19 +259,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   onPointerDown:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 2378587697726777810}
-        m_TargetAssemblyTypeName: Handles, Assembly-CSharp
-        m_MethodName: CloseContextMenu
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
   onPointerUp:
     m_PersistentCalls:
       m_Calls: []
@@ -287,14 +278,13 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  canvasGroup: {fileID: 4401919620008307667}
   onRightClick:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 2378587697726777810}
         m_TargetAssemblyTypeName: Handles, Assembly-CSharp
         m_MethodName: OpenContextMenu
-        m_Mode: 1
+        m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -309,7 +299,7 @@ MonoBehaviour:
       - m_Target: {fileID: 2378587697726777810}
         m_TargetAssemblyTypeName: Handles, Assembly-CSharp
         m_MethodName: OpenContextMenu
-        m_Mode: 1
+        m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -318,18 +308,36 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!225 &4401919620008307667
-CanvasGroup:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1990431579537823437}
-  m_Enabled: 1
-  m_Alpha: 0
-  m_Interactable: 1
-  m_BlocksRaycasts: 1
-  m_IgnoreParentGroups: 0
+  onPointerEnter:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2378587697726777810}
+        m_TargetAssemblyTypeName: Handles, Assembly-CSharp
+        m_MethodName: SetHandlesVisibility
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+  onPointerExit:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2378587697726777810}
+        m_TargetAssemblyTypeName: Handles, Assembly-CSharp
+        m_MethodName: SetHandlesVisibility
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &2458832145855710848
 GameObject:
   m_ObjectHideFlags: 0
@@ -342,7 +350,6 @@ GameObject:
   - component: {fileID: 9099598093099922318}
   - component: {fileID: 3072695970064782904}
   - component: {fileID: 5005583091966397216}
-  - component: {fileID: 6088887788283139957}
   m_Layer: 5
   m_Name: bottom
   m_TagString: Untagged
@@ -421,19 +428,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   onPointerDown:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 2378587697726777810}
-        m_TargetAssemblyTypeName: Handles, Assembly-CSharp
-        m_MethodName: CloseContextMenu
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
   onPointerUp:
     m_PersistentCalls:
       m_Calls: []
@@ -452,14 +447,13 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  canvasGroup: {fileID: 6088887788283139957}
   onRightClick:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 2378587697726777810}
         m_TargetAssemblyTypeName: Handles, Assembly-CSharp
         m_MethodName: OpenContextMenu
-        m_Mode: 1
+        m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -474,7 +468,7 @@ MonoBehaviour:
       - m_Target: {fileID: 2378587697726777810}
         m_TargetAssemblyTypeName: Handles, Assembly-CSharp
         m_MethodName: OpenContextMenu
-        m_Mode: 1
+        m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -483,18 +477,36 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!225 &6088887788283139957
-CanvasGroup:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2458832145855710848}
-  m_Enabled: 1
-  m_Alpha: 0
-  m_Interactable: 1
-  m_BlocksRaycasts: 1
-  m_IgnoreParentGroups: 0
+  onPointerEnter:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2378587697726777810}
+        m_TargetAssemblyTypeName: Handles, Assembly-CSharp
+        m_MethodName: SetHandlesVisibility
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+  onPointerExit:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2378587697726777810}
+        m_TargetAssemblyTypeName: Handles, Assembly-CSharp
+        m_MethodName: SetHandlesVisibility
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &5723922481585013087
 GameObject:
   m_ObjectHideFlags: 0
@@ -507,7 +519,6 @@ GameObject:
   - component: {fileID: 1912317113840363007}
   - component: {fileID: 6918218039551573418}
   - component: {fileID: 5684154033411259341}
-  - component: {fileID: 5658639309111939042}
   m_Layer: 5
   m_Name: top-right
   m_TagString: Untagged
@@ -586,19 +597,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   onPointerDown:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 2378587697726777810}
-        m_TargetAssemblyTypeName: Handles, Assembly-CSharp
-        m_MethodName: CloseContextMenu
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
   onPointerUp:
     m_PersistentCalls:
       m_Calls: []
@@ -617,14 +616,13 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  canvasGroup: {fileID: 5658639309111939042}
   onRightClick:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 2378587697726777810}
         m_TargetAssemblyTypeName: Handles, Assembly-CSharp
         m_MethodName: OpenContextMenu
-        m_Mode: 1
+        m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -639,7 +637,7 @@ MonoBehaviour:
       - m_Target: {fileID: 2378587697726777810}
         m_TargetAssemblyTypeName: Handles, Assembly-CSharp
         m_MethodName: OpenContextMenu
-        m_Mode: 1
+        m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -648,18 +646,36 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!225 &5658639309111939042
-CanvasGroup:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5723922481585013087}
-  m_Enabled: 1
-  m_Alpha: 0
-  m_Interactable: 1
-  m_BlocksRaycasts: 1
-  m_IgnoreParentGroups: 0
+  onPointerEnter:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2378587697726777810}
+        m_TargetAssemblyTypeName: Handles, Assembly-CSharp
+        m_MethodName: SetHandlesVisibility
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+  onPointerExit:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2378587697726777810}
+        m_TargetAssemblyTypeName: Handles, Assembly-CSharp
+        m_MethodName: SetHandlesVisibility
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &6293646086089355531
 GameObject:
   m_ObjectHideFlags: 0
@@ -672,7 +688,6 @@ GameObject:
   - component: {fileID: 1658109368997926957}
   - component: {fileID: 4561066366080259639}
   - component: {fileID: 5746248475684728754}
-  - component: {fileID: 4539964413688082284}
   m_Layer: 5
   m_Name: top-left
   m_TagString: Untagged
@@ -751,19 +766,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   onPointerDown:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 2378587697726777810}
-        m_TargetAssemblyTypeName: Handles, Assembly-CSharp
-        m_MethodName: CloseContextMenu
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
   onPointerUp:
     m_PersistentCalls:
       m_Calls: []
@@ -782,14 +785,13 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  canvasGroup: {fileID: 4539964413688082284}
   onRightClick:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 2378587697726777810}
         m_TargetAssemblyTypeName: Handles, Assembly-CSharp
         m_MethodName: OpenContextMenu
-        m_Mode: 1
+        m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -804,7 +806,7 @@ MonoBehaviour:
       - m_Target: {fileID: 2378587697726777810}
         m_TargetAssemblyTypeName: Handles, Assembly-CSharp
         m_MethodName: OpenContextMenu
-        m_Mode: 1
+        m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -813,18 +815,36 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!225 &4539964413688082284
-CanvasGroup:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6293646086089355531}
-  m_Enabled: 1
-  m_Alpha: 0
-  m_Interactable: 1
-  m_BlocksRaycasts: 1
-  m_IgnoreParentGroups: 0
+  onPointerEnter:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2378587697726777810}
+        m_TargetAssemblyTypeName: Handles, Assembly-CSharp
+        m_MethodName: SetHandlesVisibility
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+  onPointerExit:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2378587697726777810}
+        m_TargetAssemblyTypeName: Handles, Assembly-CSharp
+        m_MethodName: SetHandlesVisibility
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &6819997558773447639
 GameObject:
   m_ObjectHideFlags: 0
@@ -837,7 +857,6 @@ GameObject:
   - component: {fileID: 2753683837044473230}
   - component: {fileID: 3770784066207982359}
   - component: {fileID: 8918192039373816062}
-  - component: {fileID: 6413373715749523375}
   m_Layer: 5
   m_Name: top
   m_TagString: Untagged
@@ -916,19 +935,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   onPointerDown:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 2378587697726777810}
-        m_TargetAssemblyTypeName: Handles, Assembly-CSharp
-        m_MethodName: CloseContextMenu
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
   onPointerUp:
     m_PersistentCalls:
       m_Calls: []
@@ -947,14 +954,13 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  canvasGroup: {fileID: 6413373715749523375}
   onRightClick:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 2378587697726777810}
         m_TargetAssemblyTypeName: Handles, Assembly-CSharp
         m_MethodName: OpenContextMenu
-        m_Mode: 1
+        m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -969,7 +975,7 @@ MonoBehaviour:
       - m_Target: {fileID: 2378587697726777810}
         m_TargetAssemblyTypeName: Handles, Assembly-CSharp
         m_MethodName: OpenContextMenu
-        m_Mode: 1
+        m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -978,18 +984,36 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!225 &6413373715749523375
-CanvasGroup:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6819997558773447639}
-  m_Enabled: 1
-  m_Alpha: 0
-  m_Interactable: 1
-  m_BlocksRaycasts: 1
-  m_IgnoreParentGroups: 0
+  onPointerEnter:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2378587697726777810}
+        m_TargetAssemblyTypeName: Handles, Assembly-CSharp
+        m_MethodName: SetHandlesVisibility
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+  onPointerExit:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2378587697726777810}
+        m_TargetAssemblyTypeName: Handles, Assembly-CSharp
+        m_MethodName: SetHandlesVisibility
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &7166500359946976099
 GameObject:
   m_ObjectHideFlags: 0
@@ -1002,7 +1026,6 @@ GameObject:
   - component: {fileID: 8490754168642050068}
   - component: {fileID: 8919250515654426300}
   - component: {fileID: 7481159185678544640}
-  - component: {fileID: 156526339621063320}
   m_Layer: 5
   m_Name: bottom-right
   m_TagString: Untagged
@@ -1081,19 +1104,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   onPointerDown:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 2378587697726777810}
-        m_TargetAssemblyTypeName: Handles, Assembly-CSharp
-        m_MethodName: CloseContextMenu
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
   onPointerUp:
     m_PersistentCalls:
       m_Calls: []
@@ -1112,14 +1123,13 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  canvasGroup: {fileID: 156526339621063320}
   onRightClick:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 2378587697726777810}
         m_TargetAssemblyTypeName: Handles, Assembly-CSharp
         m_MethodName: OpenContextMenu
-        m_Mode: 1
+        m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -1134,7 +1144,7 @@ MonoBehaviour:
       - m_Target: {fileID: 2378587697726777810}
         m_TargetAssemblyTypeName: Handles, Assembly-CSharp
         m_MethodName: OpenContextMenu
-        m_Mode: 1
+        m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -1143,18 +1153,36 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!225 &156526339621063320
-CanvasGroup:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7166500359946976099}
-  m_Enabled: 1
-  m_Alpha: 0
-  m_Interactable: 1
-  m_BlocksRaycasts: 1
-  m_IgnoreParentGroups: 0
+  onPointerEnter:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2378587697726777810}
+        m_TargetAssemblyTypeName: Handles, Assembly-CSharp
+        m_MethodName: SetHandlesVisibility
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+  onPointerExit:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2378587697726777810}
+        m_TargetAssemblyTypeName: Handles, Assembly-CSharp
+        m_MethodName: SetHandlesVisibility
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &8294547321431636633
 GameObject:
   m_ObjectHideFlags: 0
@@ -1167,7 +1195,6 @@ GameObject:
   - component: {fileID: 6589605402270814134}
   - component: {fileID: 8957235444512016297}
   - component: {fileID: 8376144841242494756}
-  - component: {fileID: 9205929128163561380}
   m_Layer: 5
   m_Name: right
   m_TagString: Untagged
@@ -1246,19 +1273,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   onPointerDown:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 2378587697726777810}
-        m_TargetAssemblyTypeName: Handles, Assembly-CSharp
-        m_MethodName: CloseContextMenu
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
   onPointerUp:
     m_PersistentCalls:
       m_Calls: []
@@ -1277,14 +1292,13 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  canvasGroup: {fileID: 9205929128163561380}
   onRightClick:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 2378587697726777810}
         m_TargetAssemblyTypeName: Handles, Assembly-CSharp
         m_MethodName: OpenContextMenu
-        m_Mode: 1
+        m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -1299,7 +1313,7 @@ MonoBehaviour:
       - m_Target: {fileID: 2378587697726777810}
         m_TargetAssemblyTypeName: Handles, Assembly-CSharp
         m_MethodName: OpenContextMenu
-        m_Mode: 1
+        m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -1308,18 +1322,36 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!225 &9205929128163561380
-CanvasGroup:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8294547321431636633}
-  m_Enabled: 1
-  m_Alpha: 0
-  m_Interactable: 1
-  m_BlocksRaycasts: 1
-  m_IgnoreParentGroups: 0
+  onPointerEnter:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2378587697726777810}
+        m_TargetAssemblyTypeName: Handles, Assembly-CSharp
+        m_MethodName: SetHandlesVisibility
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+  onPointerExit:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2378587697726777810}
+        m_TargetAssemblyTypeName: Handles, Assembly-CSharp
+        m_MethodName: SetHandlesVisibility
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &8906835600662501491
 GameObject:
   m_ObjectHideFlags: 0
@@ -1332,7 +1364,6 @@ GameObject:
   - component: {fileID: 3705967383918836163}
   - component: {fileID: 6839874042637790137}
   - component: {fileID: 1548600256224353202}
-  - component: {fileID: 7601591260397926825}
   m_Layer: 5
   m_Name: body
   m_TagString: Untagged
@@ -1411,19 +1442,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   onPointerDown:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 2378587697726777810}
-        m_TargetAssemblyTypeName: Handles, Assembly-CSharp
-        m_MethodName: CloseContextMenu
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
   onPointerUp:
     m_PersistentCalls:
       m_Calls: []
@@ -1442,14 +1461,13 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  canvasGroup: {fileID: 7601591260397926825}
   onRightClick:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 2378587697726777810}
         m_TargetAssemblyTypeName: Handles, Assembly-CSharp
         m_MethodName: OpenContextMenu
-        m_Mode: 1
+        m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -1464,7 +1482,7 @@ MonoBehaviour:
       - m_Target: {fileID: 2378587697726777810}
         m_TargetAssemblyTypeName: Handles, Assembly-CSharp
         m_MethodName: OpenContextMenu
-        m_Mode: 1
+        m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -1473,18 +1491,36 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!225 &7601591260397926825
-CanvasGroup:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8906835600662501491}
-  m_Enabled: 1
-  m_Alpha: 0
-  m_Interactable: 1
-  m_BlocksRaycasts: 1
-  m_IgnoreParentGroups: 0
+  onPointerEnter:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2378587697726777810}
+        m_TargetAssemblyTypeName: Handles, Assembly-CSharp
+        m_MethodName: SetHandlesVisibility
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+  onPointerExit:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2378587697726777810}
+        m_TargetAssemblyTypeName: Handles, Assembly-CSharp
+        m_MethodName: SetHandlesVisibility
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &9118200248159647321
 GameObject:
   m_ObjectHideFlags: 0
@@ -1495,6 +1531,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7290378200938824642}
   - component: {fileID: 2378587697726777810}
+  - component: {fileID: 5210119924575172302}
   m_Layer: 5
   m_Name: handles
   m_TagString: Untagged
@@ -1543,3 +1580,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   contextMenuPrefab: {fileID: 2120588949231371061, guid: a2751917ab21f47e8ac5ed89342a4fe8, type: 3}
+  canvasGroup: {fileID: 5210119924575172302}
+--- !u!225 &5210119924575172302
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9118200248159647321}
+  m_Enabled: 1
+  m_Alpha: 0
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
