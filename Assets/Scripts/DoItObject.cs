@@ -10,6 +10,7 @@ public class OnScaleChanged : UnityEvent<Vector2> { }
 [RequireComponent(typeof(RectTransform))]
 public class DoItObject : SpriteAssetObject
 {
+    [SerializeField] private Image image = null;
     [SerializeField] private ContextMenu contextMenuPrefab = null;
 
     [SerializeField] private string doItObjectName = null;
@@ -22,7 +23,6 @@ public class DoItObject : SpriteAssetObject
 
     public ControlSection[] controlSections = null;
 
-    private Image image;
     private ContextMenu contextMenu;
 
     private RectTransform rectTransform;
@@ -37,6 +37,9 @@ public class DoItObject : SpriteAssetObject
         }
     }
 
+
+    private Vector2 clampBuffer = new Vector2(40f, 40f);
+
     public Vector2 AnchoredPosition
     {
         get
@@ -45,8 +48,17 @@ public class DoItObject : SpriteAssetObject
         }
         set
         {
-            RectTransform.anchoredPosition = value;
-            onPositionChanged?.Invoke(value);
+            if (SizeDelta.x == 0 || SizeDelta.y == 0)
+                return;
+
+            Rect rect = StudioCanvas.Instance.RectTransform.rect;
+            Vector2 halfSize = (SizeDelta - clampBuffer) * 0.5f;
+            float newX = Mathf.Clamp(value.x, rect.xMin - halfSize.x, rect.xMax + halfSize.x);
+            float newY = Mathf.Clamp(value.y, rect.yMin - halfSize.y, rect.yMax + halfSize.y);
+            Vector2 newPosition = new Vector2(newX, newY);
+
+            RectTransform.anchoredPosition = newPosition;
+            onPositionChanged?.Invoke(newPosition);
         }
     }
 
@@ -58,20 +70,15 @@ public class DoItObject : SpriteAssetObject
         }
         set
         {
-            RectTransform.sizeDelta = value;
-            onScaleChanged?.Invoke(value);
+            Vector2 newSize = new Vector2(Mathf.Clamp(value.x, 0f, Mathf.Infinity), Mathf.Clamp(value.y, 0f, Mathf.Infinity));
+            RectTransform.sizeDelta = newSize;
+            onScaleChanged?.Invoke(newSize);
         }
     }
 
     private void Awake()
     {
-        CacheReferences();
         Instantiate(handlesPrefab, transform);
-    }
-
-    private void CacheReferences()
-    {
-        image = GetComponent<Image>();
     }
 
     public override void UpdateSpriteAsset(SpriteAsset spriteAsset)
@@ -97,6 +104,7 @@ public class DoItObject : SpriteAssetObject
     {
         if (contextMenu != null)
         {
+            contextMenu.transform.SetParent(transform);
             contextMenu.PositionMenu(eventData.position);
             return;
         }

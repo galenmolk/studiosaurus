@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 [RequireComponent(typeof(Canvas))]
 public class StudioCanvas : MonoBehaviour
@@ -17,6 +18,13 @@ public class StudioCanvas : MonoBehaviour
 
     private Canvas canvas;
     [SerializeField] private RectTransform rectTransform = null;
+    public RectTransform RectTransform
+    {
+        get
+        {
+            return rectTransform;
+        }
+    }
 
     public float ScaleFactor
     {
@@ -36,8 +44,14 @@ public class StudioCanvas : MonoBehaviour
         return new Vector2(x, y);
     }
 
-    public Vector2 GetCanvasBounds()
+    public Vector2 GetCanvasRectMaxBounds()
     {
         return new Vector2(rectTransform.rect.xMax, rectTransform.rect.yMax);
+    }
+
+    public bool CanvasContainsMouse()
+    {
+        Vector2 mousePos = Input.mousePosition;
+        return mousePos.x > 0 && mousePos.x < Screen.width && mousePos.y > 0 && mousePos.y < Screen.height;
     }
 }

@@ -8,12 +8,12 @@ public class ContextMenu : Window
     [SerializeField] private RectTransform rectTransform = null;
     [SerializeField] private CanvasGroup canvasGroup = null;
 
-    private DoItObject currentDoItObject;
+    private DoItObject doItObject;
     private readonly WaitForEndOfFrame endOfFrame;
 
     public IEnumerator Open(DoItObject doItObject, Vector2 clickPosition)
     {
-        currentDoItObject = doItObject;
+        this.doItObject = doItObject;
         OpenControlSections();
         transform.SetAsLastSibling();
         ActivateClosePanel(doItObject.transform);
@@ -25,34 +25,54 @@ public class ContextMenu : Window
 
     private void OpenControlSections()
     {
-        foreach (ControlSection controlSection in currentDoItObject.controlSections)
+        foreach (ControlSection controlSection in doItObject.controlSections)
         {
             ControlSection newSection = Instantiate(controlSection, transform);
-            newSection.InitializeControls(currentDoItObject);
+            newSection.InitializeControls(doItObject);
         }
     }
 
-    public void PositionMenu(Vector2 clickPosition)
+    public void PositionMenu(Vector2 clickPos)
     {
-        Vector2 menuSize = rectTransform.sizeDelta;
-        Vector2 canvasSize = StudioCanvas.Instance.GetCanvasBounds();
+        Vector2 menuSize = rectTransform.sizeDelta * StudioCanvas.Instance.ScaleFactor;
 
-        float xOffset = (canvasSize.x - clickPosition.x >= menuSize.x) ? menuSize.x * 0.5f : menuSize.x * -0.5f;
-        float yOffset = (canvasSize.y - clickPosition.y >= menuSize.y) ? menuSize.y * 0.5f : menuSize.y * -0.5f;
+        float xOffset = Screen.width - clickPos.x > menuSize.x ? menuSize.x * 0.5f : menuSize.x * -0.5f;
+        float yOffset = clickPos.y > menuSize.y ? menuSize.y * -0.5f : menuSize.y * 0.5f;
         Vector2 offset = new Vector2(xOffset, yOffset);
 
-        rectTransform.anchoredPosition = currentDoItObject.RectTransform.InverseTransformPoint(clickPosition + (offset * StudioCanvas.Instance.ScaleFactor));
+        rectTransform.anchoredPosition = doItObject.RectTransform.InverseTransformPoint(clickPos + offset);
+        transform.SetParent(StudioCanvas.Instance.transform);
         Utils.SetCanvasGroupEnabled(canvasGroup, true);
     }
 
     public void SelectImage()
     {
-        FileGallery.Instance.Open(currentDoItObject);
+        FileGallery.Instance.Open(doItObject);
+    }
+
+    private bool mouseExitedScreen;
+    private Vector2 dragOffset;
+
+    public void SetOffset(PointerEventData eventData)
+    {
+        dragOffset = rectTransform.anchoredPosition - (Vector2)StudioCanvas.Instance.RectTransform.InverseTransformPoint(eventData.position);
     }
 
     public void MoveContextMenu(PointerEventData eventData)
     {
-        Vector2 newPosition = rectTransform.anchoredPosition += eventData.delta / StudioCanvas.Instance.ScaleFactor;
-        rectTransform.anchoredPosition = StudioCanvas.Instance.ConstrainPositionToCanvas(newPosition);
+        if (!StudioCanvas.Instance.CanvasContainsMouse())
+        {
+            mouseExitedScreen = true;
+            return;
+        }
+
+        if (mouseExitedScreen)
+        {
+            rectTransform.anchoredPosition = (Vector2)StudioCanvas.Instance.RectTransform.InverseTransformPoint(eventData.position) + dragOffset;
+            mouseExitedScreen = false;
+        }
+
+        Vector2 newPos = rectTransform.anchoredPosition + eventData.delta / StudioCanvas.Instance.ScaleFactor;
+        rectTransform.anchoredPosition = StudioCanvas.Instance.ConstrainPositionToCanvas(newPos);
     }
 }

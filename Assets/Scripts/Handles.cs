@@ -6,6 +6,8 @@ public class Handles : MonoBehaviour
     [SerializeField] private CanvasGroup canvasGroup = null;
 
     private DoItObject doItObject;
+    private bool mouseExitedScreen = false;
+    private Vector2 dragOffset;
 
     private void Awake()
     {
@@ -17,10 +19,26 @@ public class Handles : MonoBehaviour
         doItObject.OpenContextMenu(eventData);
     }
 
+    public void SetOffset(PointerEventData eventData)
+    {
+        dragOffset = doItObject.AnchoredPosition - (Vector2)StudioCanvas.Instance.RectTransform.InverseTransformPoint(eventData.position);
+    }
+
     public void MoveObject(PointerEventData eventData)
     {
-        Vector2 newPosition = doItObject.AnchoredPosition += eventData.delta / StudioCanvas.Instance.ScaleFactor;
-        doItObject.AnchoredPosition = StudioCanvas.Instance.ConstrainPositionToCanvas(newPosition);
+        if (!StudioCanvas.Instance.CanvasContainsMouse())
+        {
+            mouseExitedScreen = true;
+            return;
+        }
+
+        if (mouseExitedScreen)
+        {
+            doItObject.AnchoredPosition = (Vector2)StudioCanvas.Instance.RectTransform.InverseTransformPoint(eventData.position) + dragOffset;
+            mouseExitedScreen = false;
+        }
+
+        doItObject.AnchoredPosition += eventData.delta / StudioCanvas.Instance.ScaleFactor;
     }
 
     public void AdjustLeftEdge(PointerEventData eventData)
@@ -73,6 +91,6 @@ public class Handles : MonoBehaviour
 
     public void SetHandlesVisibility(bool isVisible)
     {
-        canvasGroup.alpha = isVisible ? 1f : 0f;
+        canvasGroup.alpha = isVisible ? 1f : 0.25f;
     }
 }
