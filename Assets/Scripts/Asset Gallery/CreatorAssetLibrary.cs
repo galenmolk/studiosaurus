@@ -16,7 +16,7 @@ public class CreatorAssetLibrary : MonoBehaviour
         }
     }
 
-    private Dictionary<string, SpriteAsset> spritesInMemory = new Dictionary<string, SpriteAsset>();
+    private Dictionary<string, SpriteAsset> assetsInMemory = new Dictionary<string, SpriteAsset>();
 
     private void Awake()
     {
@@ -32,33 +32,33 @@ public class CreatorAssetLibrary : MonoBehaviour
 
         SpriteAsset newSpriteAsset = new SpriteAsset(fileName, sprite, filePath);
 
-        if (spritesInMemory.ContainsKey(filePath))
+        if (assetsInMemory.ContainsKey(filePath))
         {
-            ReplaceSpriteAsset(spritesInMemory[filePath], newSpriteAsset);
-            spritesInMemory.Remove(filePath);
+            ReplaceAsset(assetsInMemory[filePath], newSpriteAsset);
+            assetsInMemory.Remove(filePath);
             Debug.Log("Replacing sprite " + filePath);
         }
         
-        spritesInMemory.Add(filePath, newSpriteAsset);
-        FileGallery.Instance.AddFile(newSpriteAsset);
+        assetsInMemory.Add(filePath, newSpriteAsset);
+        AssetSelector.Instance.AddFile(newSpriteAsset);
     }
 
-    public void DeleteSprite(SpriteAsset spriteAsset)
+    public void DeleteAsset(SpriteAsset asset)
     {
-        if (spritesInMemory.ContainsKey(spriteAsset.path))
+        if (assetsInMemory.ContainsKey(asset.path))
         {
-            spritesInMemory.Remove(spriteAsset.path);
-            Debug.Log("Deleting sprite " + spriteAsset.assetName);
+            assetsInMemory.Remove(asset.path);
+            Debug.Log("Deleting sprite " + asset.assetName);
 
-            ReplaceSpriteAsset(spriteAsset);
+            ReplaceAsset(asset);
         }
     }
 
-    private void ReplaceSpriteAsset(SpriteAsset oldSprite, SpriteAsset newSprite = null)
+    private void ReplaceAsset(SpriteAsset oldAsset, SpriteAsset newAsset = null)
     {
-        foreach (SpriteAssetObject spriteAssetObject in oldSprite.spriteAssetObjects)
+        foreach (SpriteAssetObject assetObject in oldAsset.assetObjects)
         {
-            spriteAssetObject.UpdateSpriteAsset(newSprite);
+            assetObject.UpdateAsset(newAsset);
         }
     }
 }

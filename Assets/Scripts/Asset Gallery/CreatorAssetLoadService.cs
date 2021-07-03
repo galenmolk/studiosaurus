@@ -34,7 +34,7 @@ public class CreatorAssetLoadService : MonoBehaviour
 
     public IEnumerator LoadSprite(string url)
     {
-        if (url == null || string.IsNullOrEmpty(url))
+        if (string.IsNullOrWhiteSpace(url))
         {
             DisplayLoadMessage(INVALID_URL_MESSAGE);
             yield break;

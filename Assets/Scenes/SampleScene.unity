@@ -159,7 +159,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 2
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_BackGroundColor: {r: 0.20784314, g: 0.53333336, b: 0.9843137, a: 1}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
@@ -422,7 +422,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ad869c0dff13d401b94f7d320ed495e9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  edgeBuffer: 5
   rectTransform: {fileID: 680918973}
+--- !u!224 &799554224 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 4577294961564075446, guid: 849f6c8fd23ae428dbbdaad60619d223, type: 3}
+  m_PrefabInstance: {fileID: 771786825263716082}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &968058274
 GameObject:
   m_ObjectHideFlags: 0
@@ -496,6 +502,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 680918973}
     m_Modifications:
+    - target: {fileID: 1780479491, guid: 849f6c8fd23ae428dbbdaad60619d223, type: 3}
+      propertyPath: assetSlotPrefab
+      value: 
+      objectReference: {fileID: 1803912326866805624, guid: 5c09a6838ede7433e8d6a113b3af928a, type: 3}
+    - target: {fileID: 1780479491, guid: 849f6c8fd23ae428dbbdaad60619d223, type: 3}
+      propertyPath: assetSlotContainer
+      value: 
+      objectReference: {fileID: 799554224}
     - target: {fileID: 771786824841583567, guid: 849f6c8fd23ae428dbbdaad60619d223, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -622,7 +636,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1497000070068154574, guid: 849f6c8fd23ae428dbbdaad60619d223, type: 3}
       propertyPath: m_Name
-      value: file-selector
+      value: asset-selector
       objectReference: {fileID: 0}
     - target: {fileID: 1641891035643270954, guid: 849f6c8fd23ae428dbbdaad60619d223, type: 3}
       propertyPath: m_AnchorMax.y
@@ -655,10 +669,6 @@ PrefabInstance:
     - target: {fileID: 2713913607070802351, guid: 849f6c8fd23ae428dbbdaad60619d223, type: 3}
       propertyPath: m_SizeDelta.x
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3704217761365759413, guid: 849f6c8fd23ae428dbbdaad60619d223, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: Cancel
       objectReference: {fileID: 0}
     - target: {fileID: 3959297293216582970, guid: 849f6c8fd23ae428dbbdaad60619d223, type: 3}
       propertyPath: m_AnchorMax.y
@@ -708,9 +718,9 @@ PrefabInstance:
       propertyPath: m_SizeDelta.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 6539752177175798071, guid: 849f6c8fd23ae428dbbdaad60619d223, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: Select
+    - target: {fileID: 6529299294810279585, guid: 849f6c8fd23ae428dbbdaad60619d223, type: 3}
+      propertyPath: m_Name
+      value: asset-slot-container
       objectReference: {fileID: 0}
     - target: {fileID: 8127133767849117444, guid: 849f6c8fd23ae428dbbdaad60619d223, type: 3}
       propertyPath: m_AnchorMax.x

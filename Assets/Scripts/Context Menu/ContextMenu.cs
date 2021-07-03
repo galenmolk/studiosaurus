@@ -11,6 +11,8 @@ public class ContextMenu : Window
     private DoItObject doItObject;
     private readonly WaitForEndOfFrame endOfFrame;
 
+    [SerializeField] private AssetSlotGallery gallery;
+
     public IEnumerator Open(DoItObject doItObject, Vector2 clickPosition)
     {
         this.doItObject = doItObject;
@@ -47,7 +49,7 @@ public class ContextMenu : Window
 
     public void SelectImage()
     {
-        FileGallery.Instance.Open(doItObject);
+        AssetSelector.Instance.Open(doItObject, gallery);
     }
 
     private bool mouseExitedScreen;

@@ -1,29 +1,32 @@
 Add manual sizing
 
-Refactor/clean code
+*****make sprite-button inherit from control section
+
+*Refactor/clean code
 
 Add custom cursors
 
-Add file slot double click shortcut
-
-Autoselect most recent slot on reopen
-
-Autoassign image on upload
-
 Preserve aspect ratio on images if shift is held
-
-add background image
 
 add tool bar with buttons and or control tips
 
-add a Studiosaurus splash screen
-
-Add a small buffer in ScreenContainsMouse check so it still says its on screen for a few pixels
-
-Make file selector move above all other transforms. conetxt menu is in front of it
-
-Prevent question mark sprite from being loaded if there's an empty string
-
 add tab feature to position controls... maybe lol
 
+******Add audio support
 
+find higher def handle sprites
+
+add a little more animation to ui
+
+shift while moving object to snap to whole numbers
+
+****clamp object position to on screen on upload if it's off screen
+
+***autoselect new slot if selected slot is deleted
+
+add more objects!
+
+modify offscreen dragging so 
+x pos follows mouse but y pos is locked if mouse is above screen
+y pos follows mouse but x is locked if mouse if right of screen
+etc

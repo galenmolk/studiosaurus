@@ -9,7 +9,7 @@ public class AssetDeletionWindow : MonoBehaviour
     [SerializeField] private RectTransform assetImageRectTransform;
     [SerializeField] private CanvasGroup canvasGroup = null;
 
-    private FileSlot fileSlot;
+    private AssetSlot fileSlot;
     private Vector2 thumbnailSize;
 
     private void Awake()
@@ -18,11 +18,11 @@ public class AssetDeletionWindow : MonoBehaviour
         CloseWindow();
     }
 
-    public void OpenWindow(FileSlot fileSlot)
+    public void OpenWindow(AssetSlot fileSlot)
     {
         this.fileSlot = fileSlot;
-        assetTitleText.text = fileSlot.SpriteAsset.assetName;
-        assetImage.sprite = fileSlot.SpriteAsset.sprite;
+        assetTitleText.text = fileSlot.Asset.assetName;
+        assetImage.sprite = fileSlot.Asset.sprite;
         assetImage.SetNativeSize();
         Utils.ConstrainRectTransformToSize(assetImageRectTransform, thumbnailSize);
         Utils.SetCanvasGroupEnabled(canvasGroup, true);
@@ -38,7 +38,7 @@ public class AssetDeletionWindow : MonoBehaviour
 
     public void DeleteAsset()
     {
-        FileGallery.Instance.DeleteSlot(fileSlot);
+        AssetSelector.Instance.DeleteSlot(fileSlot);
         CloseWindow();
     }
 }

@@ -1,10 +1,11 @@
 using UnityEngine;
-using UnityEngine.EventSystems;
 
 [RequireComponent(typeof(Canvas))]
 public class StudioCanvas : MonoBehaviour
 {
-    private static StudioCanvas sharedInstance;
+    [SerializeField] private float edgeBuffer = 5f;
+    [SerializeField] private RectTransform rectTransform = null;
+
     public static StudioCanvas Instance
     {
         get
@@ -16,8 +17,6 @@ public class StudioCanvas : MonoBehaviour
         }
     }
 
-    private Canvas canvas;
-    [SerializeField] private RectTransform rectTransform = null;
     public RectTransform RectTransform
     {
         get
@@ -37,6 +36,9 @@ public class StudioCanvas : MonoBehaviour
         }
     }
 
+    private static StudioCanvas sharedInstance;
+    private Canvas canvas;
+
     public Vector2 ConstrainPositionToCanvas(Vector2 position)
     {
         float x = Mathf.Clamp(position.x, rectTransform.rect.xMin, rectTransform.rect.xMax);
@@ -44,14 +46,11 @@ public class StudioCanvas : MonoBehaviour
         return new Vector2(x, y);
     }
 
-    public Vector2 GetCanvasRectMaxBounds()
-    {
-        return new Vector2(rectTransform.rect.xMax, rectTransform.rect.yMax);
-    }
-
     public bool CanvasContainsMouse()
     {
         Vector2 mousePos = Input.mousePosition;
-        return mousePos.x > 0 && mousePos.x < Screen.width && mousePos.y > 0 && mousePos.y < Screen.height;
+        bool containsXPos = mousePos.x > -edgeBuffer && mousePos.x < Screen.width + edgeBuffer;
+        bool containsYPos = mousePos.y > -edgeBuffer && mousePos.y < Screen.height + edgeBuffer;
+        return containsXPos && containsYPos;
     }
 }
