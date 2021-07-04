@@ -8,7 +8,7 @@ public class OnScaleChanged : UnityEvent<Vector2> { }
 
 [RequireComponent(typeof(Image))]
 [RequireComponent(typeof(RectTransform))]
-public class DoItObject : SpriteAssetObject
+public class DoItObject : MonoBehaviour
 {
     [SerializeField] private Image image = null;
     [SerializeField] private ContextMenu contextMenuPrefab = null;
@@ -36,7 +36,6 @@ public class DoItObject : SpriteAssetObject
             return rectTransform;
         }
     }
-
 
     private Vector2 clampBuffer = new Vector2(40f, 40f);
 

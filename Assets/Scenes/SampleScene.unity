@@ -424,11 +424,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   edgeBuffer: 5
   rectTransform: {fileID: 680918973}
---- !u!224 &799554224 stripped
-RectTransform:
-  m_CorrespondingSourceObject: {fileID: 4577294961564075446, guid: 849f6c8fd23ae428dbbdaad60619d223, type: 3}
-  m_PrefabInstance: {fileID: 771786825263716082}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &968058274
 GameObject:
   m_ObjectHideFlags: 0
@@ -502,14 +497,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 680918973}
     m_Modifications:
-    - target: {fileID: 1780479491, guid: 849f6c8fd23ae428dbbdaad60619d223, type: 3}
-      propertyPath: assetSlotPrefab
-      value: 
-      objectReference: {fileID: 1803912326866805624, guid: 5c09a6838ede7433e8d6a113b3af928a, type: 3}
-    - target: {fileID: 1780479491, guid: 849f6c8fd23ae428dbbdaad60619d223, type: 3}
-      propertyPath: assetSlotContainer
-      value: 
-      objectReference: {fileID: 799554224}
     - target: {fileID: 771786824841583567, guid: 849f6c8fd23ae428dbbdaad60619d223, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -717,10 +704,6 @@ PrefabInstance:
     - target: {fileID: 4577294961564075446, guid: 849f6c8fd23ae428dbbdaad60619d223, type: 3}
       propertyPath: m_SizeDelta.y
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6529299294810279585, guid: 849f6c8fd23ae428dbbdaad60619d223, type: 3}
-      propertyPath: m_Name
-      value: asset-slot-container
       objectReference: {fileID: 0}
     - target: {fileID: 8127133767849117444, guid: 849f6c8fd23ae428dbbdaad60619d223, type: 3}
       propertyPath: m_AnchorMax.x

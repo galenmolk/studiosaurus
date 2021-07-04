@@ -3,7 +3,7 @@ using TMPro;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 
-public class AssetSlot : SpriteAssetObject, IPointerEnterHandler, IPointerExitHandler, IPointerDownHandler
+public class AssetSlot : SpriteAssetComponent, IPointerEnterHandler, IPointerExitHandler, IPointerDownHandler
 {
     [SerializeField] private TMP_Text fileNameText = null;
     [SerializeField] private Image fileThumbnail = null;

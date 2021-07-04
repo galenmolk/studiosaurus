@@ -56,7 +56,7 @@ public class CreatorAssetLibrary : MonoBehaviour
 
     private void ReplaceAsset(SpriteAsset oldAsset, SpriteAsset newAsset = null)
     {
-        foreach (SpriteAssetObject assetObject in oldAsset.assetObjects)
+        foreach (SpriteAssetComponent assetObject in oldAsset.assetObjects)
         {
             assetObject.UpdateAsset(newAsset);
         }
