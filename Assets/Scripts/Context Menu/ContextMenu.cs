@@ -11,8 +11,6 @@ public class ContextMenu : Window
     private DoItObject doItObject;
     private readonly WaitForEndOfFrame endOfFrame;
 
-    [SerializeField] private AssetSlotGallery gallery;
-
     public IEnumerator Open(DoItObject doItObject, Vector2 clickPosition)
     {
         this.doItObject = doItObject;
@@ -45,11 +43,6 @@ public class ContextMenu : Window
         rectTransform.anchoredPosition = doItObject.RectTransform.InverseTransformPoint(clickPos + offset);
         transform.SetParent(StudioCanvas.Instance.transform);
         Utils.SetCanvasGroupEnabled(canvasGroup, true);
-    }
-
-    public void SelectImage()
-    {
-        AssetSelector.Instance.Open(doItObject, gallery);
     }
 
     private bool mouseExitedScreen;
