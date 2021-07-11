@@ -1,6 +1,3 @@
-outsource dragging controls for doitobject/contextmenu to one place
-
-make file type support smarter. generics?
 
 combine/smartify the fileuploadbutton and urluploadservice classes
 
@@ -28,7 +25,7 @@ improve File Selector Choose Button string creation
 
 find higher def handle sprites
 
-add tab feature to position controls... maybe lol
+add tab feature to position controls later on. all fields add themselves to a static tab list that is queued through
 
 add tool bar with buttons and or control tips
 

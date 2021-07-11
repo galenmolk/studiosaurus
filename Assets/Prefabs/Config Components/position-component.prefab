@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7745963411971204453}
-  - component: {fileID: -3664313981750910538}
+  - component: {fileID: 7326225852362477095}
   m_Layer: 5
   m_Name: position-component
   m_TagString: Untagged
@@ -36,7 +36,7 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &-3664313981750910538
+--- !u!114 &7326225852362477095
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -48,5 +48,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f1b82b8acdb7541d79a69b77bb641485, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  doItObject: {fileID: 0}
   JSONKey: 
   vector2ControlsPrefab: {fileID: 1820573742508403087, guid: 31c50fb58a5934ee19e264efbde87e33, type: 3}
