@@ -1,73 +1,50 @@
 using System.Collections;
 using UnityEngine;
-using UnityEngine.EventSystems;
 
-[RequireComponent(typeof(RectTransform))]
-public class ContextMenu : Window
+namespace Studiosaurus
 {
-    [SerializeField] private RectTransform rectTransform = null;
-    [SerializeField] private CanvasGroup canvasGroup = null;
-
-    private DoItObject doItObject;
-    private readonly WaitForEndOfFrame endOfFrame;
-
-    public IEnumerator Open(DoItObject doItObject, Vector2 clickPosition)
+    [RequireComponent(typeof(RectTransform))]
+    public class ContextMenu : Window
     {
-        this.doItObject = doItObject;
-        OpenControlSections();
-        transform.SetAsLastSibling();
-        ActivateClosePanel(doItObject.transform);
+        [SerializeField] private RectTransform rectTransform = null;
+        [SerializeField] private CanvasGroup canvasGroup = null;
 
-        yield return endOfFrame;
+        private DoItObject doItObject;
+        private readonly WaitForEndOfFrame endOfFrame;
 
-        PositionMenu(clickPosition);
-    }
-
-    private void OpenControlSections()
-    {
-        foreach (ControlSection controlSection in doItObject.controlSections)
+        public IEnumerator Open(DoItObject doItObject, Vector2 clickPosition)
         {
-            ControlSection newSection = Instantiate(controlSection, transform);
-            newSection.InitializeControls(doItObject);
-        }
-    }
+            this.doItObject = doItObject;
+            OpenControlSections();
+            transform.SetAsLastSibling();
+            ActivateClosePanel(doItObject.transform);
 
-    public void PositionMenu(Vector2 clickPos)
-    {
-        Vector2 menuSize = rectTransform.sizeDelta * StudioCanvas.Instance.ScaleFactor;
+            yield return endOfFrame;
 
-        float xOffset = Screen.width - clickPos.x > menuSize.x ? menuSize.x * 0.5f : menuSize.x * -0.5f;
-        float yOffset = clickPos.y > menuSize.y ? menuSize.y * -0.5f : menuSize.y * 0.5f;
-        Vector2 offset = new Vector2(xOffset, yOffset);
-
-        rectTransform.anchoredPosition = doItObject.RectTransform.InverseTransformPoint(clickPos + offset);
-        transform.SetParent(StudioCanvas.Instance.transform);
-        Utils.SetCanvasGroupEnabled(canvasGroup, true);
-    }
-
-    private bool mouseExitedScreen;
-    private Vector2 dragOffset;
-
-    public void SetOffset(PointerEventData eventData)
-    {
-        dragOffset = rectTransform.anchoredPosition - (Vector2)StudioCanvas.Instance.RectTransform.InverseTransformPoint(eventData.position);
-    }
-
-    public void MoveContextMenu(PointerEventData eventData)
-    {
-        if (!StudioCanvas.Instance.CanvasContainsMouse())
-        {
-            mouseExitedScreen = true;
-            return;
+            PositionMenu(clickPosition);
         }
 
-        if (mouseExitedScreen)
+        private void OpenControlSections()
         {
-            rectTransform.anchoredPosition = (Vector2)StudioCanvas.Instance.RectTransform.InverseTransformPoint(eventData.position) + dragOffset;
-            mouseExitedScreen = false;
+            for (int i = 0, length = doItObject.configComponents.Length; i < length; i++)
+            {
+                doItObject.configComponents[i].OpenControlSection().transform.SetParent(transform);
+            }
         }
 
-        Vector2 newPos = rectTransform.anchoredPosition + eventData.delta / StudioCanvas.Instance.ScaleFactor;
-        rectTransform.anchoredPosition = StudioCanvas.Instance.ConstrainPositionToCanvas(newPos);
+        public void PositionMenu(Vector2 clickPos)
+        {
+            Vector2 menuSize = rectTransform.sizeDelta * StudioCanvas.Instance.ScaleFactor;
+
+            float xOffset = Screen.width - clickPos.x > menuSize.x ? menuSize.x * 0.5f : menuSize.x * -0.5f;
+            float yOffset = clickPos.y > menuSize.y ? menuSize.y * -0.5f : menuSize.y * 0.5f;
+            Vector2 offset = new Vector2(xOffset, yOffset);
+
+            rectTransform.anchoredPosition = doItObject.transform.InverseTransformPoint(clickPos + offset); // does this work? or should we switch back to RectTransform
+            transform.SetParent(StudioCanvas.Instance.transform);
+            Utils.SetCanvasGroupEnabled(canvasGroup, true);
+        }
     }
 }
+
+

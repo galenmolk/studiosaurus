@@ -1,30 +1,37 @@
-Add custom cursors
+outsource dragging controls for doitobject/contextmenu to one place
 
-**Preserve aspect ratio on images if shift is held
+make file type support smarter. generics?
 
-add tool bar with buttons and or control tips
+combine/smartify the fileuploadbutton and urluploadservice classes
 
-add tab feature to position controls... maybe lol
+Preserve aspect ratio on images if shift is held
 
-*Add audio support
-
-find higher def handle sprites
-
-add a little more animation to ui
-
-***shift while moving object to snap to whole numbers
+shift while moving object to snap to whole numbers
 
 add more objects!
 
-****modify offscreen dragging so 
-x pos follows mouse but y pos is locked if mouse is above screen
-y pos follows mouse but x is locked if mouse if right of screen
-etc
+prevent resize handles from blinking on off while dragging. use OnDragEnd with a bool
 
-*****get rid of red question mark
+when resizing, snap edge or corner to mouse position. use eventData.position instead of delta
+
+fix contextmenu not opening
+
+Add custom cursors - create prioritizing central hub that decides which cursor to use
 
 after changing size, clamp position to screen
 
-outsource dragging controls for doitobject/contextmenu to one place
+clear the url upload text
 
 size down asset selector window a little bit. add the close panel to the asset selecto experience, now that the bg is visible.
+
+improve File Selector Choose Button string creation
+
+find higher def handle sprites
+
+add tab feature to position controls... maybe lol
+
+add tool bar with buttons and or control tips
+
+get rid of red question mark
+
+add a little more animation to ui

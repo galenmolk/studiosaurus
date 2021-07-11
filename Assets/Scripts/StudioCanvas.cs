@@ -6,6 +6,8 @@ public class StudioCanvas : MonoBehaviour
     [SerializeField] private float edgeBuffer = 5f;
     [SerializeField] private RectTransform rectTransform = null;
 
+    private readonly Vector2 objectClampBuffer = new Vector2(40f, 40f);
+
     public static StudioCanvas Instance
     {
         get
@@ -46,11 +48,30 @@ public class StudioCanvas : MonoBehaviour
         return new Vector2(x, y);
     }
 
-    public bool CanvasContainsMouse()
+    public Vector2 ClampObjectPositionToCanvas(Vector2 size, Vector2 position)
+    {
+        Rect rect = RectTransform.rect;
+        Vector2 halfSize = (size - objectClampBuffer) * 0.5f;
+        float newX = Mathf.Clamp(position.x, rect.xMin - halfSize.x, rect.xMax + halfSize.x);
+        float newY = Mathf.Clamp(position.y, rect.yMin - halfSize.y, rect.yMax + halfSize.y);
+        return new Vector2(newX, newY);
+    }
+
+    public struct MouseBounds
+    {
+        public bool OffScreen { get { return offScreenX || offScreenY; } }
+        public bool offScreenX;
+        public bool offScreenY;
+    }
+
+    public MouseBounds GetMouseBoundsInfo()
     {
         Vector2 mousePos = Input.mousePosition;
-        bool containsXPos = mousePos.x > -edgeBuffer && mousePos.x < Screen.width + edgeBuffer;
-        bool containsYPos = mousePos.y > -edgeBuffer && mousePos.y < Screen.height + edgeBuffer;
-        return containsXPos && containsYPos;
+        MouseBounds bounds = new MouseBounds
+        {
+            offScreenX = mousePos.x < -edgeBuffer || mousePos.x > Screen.width + edgeBuffer,
+            offScreenY = mousePos.y < -edgeBuffer || mousePos.y > Screen.height + edgeBuffer
+        };
+        return bounds;
     }
 }
