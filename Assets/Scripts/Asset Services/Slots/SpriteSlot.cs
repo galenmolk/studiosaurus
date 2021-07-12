@@ -2,11 +2,9 @@ namespace Studiosaurus
 {
     public class SpriteSlot : AssetSlot<SpriteAsset>
     {
-        public override void UpdateAsset(SpriteAsset asset)
+        public override void UpdateSlot(SpriteAsset asset)
         {
-            base.UpdateAsset(asset);
-            fileThumbnail.sprite = asset.sprite;
-            fileThumbnail.SetNativeSize();
+            base.UpdateSlot(asset);
             Utils.ConstrainRectTransformToSize(thumbnailRectTransform, thumbnailSize);
         }
     }

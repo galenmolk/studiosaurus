@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using UnityEngine;
 
 namespace Studiosaurus
 {
@@ -19,7 +20,7 @@ namespace Studiosaurus
         {
             for (int i = associatedComponents.Count - 1; i >= 0; i--)
             {
-                associatedComponents[i].AssignAsset(newAsset);
+                associatedComponents[i]?.AssignAsset(newAsset);
             }
 
             associatedComponents.Clear();

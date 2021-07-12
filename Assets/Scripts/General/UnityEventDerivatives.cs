@@ -4,7 +4,6 @@ using UnityEngine.EventSystems;
 
 namespace Studiosaurus
 {
-    [Serializable]
     public class StringEvent : UnityEvent<string> { }
 
     [Serializable]

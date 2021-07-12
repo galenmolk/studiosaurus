@@ -15,23 +15,29 @@ namespace Studiosaurus
         [SerializeField] private Image hoverBox = null;
         [SerializeField] private Image selectionBox = null;
         [SerializeField] private Button deleteButton = null;
-        [SerializeField] private AssetComponent<T> assetComponent = null;
 
         [HideInInspector] public AssetSelector<T> assetSelector;
 
-        public T Asset { get { return asset; } }
-        private T asset;
+        protected AssetComponent<T> assetComponent;
+        public T Asset { get { return assetComponent.Asset; } }
 
         private bool slotSelected;
          
-        private void Awake()
+        protected virtual void Awake()
         {
-            assetComponent.onAssetAssigned.AddListener(UpdateAsset);
+            assetComponent = GetComponentInChildren<AssetComponent<T>>();
+            assetComponent.onAssetCleared.AddListener(DestroySlot);
         }
 
-        public virtual void UpdateAsset(T asset)
+        private void DestroySlot()
         {
-            this.asset = asset;
+            Debug.Log("Destroy");
+            Destroy(gameObject);
+        }
+
+        public virtual void UpdateSlot(T asset)
+        {
+            assetComponent.AssignAsset(asset);
             fileNameText.text = asset.assetName;
         }
 
@@ -54,8 +60,10 @@ namespace Studiosaurus
             deleteButton.gameObject.SetActive(false);
         }
 
-        public void SelectSlot()
+        public virtual void SelectSlot()
         {
+            Debug.Log("Select Slot base");
+
             slotSelected = true;
             hoverBox.color = Color.clear;
             selectionBox.color = Color.white;

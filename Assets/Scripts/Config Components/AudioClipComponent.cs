@@ -18,8 +18,12 @@ namespace Studiosaurus
         public override void AssignAsset(AudioClipAsset newAsset)
         {
             base.AssignAsset(newAsset);
+            audioSource.clip = newAsset.audioClip;
+        }
 
-            audioSource.clip = newAsset?.audioClip;
+        public void PlayAudio()
+        {
+            audioSource.Play();
         }
     }
 }

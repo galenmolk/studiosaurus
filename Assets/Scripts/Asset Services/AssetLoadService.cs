@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.Networking;
@@ -33,57 +34,71 @@ namespace Studiosaurus
             sharedInstance = this;
         }
 
-        public IEnumerator LoadSprite(string url)
+        public void LoadSprite(string url)
         {
-            if (string.IsNullOrWhiteSpace(url))
-            {
-                broadcastLoadMessage?.Invoke(INVALID_URL_MESSAGE);
-                yield break;
-            }
+            if (!UrlContainsText(url))
+                return;
 
+            StartCoroutine(SendTextureRequest(url));
+        }
+
+        public void LoadAudioClip(string url)
+        {
+            if (!UrlContainsText(url))
+                return;
+
+            StartCoroutine(SendAudioClipRequest(url));
+        }
+
+        private bool UrlContainsText(string url)
+        {
+            bool urlIsValid = !string.IsNullOrWhiteSpace(url);
+
+            if (!urlIsValid)
+                broadcastLoadMessage?.Invoke(INVALID_URL_MESSAGE);
+
+            return urlIsValid;
+        }
+
+        private IEnumerator SendTextureRequest(string url)
+        {
             using UnityWebRequest www = UnityWebRequestTexture.GetTexture(url);
 
             yield return www.SendWebRequest();
 
-            if (www.result != UnityWebRequest.Result.Success)
-            {
-                broadcastLoadMessage?.Invoke($"{WWW_ERROR_MESSAGE}{www.error}");
-                yield return www.error;
-            }
-            else
-            {
-                texture = ((DownloadHandlerTexture)www.downloadHandler).texture;
+            if (RequestFailed(www))
+                yield break;
 
-                Rect rect = new Rect(0, 0, texture.width, texture.height);
-                Sprite sprite = Sprite.Create(texture, rect, new Vector2(0, 0), 100F, 0, SpriteMeshType.Tight);
-
-                assetConstructor.AddNewSprite(sprite, url);
-                broadcastLoadMessage?.Invoke($"{LOAD_SUCCESS_MESSAGE}{url}");
-            }
+            texture = ((DownloadHandlerTexture)www.downloadHandler).texture;
+            Rect rect = new Rect(0, 0, texture.width, texture.height);
+            Sprite sprite = Sprite.Create(texture, rect, new Vector2(0, 0), 100F, 0, SpriteMeshType.Tight);
+            assetConstructor.AddNewSprite(sprite, www.url);
+            broadcastLoadMessage?.Invoke($"{LOAD_SUCCESS_MESSAGE}{www.url}");
         }
 
-        public IEnumerator LoadAudioClip(string url)
+        private IEnumerator SendAudioClipRequest(string url)
         {
-            if (string.IsNullOrWhiteSpace(url))
-            {
-                broadcastLoadMessage?.Invoke(INVALID_URL_MESSAGE);
-                yield break;
-            }
-
             using UnityWebRequest www = UnityWebRequestMultimedia.GetAudioClip(url, AudioType.UNKNOWN);
-            yield return www.SendWebRequest();
-            if (www.result != UnityWebRequest.Result.Success)
-            {
-                broadcastLoadMessage?.Invoke($"{WWW_ERROR_MESSAGE}{www.error}");
-                yield return www.error;
-            }
-            else
-            {
-                AudioClip clip = DownloadHandlerAudioClip.GetContent(www);
 
-                assetConstructor.AddNewAudioClip(clip, url);
-                broadcastLoadMessage?.Invoke($"{LOAD_SUCCESS_MESSAGE}{url}");
-            }
+
+            yield return www.SendWebRequest();
+
+            if (RequestFailed(www))
+                yield break;
+
+            AudioClip clip = DownloadHandlerAudioClip.GetContent(www);
+            assetConstructor.AddNewAudioClip(clip, www.url);
+            broadcastLoadMessage?.Invoke($"{LOAD_SUCCESS_MESSAGE}{www.url}");
+        }
+
+        private bool RequestFailed(UnityWebRequest request)
+        {
+            bool didRequestFail = request.result != UnityWebRequest.Result.Success;
+
+            if (didRequestFail)
+                broadcastLoadMessage?.Invoke($"{WWW_ERROR_MESSAGE}{request.error}");
+
+            return didRequestFail;
         }
     }
 }

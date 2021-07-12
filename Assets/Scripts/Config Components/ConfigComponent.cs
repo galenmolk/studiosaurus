@@ -4,7 +4,7 @@ namespace Studiosaurus
 {
     public abstract class ConfigComponent : MonoBehaviour
     {
-        public DoItObject doItObject;
+        protected DoItObject doItObject;
 
         public string JSONKey;
 

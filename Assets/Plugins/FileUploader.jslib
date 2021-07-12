@@ -1,10 +1,11 @@
-var FileUploaderPlugin = {
+var FileUploader = {
   FileUploaderCaptureClick: function(objectName) {
   objectName = Pointer_stringify(objectName);
     if (!document.getElementById(objectName.concat('FileUploaderInput'))) {
       var fileInput = document.createElement('input');
       fileInput.setAttribute('type', 'file');
       fileInput.setAttribute('id', objectName.concat('FileUploaderInput'));
+      fileInput.style.width = "100%";
       fileInput.style.visibility = 'hidden';
       fileInput.onclick = function (event) {
         this.value = null;
@@ -21,4 +22,4 @@ var FileUploaderPlugin = {
     document.getElementById('unity-canvas').addEventListener('click', OpenFileDialog, false);
   }
 };
-mergeInto(LibraryManager.library, FileUploaderPlugin);
+mergeInto(LibraryManager.library, FileUploader);

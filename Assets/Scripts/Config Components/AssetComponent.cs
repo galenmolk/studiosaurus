@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace Studiosaurus
 {
@@ -6,20 +7,22 @@ namespace Studiosaurus
     {
         [SerializeField] private AssetControls<T> assetControlsPrefab = null;
 
-        public AssetEvent<T> onAssetAssigned = new AssetEvent<T>();
+        public UnityEvent onAssetCleared = new UnityEvent();
 
         public abstract T Asset { get; protected set; }
 
-        public virtual void AssignAsset(T newAsset)
+        public virtual void AssignAsset(T newAsset = null)
         {
             if (Asset != null)
                 Asset.associatedComponents.Remove(this);
 
-            Asset = newAsset;
-            onAssetAssigned?.Invoke(newAsset);
-
             if (newAsset != null)
                 newAsset.associatedComponents.Add(this);
+
+            Asset = newAsset;
+
+            if (Asset == null)
+                onAssetCleared.Invoke();
         }
 
         public override void OpenControls(ContextMenu contextMenu)

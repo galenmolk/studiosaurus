@@ -1517,7 +1517,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 771786825776949393}
-  - component: {fileID: 771786825776949398}
   m_Layer: 5
   m_Name: upload-from-url-area
   m_TagString: Untagged
@@ -1547,21 +1546,6 @@ RectTransform:
   m_AnchoredPosition: {x: -27.201609, y: -0.00034868}
   m_SizeDelta: {x: 308.7536, y: 338}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &771786825776949398
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 771786825776949392}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6927e6894d1df486fab2303682904292, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  urlUploadPromptText: {fileID: 237062619925023937}
-  urlInputField: {fileID: 3803832676229538498}
-  uploadButton: {fileID: 5520521164896843523}
 --- !u!1 &771786826037982082
 GameObject:
   m_ObjectHideFlags: 0
@@ -2034,6 +2018,7 @@ MonoBehaviour:
   chooseButton: {fileID: 6539752177175798071}
   chooseButtonText: {fileID: 4942800307318426015}
   assetSlotContainer: {fileID: 4577294961564075446}
+  fileUploadService: {fileID: 5399197142615391759}
   gallery: {fileID: 0}
 --- !u!1 &1999001861522319678
 GameObject:
@@ -2568,9 +2553,9 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 771786825776949398}
-        m_TargetAssemblyTypeName: UploadURL, Assembly-CSharp
-        m_MethodName: OnValueChanged
+      - m_Target: {fileID: 5399197142615391759}
+        m_TargetAssemblyTypeName: Studiosaurus.FileUploadService, Assembly-CSharp
+        m_MethodName: OnUrlFieldValueChanged
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3180,6 +3165,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animator: {fileID: 5399197142615391756}
+  filePanelTitle: Choose an Image
+  fileExtensions:
+  - jpg
+  - png
+  urlUploadPromptText: {fileID: 237062619925023937}
+  urlInputField: {fileID: 3803832676229538498}
+  uploadButton: {fileID: 5520521164896843523}
+  extensionsParameter: 
 --- !u!95 &5399197142615391756
 Animator:
   serializedVersion: 3
@@ -4366,8 +4359,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 771786825776949398}
-        m_TargetAssemblyTypeName: UploadURL, Assembly-CSharp
+      - m_Target: {fileID: 5399197142615391759}
+        m_TargetAssemblyTypeName: Studiosaurus.FileUploadService, Assembly-CSharp
         m_MethodName: UploadFromURL
         m_Mode: 1
         m_Arguments:

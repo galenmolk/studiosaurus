@@ -12,6 +12,8 @@ namespace Studiosaurus
         [SerializeField] protected Button chooseButton = null;
         [SerializeField] protected TMP_Text chooseButtonText = null;
         [SerializeField] protected Transform assetSlotContainer = null;
+        [SerializeField] protected FileUploadService fileUploadService = null;
+        [SerializeField] private CanvasGroup canvasGroup = null;
 
         protected AssetComponent<T> assetComponent;
         [HideInInspector] public AssetGallery<T> gallery;
@@ -19,7 +21,7 @@ namespace Studiosaurus
         protected const string CHOOSE_BUTTON_TEXT = "Choose";
         protected const string ASSET_NAME_TEXT_COLOR = "#c0c0c0ff";
 
-        public void Open(AssetGallery<T> gallery, AssetComponent<T> assetComponent)
+        public virtual void Open(AssetGallery<T> gallery, AssetComponent<T> assetComponent)
         {
             this.assetComponent = assetComponent;
             this.gallery = gallery;
@@ -29,7 +31,7 @@ namespace Studiosaurus
 
         public void Close()
         {
-            gallery.slotDictionary.Clear();
+            gallery.Close();
             Destroy(gameObject);
         }
 
@@ -37,10 +39,13 @@ namespace Studiosaurus
         {
             for (int i = 0, count = gallery.AssetList.Count; i < count; i++)
             {
-                AssetSlot<T> slot = AddSlot(gallery.AssetList[i]);
+                AssetSlot<T> assetSlot = AddSlot(gallery.AssetList[i]);
 
-                if (i == count - 1)
-                    slot.SelectSlot();
+                if (gallery.AssetList[i] == gallery.lastSelectedAsset)
+                    assetSlot.SelectSlot();
+                
+                if (i == count - 1 && gallery.selectedSlot == null)
+                    assetSlot.SelectSlot();
             }
         }
 
@@ -50,12 +55,13 @@ namespace Studiosaurus
 
             if (!gallery.slotDictionary.TryGetValue(asset, out AssetSlot<T> slot))
             {
+                Debug.Log("Does not contain " + asset);
                 slot = Instantiate(assetSlotPrefab, assetSlotContainer);
                 gallery.slotDictionary.Add(asset, slot);
             }
 
             slot.assetSelector = this;
-            slot.UpdateAsset(asset);
+            slot.UpdateSlot(asset);
             return slot;
         }
 

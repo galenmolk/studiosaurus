@@ -1,5 +1,7 @@
+using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 #if !UNITY_EDITOR
 using System.Runtime.InteropServices;
@@ -7,25 +9,34 @@ using System.Runtime.InteropServices;
 
 namespace Studiosaurus
 {
-    public class FileUploadButton : MonoBehaviour, IPointerDownHandler, IPointerEnterHandler, IPointerExitHandler
+    public class FileUploadService : MonoBehaviour, IPointerDownHandler, IPointerEnterHandler, IPointerExitHandler
     {
 
 #if !UNITY_EDITOR
     [DllImport("__Internal")] private static extern void FileUploaderCaptureClick(string objectName);
+    [DllImport("__Internal")] private static extern void UrlWindow(string objectName);
 #endif
 
         [SerializeField] private Animator animator = null;
         [SerializeField] private string filePanelTitle = string.Empty;
         [SerializeField] private string[] fileExtensions = null;
+        [SerializeField] private TMP_Text urlUploadPromptText = null;
+        [SerializeField] private TMP_InputField urlInputField = null;
+        [SerializeField] private Button uploadButton = null;
 
         [SerializeField] private string extensionsParameter = string.Empty;
 
-        public StringEvent onUrlReceived;
+        public StringEvent onUrlReceived = new StringEvent();
 
         private void Awake()
         {
             animator.speed = 0f;
             CreateExtensionsParamater();
+#if !UNITY_EDITOR
+            urlUploadPromptText.gameObject.SetActive(false);
+            urlInputField.gameObject.SetActive(false);
+            uploadButton.interactable = true;
+#endif
         }
 
         private void CreateExtensionsParamater()
@@ -42,6 +53,11 @@ namespace Studiosaurus
             }
         }
 
+        public void OnUrlFieldValueChanged()
+        {
+            uploadButton.interactable = !string.IsNullOrWhiteSpace(urlInputField.text);
+        }
+
         public void OnPointerDown(PointerEventData eventData)
         {
 #if UNITY_EDITOR
@@ -51,6 +67,15 @@ namespace Studiosaurus
 #else
         Debug.Log("Sending image to " + gameObject.name);
         FileUploaderCaptureClick(gameObject.name);
+#endif
+        }
+
+        public void UploadFromURL()
+        {
+#if UNITY_EDITOR
+            FileSelected(urlInputField.text);
+#else
+        UrlWindow(gameObject.name);
 #endif
         }
 

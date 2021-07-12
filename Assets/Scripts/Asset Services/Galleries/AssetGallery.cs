@@ -8,14 +8,18 @@ namespace Studiosaurus
         [SerializeField] private AssetSelector<T> assetSelectorPrefab = null;
 
         [HideInInspector] public AssetSlot<T> selectedSlot;
+        public int AssetCount { get { return assetList.Count; } }
 
         public Dictionary<string, T> assetDictionary = new Dictionary<string, T>();
-        public int AssetCount { get { return assetList.Count; } }
-        public List<T> AssetList { get { return assetList; } }
+
         public Dictionary<T, AssetSlot<T>> slotDictionary = new Dictionary<T, AssetSlot<T>>();
 
+        public List<T> AssetList { get { return assetList; } }
         private readonly List<T> assetList = new List<T>();
+
         private AssetSelector<T> assetSelector;
+
+        public T lastSelectedAsset;
 
         public void OpenGallery(AssetComponent<T> assetComponent)
         {
@@ -23,23 +27,38 @@ namespace Studiosaurus
             assetSelector.Open(this, assetComponent);
         }
 
-        public bool ContainsAsset(T asset)
+        public void Close()
         {
-            return assetDictionary.TryGetValue(asset.path, out _);
+            slotDictionary.Clear();
+
+            if (selectedSlot != null)
+                lastSelectedAsset = selectedSlot.Asset;
         }
 
         public void AddAsset(T asset)
         {
-            if (assetDictionary.ContainsKey(asset.path) && assetList.Contains(asset))
+            if (assetDictionary.ContainsKey(asset.path))
             {
-                assetDictionary[asset.path].ReplaceAssetWith(asset);
-                assetDictionary.Remove(asset.path);
-                Debug.Log("Replacing sprite " + asset.path);
+                UpdateAssetWithNewVersion(asset);
+                return;
             }
 
-            assetDictionary.Add(asset.path, asset);
             assetList.Add(asset);
+            assetDictionary.Add(asset.path, asset);
             assetSelector.AddSlot(asset).SelectSlot();
+        }
+
+        private void UpdateAssetWithNewVersion(T newAsset)
+        {
+            assetDictionary.TryGetValue(newAsset.path, out T oldAsset);
+            int index = assetList.IndexOf(oldAsset);
+            assetList.Remove(oldAsset);
+            assetList.Insert(index, newAsset);
+            assetDictionary[newAsset.path].ReplaceAssetWith(newAsset);
+            assetDictionary.Remove(newAsset.path);
+            assetDictionary.Add(newAsset.path, newAsset);
+            
+            Debug.Log("Replacing sprite " + newAsset.path);
         }
 
         public void DeleteAsset(AssetSlot<T> slot)
@@ -48,7 +67,6 @@ namespace Studiosaurus
             assetList.Remove(slot.Asset);
             slotDictionary.Remove(slot.Asset);
             slot.Asset.ReplaceAssetWith();
-            Destroy(slot.gameObject);
         }
 
         public T GetAdjacentAsset(T asset)
