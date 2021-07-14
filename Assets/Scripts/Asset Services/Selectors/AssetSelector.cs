@@ -1,27 +1,30 @@
+using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
 namespace Studiosaurus
 {
-    public class AssetSelector<T> : MonoBehaviour where T : GenericAsset<T>
+    public class AssetSelector<TAsset> : MonoBehaviour where TAsset : GenericAsset<TAsset>
     {
-        [SerializeField] protected AssetSlot<T> assetSlotPrefab = null;
+        [SerializeField] protected AssetSlot<TAsset> assetSlotPrefab = null;
         [SerializeField] protected TMP_Text uploadPromptText = null;
-        [SerializeField] protected AssetDeletionWindow<T> deletionWindow = null;
+        [SerializeField] protected AssetDeletionWindow<TAsset> deletionWindow = null;
         [SerializeField] protected Button chooseButton = null;
         [SerializeField] protected TMP_Text chooseButtonText = null;
         [SerializeField] protected Transform assetSlotContainer = null;
         [SerializeField] protected FileUploadService fileUploadService = null;
         [SerializeField] private CanvasGroup canvasGroup = null;
 
-        protected AssetComponent<T> assetComponent;
-        [HideInInspector] public AssetGallery<T> gallery;
+        protected AssetComponent<TAsset> assetComponent;
+        [HideInInspector] public AssetGallery<TAsset> gallery;
 
         protected const string CHOOSE_BUTTON_TEXT = "Choose";
         protected const string ASSET_NAME_TEXT_COLOR = "#c0c0c0ff";
 
-        public virtual void Open(AssetGallery<T> gallery, AssetComponent<T> assetComponent)
+        private List<AssetSlot<TAsset>> openSlots = new List<AssetSlot<TAsset>>(); 
+
+        public virtual void Open(AssetGallery<TAsset> gallery, AssetComponent<TAsset> assetComponent)
         {
             this.assetComponent = assetComponent;
             this.gallery = gallery;
@@ -39,23 +42,22 @@ namespace Studiosaurus
         {
             for (int i = 0, count = gallery.AssetList.Count; i < count; i++)
             {
-                AssetSlot<T> assetSlot = AddSlot(gallery.AssetList[i]);
+                openSlots.Add(CreateSlot(gallery.AssetList[i]));
 
                 if (gallery.AssetList[i] == gallery.lastSelectedAsset)
-                    assetSlot.SelectSlot();
+                    openSlots[i].SelectSlot();
                 
                 if (i == count - 1 && gallery.selectedSlot == null)
-                    assetSlot.SelectSlot();
+                    openSlots[i].SelectSlot();
             }
         }
 
-        public AssetSlot<T> AddSlot(T asset)
+        public AssetSlot<TAsset> CreateSlot(TAsset asset)
         {
             uploadPromptText.gameObject.SetActive(true);
 
-            if (!gallery.slotDictionary.TryGetValue(asset, out AssetSlot<T> slot))
+            if (!gallery.slotDictionary.TryGetValue(asset, out AssetSlot<TAsset> slot))
             {
-                Debug.Log("Does not contain " + asset);
                 slot = Instantiate(assetSlotPrefab, assetSlotContainer);
                 gallery.slotDictionary.Add(asset, slot);
             }
@@ -65,7 +67,7 @@ namespace Studiosaurus
             return slot;
         }
 
-        public void SlotSelected(AssetSlot<T> assetSlot)
+        public void SlotSelected(AssetSlot<TAsset> assetSlot)
         {
             if (gallery.selectedSlot != null && gallery.selectedSlot != assetSlot)
                 gallery.selectedSlot.DeselectSlot();
@@ -82,15 +84,15 @@ namespace Studiosaurus
             Close();
         }
 
-        public void ConfirmDeleteSlot(AssetSlot<T> fileSlot)
+        public void ConfirmDeleteSlot(AssetSlot<TAsset> fileSlot)
         {
             deletionWindow.OpenWindow(fileSlot);
         }
 
-        public void DeleteSlot(AssetSlot<T> assetSlot)
+        public void DeleteSlot(AssetSlot<TAsset> assetSlot)
         {
-            T adjacentAsset = gallery.GetAdjacentAsset(assetSlot.Asset);
-            gallery.DeleteAsset(assetSlot);
+            TAsset adjacentAsset = gallery.GetAdjacentAsset(assetSlot.Asset);
+            gallery.DeleteAsset(assetSlot.Asset);
 
             if (gallery.selectedSlot != null && gallery.selectedSlot == assetSlot)
             {
@@ -98,7 +100,9 @@ namespace Studiosaurus
                 UpdateChooseButton();
             }
 
-            if (adjacentAsset != null && gallery.slotDictionary.TryGetValue(adjacentAsset, out AssetSlot<T> newSlot))
+            Destroy(assetSlot.gameObject);
+
+            if (adjacentAsset != null && gallery.slotDictionary.TryGetValue(adjacentAsset, out AssetSlot<TAsset> newSlot))
                 newSlot.SelectSlot();
 
             if (gallery.AssetCount == 0)

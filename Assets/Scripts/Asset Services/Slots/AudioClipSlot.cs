@@ -1,18 +1,29 @@
+using UnityEngine;
+using UnityEngine.EventSystems;
+
 namespace Studiosaurus
 {
     public class AudioClipSlot : AssetSlot<AudioClipAsset>
     {
-        private AudioClipComponent audioClipComponent;
+        private AudioSource audioSource;
 
-        protected override void Awake()
+        public override AudioClipAsset Asset { get; set; }
+
+        private void Awake()
         {
-            audioClipComponent = GetComponentInChildren<AudioClipComponent>();
+            audioSource = GetComponent<AudioSource>();
         }
 
-        public override void SelectSlot()
+        public override void OnPointerDown(PointerEventData eventData)
         {
-            base.SelectSlot();
-            audioClipComponent.PlayAudio();
+            base.OnPointerDown(eventData);
+            audioSource.Play();
+        }
+
+        public override void UpdateSlot(AudioClipAsset asset)
+        {
+            base.UpdateSlot(asset);
+            audioSource.clip = asset.audioClip;
         }
     }
 }

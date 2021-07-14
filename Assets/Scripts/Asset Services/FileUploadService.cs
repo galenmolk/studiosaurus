@@ -14,7 +14,7 @@ namespace Studiosaurus
 
 #if !UNITY_EDITOR
     [DllImport("__Internal")] private static extern void FileUploaderCaptureClick(string objectName);
-    [DllImport("__Internal")] private static extern void UrlWindow(string objectName);
+    [DllImport("__Internal")] private static extern void OpenUrlWindow(string objectName);
 #endif
 
         [SerializeField] private Animator animator = null;
@@ -75,7 +75,7 @@ namespace Studiosaurus
 #if UNITY_EDITOR
             FileSelected(urlInputField.text);
 #else
-        UrlWindow(gameObject.name);
+        OpenUrlWindow(gameObject.name);
 #endif
         }
 
@@ -92,6 +92,11 @@ namespace Studiosaurus
         public void OnPointerExit(PointerEventData eventData)
         {
             animator.speed = 0f;
+        }
+
+        private void OnDisable()
+        {
+            onUrlReceived.RemoveAllListeners();
         }
     }
 }

@@ -1,11 +1,4 @@
-
-Preserve aspect ratio on images if shift is held
-
-shift while moving object to snap to whole numbers
-
 add more objects!
-
-prevent resize handles from blinking on off while dragging. use OnDragEnd with a bool
 
 when resizing, snap edge or corner to mouse position. use eventData.position instead of delta
 
@@ -16,9 +9,8 @@ after changing size, clamp position to screen
 after chaning asset, make sure it's on screen
 add tool bar with buttons and or control tips
 
-clear the url upload text
-
 size down asset selector window a little bit. add the close panel to the asset selecto experience, now that the bg is visible.
+add opening animation/closing animation
 
 improve File Selector Choose Button string creation so it's not ridiculously long
 
@@ -32,8 +24,8 @@ add a hover animation class that triggers some kind of interactivity when you mo
 
 improve naming of prefabs and hierarchy objects, class names, etc
 
-fix broken url upload
+add escape key shortcut to closing windows
 
-fix audio upload
+auto-select the slot that contains the asset that is already assigned to the component you're selecting for
 
-fix url file name displayed in asset slot
+message that indicates that sprite already exists. replace sprite?

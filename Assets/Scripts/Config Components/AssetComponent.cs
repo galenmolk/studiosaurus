@@ -1,33 +1,31 @@
 using UnityEngine;
-using UnityEngine.Events;
 
 namespace Studiosaurus
 {
-    public abstract class AssetComponent<T> : ConfigComponent where T : GenericAsset<T>
+    public abstract class AssetComponent<TAsset> : ConfigComponent where TAsset : GenericAsset<TAsset>
     {
-        [SerializeField] private AssetControls<T> assetControlsPrefab = null;
+        [SerializeField] private AssetControls<TAsset> assetControlsPrefab = null;
 
-        public UnityEvent onAssetCleared = new UnityEvent();
+        public AssetEvent<TAsset> onAssetAssigned = new AssetEvent<TAsset>();
 
-        public abstract T Asset { get; protected set; }
+        public abstract TAsset Asset { get; protected set; }
 
-        public virtual void AssignAsset(T newAsset = null)
+        public virtual void AssignAsset(TAsset newAsset = null)
         {
             if (Asset != null)
                 Asset.associatedComponents.Remove(this);
 
-            if (newAsset != null)
+            if (newAsset != null && !newAsset.associatedComponents.Contains(this))
                 newAsset.associatedComponents.Add(this);
 
             Asset = newAsset;
 
-            if (Asset == null)
-                onAssetCleared.Invoke();
+            onAssetAssigned.Invoke(Asset);
         }
 
         public override void OpenControls(ContextMenu contextMenu)
         {
-            AssetControls<T> assetControls = Instantiate(assetControlsPrefab, contextMenu.transform);
+            AssetControls<TAsset> assetControls = Instantiate(assetControlsPrefab, contextMenu.transform);
             assetControls.assetComponent = this;
         }
     }

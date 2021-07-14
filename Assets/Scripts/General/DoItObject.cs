@@ -10,12 +10,14 @@ namespace Studiosaurus
     public class DoItObject : MonoBehaviour
     {
         [SerializeField] private ContextMenu contextMenuPrefab = null;
+        [SerializeField] private ConfigComponent[] configComponentPrefabs;
 
         public DragHandle dragHandle;
         public ResizeHandles resizeHandles;
 
-        [SerializeField] private ConfigComponent[] configComponentPrefabs;
         [HideInInspector] public List<ConfigComponent> configComponents = new List<ConfigComponent>();
+
+        public float SizeRatio { get; set; }
 
         public RectTransform RectTransform
         {
@@ -33,6 +35,7 @@ namespace Studiosaurus
 
         private void Awake()
         {
+            SizeRatio = RectTransform.sizeDelta.x / RectTransform.sizeDelta.y;
             CreateConfigComponents();
         }
 

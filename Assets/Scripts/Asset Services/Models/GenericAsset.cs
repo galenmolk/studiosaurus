@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Studiosaurus
 {
-    public abstract class GenericAsset<T> where T : GenericAsset<T>
+    public abstract class GenericAsset<TAsset> where TAsset : GenericAsset<TAsset>
     {
         public GenericAsset(string assetName, string path)
         {
@@ -14,9 +14,9 @@ namespace Studiosaurus
         public string assetName;
         public string path;
 
-        public List<AssetComponent<T>> associatedComponents = new List<AssetComponent<T>>();
+        public List<AssetComponent<TAsset>> associatedComponents = new List<AssetComponent<TAsset>>();
 
-        public void ReplaceAssetWith(T newAsset = null)
+        public void ReplaceAssetWith(TAsset newAsset = null)
         {
             for (int i = associatedComponents.Count - 1; i >= 0; i--)
             {

@@ -11,6 +11,7 @@ namespace Studiosaurus
 
         protected override void Awake()
         {
+            base.Awake();
             image = GetComponentInParent<Image>();
         }
 
@@ -20,6 +21,8 @@ namespace Studiosaurus
             {
                 image.sprite = newAsset?.sprite;
                 image.SetNativeSize();
+                doItObject.SizeRatio = image.rectTransform.sizeDelta.x / image.rectTransform.sizeDelta.y;
+                Debug.Log(doItObject.SizeRatio);
             }
 
             base.AssignAsset(newAsset);

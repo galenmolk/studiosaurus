@@ -20,13 +20,19 @@ namespace Studiosaurus
 
         private void SetPosition(Vector2 position)
         {
+            if (Input.GetKey(KeyCode.LeftShift))
+                return;
+
             if (rectTransform.sizeDelta.x == 0 || rectTransform.sizeDelta.y == 0)
                 return;
 
-            Vector2 clampedPosition = StudioCanvas.Instance.ClampObjectPositionToCanvas(rectTransform.sizeDelta, position);
+            Apply(StudioCanvas.Instance.ClampObjectPositionToCanvas(rectTransform.sizeDelta, position));
+        }
 
-            rectTransform.anchoredPosition = clampedPosition;
-            vector2Controls?.UpdateDisplayedVector(clampedPosition);
+        private void Apply(Vector2 position)
+        {
+            rectTransform.anchoredPosition = position;
+            vector2Controls?.UpdateDisplayedVector(position);
         }
     }
 }

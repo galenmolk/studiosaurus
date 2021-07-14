@@ -5,39 +5,24 @@ using UnityEngine.EventSystems;
 
 namespace Studiosaurus
 {
-    public abstract class AssetSlot<T> : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerDownHandler where T : GenericAsset<T>
+    public abstract class AssetSlot<TAsset> : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerDownHandler
+        where TAsset : GenericAsset<TAsset>
     {
         [SerializeField] protected TMP_Text fileNameText = null;
-        [SerializeField] protected Image fileThumbnail = null;
-        [SerializeField] protected RectTransform thumbnailRectTransform = null;
-        [SerializeField] protected Vector2 thumbnailSize = new Vector2(115, 115f);
 
         [SerializeField] private Image hoverBox = null;
         [SerializeField] private Image selectionBox = null;
         [SerializeField] private Button deleteButton = null;
 
-        [HideInInspector] public AssetSelector<T> assetSelector;
+        [HideInInspector] public AssetSelector<TAsset> assetSelector;
 
-        protected AssetComponent<T> assetComponent;
-        public T Asset { get { return assetComponent.Asset; } }
+        public abstract TAsset Asset { get; set; }
 
         private bool slotSelected;
-         
-        protected virtual void Awake()
-        {
-            assetComponent = GetComponentInChildren<AssetComponent<T>>();
-            assetComponent.onAssetCleared.AddListener(DestroySlot);
-        }
 
-        private void DestroySlot()
+        public virtual void UpdateSlot(TAsset asset)
         {
-            Debug.Log("Destroy");
-            Destroy(gameObject);
-        }
-
-        public virtual void UpdateSlot(T asset)
-        {
-            assetComponent.AssignAsset(asset);
+            Asset = asset;
             fileNameText.text = asset.assetName;
         }
 
@@ -49,7 +34,7 @@ namespace Studiosaurus
             deleteButton.gameObject.SetActive(true);
         }
 
-        public void OnPointerDown(PointerEventData eventData)
+        public virtual void OnPointerDown(PointerEventData eventData)
         {
             SelectSlot();
         }
@@ -62,8 +47,6 @@ namespace Studiosaurus
 
         public virtual void SelectSlot()
         {
-            Debug.Log("Select Slot base");
-
             slotSelected = true;
             hoverBox.color = Color.clear;
             selectionBox.color = Color.white;

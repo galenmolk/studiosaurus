@@ -72,14 +72,13 @@ namespace Studiosaurus
             texture = ((DownloadHandlerTexture)www.downloadHandler).texture;
             Rect rect = new Rect(0, 0, texture.width, texture.height);
             Sprite sprite = Sprite.Create(texture, rect, new Vector2(0, 0), 100F, 0, SpriteMeshType.Tight);
-            assetConstructor.AddNewSprite(sprite, www.url);
-            broadcastLoadMessage?.Invoke($"{LOAD_SUCCESS_MESSAGE}{www.url}");
+            assetConstructor.AddNewSprite(sprite, url);
+            broadcastLoadMessage?.Invoke($"{LOAD_SUCCESS_MESSAGE}{url}");
         }
 
         private IEnumerator SendAudioClipRequest(string url)
         {
             using UnityWebRequest www = UnityWebRequestMultimedia.GetAudioClip(url, AudioType.UNKNOWN);
-
 
             yield return www.SendWebRequest();
 
@@ -87,8 +86,8 @@ namespace Studiosaurus
                 yield break;
 
             AudioClip clip = DownloadHandlerAudioClip.GetContent(www);
-            assetConstructor.AddNewAudioClip(clip, www.url);
-            broadcastLoadMessage?.Invoke($"{LOAD_SUCCESS_MESSAGE}{www.url}");
+            assetConstructor.AddNewAudioClip(clip, url);
+            broadcastLoadMessage?.Invoke($"{LOAD_SUCCESS_MESSAGE}{url}");
         }
 
         private bool RequestFailed(UnityWebRequest request)

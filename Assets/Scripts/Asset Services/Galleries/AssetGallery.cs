@@ -45,7 +45,7 @@ namespace Studiosaurus
 
             assetList.Add(asset);
             assetDictionary.Add(asset.path, asset);
-            assetSelector.AddSlot(asset).SelectSlot();
+            assetSelector.CreateSlot(asset).SelectSlot();
         }
 
         private void UpdateAssetWithNewVersion(T newAsset)
@@ -61,12 +61,12 @@ namespace Studiosaurus
             Debug.Log("Replacing sprite " + newAsset.path);
         }
 
-        public void DeleteAsset(AssetSlot<T> slot)
+        public void DeleteAsset(T asset)
         {
-            assetDictionary.Remove(slot.Asset.path);
-            assetList.Remove(slot.Asset);
-            slotDictionary.Remove(slot.Asset);
-            slot.Asset.ReplaceAssetWith();
+            assetDictionary.Remove(asset.path);
+            assetList.Remove(asset);
+            slotDictionary.Remove(asset);
+            asset.ReplaceAssetWith();
         }
 
         public T GetAdjacentAsset(T asset)

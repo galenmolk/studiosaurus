@@ -19,9 +19,32 @@ namespace Studiosaurus
 
         private void SetSize(Vector2 size)
         {
-            Vector2 clampedSize = new Vector2(Mathf.Clamp(size.x, 0f, Mathf.Infinity), Mathf.Clamp(size.y, 0f, Mathf.Infinity));
-            rectTransform.sizeDelta = clampedSize;
-            vector2Controls?.UpdateDisplayedVector(clampedSize);
+            Vector2 newSize = new Vector2(Mathf.Clamp(size.x, 0f, Mathf.Infinity), Mathf.Clamp(size.y, 0f, Mathf.Infinity));
+
+            if (Input.GetKey(KeyCode.LeftShift) && ResizeHandles.ResizingCorners)
+                newSize = ScaleProportionally(newSize);
+
+            rectTransform.sizeDelta = newSize;
+            vector2Controls?.UpdateDisplayedVector(newSize);
+        }
+
+        private Vector2 ScaleProportionally(Vector2 newSize)
+        {
+            Vector2 currentSize = rectTransform.sizeDelta;
+   
+            if (newSize.x != currentSize.x)
+            {
+                newSize.y = newSize.x / doItObject.SizeRatio;
+                return newSize;
+            }
+
+            if (newSize.y != currentSize.y)
+            {
+                newSize.x = newSize.y * doItObject.SizeRatio;
+                return newSize;
+            }
+
+            return currentSize;
         }
     }
 }
