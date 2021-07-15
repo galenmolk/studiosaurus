@@ -15,13 +15,14 @@ namespace Studiosaurus
             vector2Controls = Instantiate(vector2ControlsPrefab, contextMenu.transform);
             vector2Controls.onVector2Inputted.AddListener(SetSize);
             vector2Controls.UpdateDisplayedVector(doItObject.RectTransform.sizeDelta);
+            doItObject.onImageNativeSizeSet.AddListener(vector2Controls.UpdateDisplayedVector);
         }
 
         private void SetSize(Vector2 size)
         {
             Vector2 newSize = new Vector2(Mathf.Clamp(size.x, 0f, Mathf.Infinity), Mathf.Clamp(size.y, 0f, Mathf.Infinity));
 
-            if (Input.GetKey(KeyCode.LeftShift) && ResizeHandles.ResizingCorners)
+            if (Input.GetKey(KeyCode.LeftShift) && CursorState.state == Handle.Corners)
                 newSize = ScaleProportionally(newSize);
 
             rectTransform.sizeDelta = newSize;
@@ -31,20 +32,14 @@ namespace Studiosaurus
         private Vector2 ScaleProportionally(Vector2 newSize)
         {
             Vector2 currentSize = rectTransform.sizeDelta;
-   
-            if (newSize.x != currentSize.x)
-            {
+
+            if (currentSize.x < currentSize.y)
                 newSize.y = newSize.x / doItObject.SizeRatio;
-                return newSize;
-            }
 
-            if (newSize.y != currentSize.y)
-            {
+            if (currentSize.y < currentSize.x)
                 newSize.x = newSize.y * doItObject.SizeRatio;
-                return newSize;
-            }
 
-            return currentSize;
+            return newSize;
         }
     }
 }

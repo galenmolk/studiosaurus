@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.EventSystems;
-using UnityEngine.UI;
 
 namespace Studiosaurus
 {
@@ -11,6 +10,8 @@ namespace Studiosaurus
     {
         [SerializeField] private ContextMenu contextMenuPrefab = null;
         [SerializeField] private ConfigComponent[] configComponentPrefabs;
+
+        public Vector2Event onImageNativeSizeSet = new Vector2Event();
 
         public DragHandle dragHandle;
         public ResizeHandles resizeHandles;

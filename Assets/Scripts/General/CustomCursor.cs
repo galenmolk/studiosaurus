@@ -1,33 +1,45 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-namespace Studiosaurus
-{
-    public class CustomCursor : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
+namespace Studiosaurus {
+    public class CustomCursor : MonoBehaviour, IPointerEnterHandler, IPointerDownHandler, IPointerUpHandler, IPointerExitHandler, IEndDragHandler
     {
-        [SerializeField] private Texture2D cursorTexture = null;
-        [SerializeField] private Vector2 hotspot;
+        public HandleAsset handleAsset = null;
 
-        private float resizeFactor = 0.5818181818f;
-
-        private CursorAsset asset;
-        public CursorAsset Asset { get { return asset; } }
-
-        private void Awake()
-        {
-            //cursorTexture.Resize((int)(cursorTexture.width * resizeFactor), (int)(cursorTexture.height * resizeFactor));
-            //cursorTexture.Apply();
-            asset = new CursorAsset() { texture = cursorTexture, size = new Vector2(cursorTexture.width/2, cursorTexture.height/2) };
-        }
+        private bool hovering = false;
+        public bool interacting = false;
 
         public void OnPointerEnter(PointerEventData eventData)
         {
-            CursorState.SetCursor(asset);
+            hovering = true;
+            CursorState.SetCursor(this);
         }
 
         public void OnPointerExit(PointerEventData eventData)
         {
-            CursorState.ResetCursor(asset);
+            hovering = false;
+
+            if (interacting == false)
+                CursorState.ResetCursor(this);
+        }
+
+        public void OnPointerDown(PointerEventData eventData)
+        {
+            interacting = true;
+            CursorState.SetCursor(this);
+        }
+
+        public void OnPointerUp(PointerEventData eventData)
+        {
+            interacting = false;
+        }
+
+        public void OnEndDrag(PointerEventData eventData)
+        {
+            interacting = false;
+
+            if (hovering == false)
+                CursorState.ResetCursor(this);
         }
     }
 }

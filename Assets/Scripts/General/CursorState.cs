@@ -2,26 +2,38 @@ using UnityEngine;
 
 namespace Studiosaurus
 {
-    public struct CursorAsset
+    public enum Handle
     {
-        public Texture2D texture;
-        public Vector2 size;
+        Corners,
+        Sides,
+        Body,
+        None
     }
 
     public static class CursorState
     {
-        private static CursorAsset currentAsset;
+        public static Handle state;
 
-        public static void SetCursor(CursorAsset asset)
+        private static CustomCursor currentCursor;
+
+        public static void SetCursor(CustomCursor cursor)
         {
-            Cursor.SetCursor(asset.texture, asset.size, CursorMode.Auto);
-            currentAsset = asset;
+            if (currentCursor != null && currentCursor.interacting)
+                return;
+
+            currentCursor = cursor;
+            state = cursor.handleAsset.handleState;
+            Cursor.SetCursor(cursor.handleAsset.texture, cursor.handleAsset.size, CursorMode.Auto);
         }
 
-        public static void ResetCursor(CursorAsset asset)
+        public static void ResetCursor(CustomCursor cursor)
         {
-            if (asset.texture == currentAsset.texture)
-                Cursor.SetCursor(null, Vector2.zero, CursorMode.Auto);
+            if (currentCursor == null || currentCursor != cursor)
+                return;
+
+            Cursor.SetCursor(null, Vector2.zero, CursorMode.Auto);
+            state = Handle.None;
+            currentCursor = null;
         }
     }
 }

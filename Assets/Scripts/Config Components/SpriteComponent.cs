@@ -21,8 +21,9 @@ namespace Studiosaurus
             {
                 image.sprite = newAsset?.sprite;
                 image.SetNativeSize();
-                doItObject.SizeRatio = image.rectTransform.sizeDelta.x / image.rectTransform.sizeDelta.y;
-                Debug.Log(doItObject.SizeRatio);
+                Vector2 imageSize = image.rectTransform.sizeDelta;
+                doItObject.SizeRatio = imageSize.x / imageSize.y;
+                doItObject.onImageNativeSizeSet.Invoke(imageSize);
             }
 
             base.AssignAsset(newAsset);
