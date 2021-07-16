@@ -7,6 +7,6 @@ namespace Studiosaurus
     {
         public Texture2D texture;
         public Vector2 size;
-        public Handle handleState;
+        public HandleType handleType;
     }
 }

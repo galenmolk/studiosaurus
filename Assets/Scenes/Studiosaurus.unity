@@ -385,6 +385,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 631760214}
     m_Modifications:
+    - target: {fileID: 1153793675965953260, guid: 631fc5492e7554724b7917d2467701d7, type: 3}
+      propertyPath: rectTransform
+      value: 
+      objectReference: {fileID: 868431632}
     - target: {fileID: 8536367071925750698, guid: 631fc5492e7554724b7917d2467701d7, type: 3}
       propertyPath: m_Name
       value: do-it-object

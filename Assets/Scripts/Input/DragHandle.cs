@@ -5,16 +5,12 @@ namespace Studiosaurus
 {
     public class DragHandle : MonoBehaviour, IPointerDownHandler, IDragHandler
     {
+        [SerializeField] private RectTransform rectTransform;
+
         public Vector2Event onDrag = new Vector2Event();
 
         private bool mouseExitedScreen = false;
         private Vector2 dragOffset;
-        private RectTransform rectTransform;
-
-        private void Awake()
-        {
-            rectTransform = transform as RectTransform;
-        }
 
         public void OnPointerDown(PointerEventData eventData)
         {

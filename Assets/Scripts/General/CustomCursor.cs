@@ -2,44 +2,28 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 
 namespace Studiosaurus {
-    public class CustomCursor : MonoBehaviour, IPointerEnterHandler, IPointerDownHandler, IPointerUpHandler, IPointerExitHandler, IEndDragHandler
+    public class CustomCursor : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IBeginDragHandler, IEndDragHandler
     {
         public HandleAsset handleAsset = null;
 
-        private bool hovering = false;
-        public bool interacting = false;
-
         public void OnPointerEnter(PointerEventData eventData)
         {
-            hovering = true;
-            CursorState.SetCursor(this);
+            CursorState.SetHoveringCursor(this);
         }
 
         public void OnPointerExit(PointerEventData eventData)
         {
-            hovering = false;
-
-            if (interacting == false)
-                CursorState.ResetCursor(this);
+            CursorState.ResetHoveringCursor(this);
         }
 
-        public void OnPointerDown(PointerEventData eventData)
+        public void OnBeginDrag(PointerEventData eventData)
         {
-            interacting = true;
-            CursorState.SetCursor(this);
-        }
-
-        public void OnPointerUp(PointerEventData eventData)
-        {
-            interacting = false;
+            CursorState.SetInteractingCursor(this);
         }
 
         public void OnEndDrag(PointerEventData eventData)
         {
-            interacting = false;
-
-            if (hovering == false)
-                CursorState.ResetCursor(this);
+            CursorState.ResetInteractingCursor(this);
         }
     }
 }

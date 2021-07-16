@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace Studiosaurus
 {
-    public enum Handle
+    public enum HandleType
     {
         Corners,
         Sides,
@@ -12,28 +12,73 @@ namespace Studiosaurus
 
     public static class CursorState
     {
-        public static Handle state;
+        public static HandleType handleType = HandleType.None;
 
-        private static CustomCursor currentCursor;
+        public static CustomCursor hoveringCursor;
+        public static CustomCursor interactingCursor;
 
-        public static void SetCursor(CustomCursor cursor)
+        private static bool hovering;
+        private static bool interacting;
+
+        public static void SetHoveringCursor(CustomCursor cursor)
         {
-            if (currentCursor != null && currentCursor.interacting)
-                return;
+            hoveringCursor = cursor;
+            hovering = true;
 
-            currentCursor = cursor;
-            state = cursor.handleAsset.handleState;
+            if (!interacting)
+                SetCursor(hoveringCursor);
+        }
+
+        public static void SetInteractingCursor(CustomCursor cursor)
+        {
+            interacting = true;
+            interactingCursor = cursor;
+            SetCursor(interactingCursor);
+        }
+
+        public static void ResetHoveringCursor(CustomCursor cursor)
+        {
+            if (hovering && hoveringCursor?.name == cursor.name)
+            {
+                hovering = false;
+                hoveringCursor = null;
+            }
+
+            TryReset();
+        }
+
+        public static void ResetInteractingCursor(CustomCursor cursor)
+        {
+            if (interacting && interactingCursor?.name == cursor.name)
+            {
+                interacting = false;
+                interactingCursor = null;
+            }
+
+            if (hovering && !interacting)
+                SetCursor(hoveringCursor);
+
+            TryReset();
+        }
+
+        private static void TryReset()
+        {
+            if (!hovering && !interacting)
+                ResetCursor();
+        }
+
+        private static void SetCursor(CustomCursor cursor)   
+        {
+            handleType = cursor.handleAsset.handleType;
             Cursor.SetCursor(cursor.handleAsset.texture, cursor.handleAsset.size, CursorMode.Auto);
         }
 
-        public static void ResetCursor(CustomCursor cursor)
+        private static void ResetCursor()
         {
-            if (currentCursor == null || currentCursor != cursor)
-                return;
-
+            hoveringCursor = null;
+            interactingCursor = null;
+            handleType = HandleType.None;
             Cursor.SetCursor(null, Vector2.zero, CursorMode.Auto);
-            state = Handle.None;
-            currentCursor = null;
         }
     }
 }
