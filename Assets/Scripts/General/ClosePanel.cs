@@ -15,5 +15,11 @@ namespace Studiosaurus {
         {
             CurrentWindow.Close();
         }
+
+        private void Update()
+        {
+            if (Input.GetKey(KeyCode.Escape))
+                CurrentWindow.Close();
+        }
     }
 }

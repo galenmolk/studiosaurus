@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6517c9de8e16149a0b8690a5ce5e54d4, type: 3}
   m_Name: Sprite Gallery
   m_EditorClassIdentifier: 
-  assetSelectorPrefab: {fileID: 3434971575588702010, guid: 97e231149a15843339747bf07966f79e, type: 3}
+  assetSelectorPrefab: {fileID: 8382714840560192973, guid: 66e263e1c322c4d8fa0bc75673b36b72, type: 3}
   selectedSlot: {fileID: 0}

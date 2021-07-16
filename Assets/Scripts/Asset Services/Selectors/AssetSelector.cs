@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 namespace Studiosaurus
 {
-    public class AssetSelector<TAsset> : MonoBehaviour where TAsset : GenericAsset<TAsset>
+    public class AssetSelector<TAsset> : Window where TAsset : GenericAsset<TAsset>
     {
         [SerializeField] protected AssetSlot<TAsset> assetSlotPrefab = null;
         [SerializeField] protected TMP_Text uploadPromptText = null;
@@ -14,7 +14,6 @@ namespace Studiosaurus
         [SerializeField] protected TMP_Text chooseButtonText = null;
         [SerializeField] protected Transform assetSlotContainer = null;
         [SerializeField] protected FileUploadService fileUploadService = null;
-        [SerializeField] private CanvasGroup canvasGroup = null;
 
         protected AssetComponent<TAsset> assetComponent;
         [HideInInspector] public AssetGallery<TAsset> gallery;
@@ -26,16 +25,17 @@ namespace Studiosaurus
 
         public virtual void Open(AssetGallery<TAsset> gallery, AssetComponent<TAsset> assetComponent)
         {
+            transform.SetAsLastSibling();
+            ActivateClosePanel(transform);
             this.assetComponent = assetComponent;
             this.gallery = gallery;
             CreateSlots();
-            transform.SetAsLastSibling();
         }
 
-        public void Close()
+        public override void Close()
         {
             gallery.Close();
-            Destroy(gameObject);
+            base.Close();
         }
 
         protected void CreateSlots()
@@ -50,6 +50,7 @@ namespace Studiosaurus
                 if (i == count - 1 && gallery.selectedSlot == null)
                     openSlots[i].SelectSlot();
             }
+            UpdateChooseButton();
         }
 
         public AssetSlot<TAsset> CreateSlot(TAsset asset)

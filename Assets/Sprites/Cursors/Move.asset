@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   texture: {fileID: 2800000, guid: 6aadc724847c8492da7fa9f8e0df42a0, type: 3}
   size: {x: 8, y: 8}
-  handleState: 2
+  handleType: 2

@@ -22,9 +22,9 @@ namespace Studiosaurus
         [SerializeField] private string[] fileExtensions = null;
         [SerializeField] private TMP_Text urlUploadPromptText = null;
         [SerializeField] private TMP_InputField urlInputField = null;
-        [SerializeField] private Button uploadButton = null;
+        [SerializeField] private Button urlUploadButton = null;
 
-        [SerializeField] private string extensionsParameter = string.Empty;
+        private string extensionsParameter = string.Empty;
 
         public StringEvent onUrlReceived = new StringEvent();
 
@@ -35,7 +35,7 @@ namespace Studiosaurus
 #if !UNITY_EDITOR
             urlUploadPromptText.gameObject.SetActive(false);
             urlInputField.gameObject.SetActive(false);
-            uploadButton.interactable = true;
+            urlUploadButton.interactable = true;
 #endif
         }
 
@@ -55,7 +55,7 @@ namespace Studiosaurus
 
         public void OnUrlFieldValueChanged()
         {
-            uploadButton.interactable = !string.IsNullOrWhiteSpace(urlInputField.text);
+            urlUploadButton.interactable = !string.IsNullOrWhiteSpace(urlInputField.text);
         }
 
         public void OnPointerDown(PointerEventData eventData)

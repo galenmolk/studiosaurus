@@ -57,7 +57,6 @@ namespace Studiosaurus
         {
             if (contextMenu != null)
             {
-                //contextMenu.transform.SetParent(transform);
                 contextMenu.PositionMenu(eventData.position);
                 yield break;
             }
@@ -71,11 +70,6 @@ namespace Studiosaurus
         public void SubscribeControls(UnityAction<Vector2> action)
         {
             dragHandle.onDrag.AddListener(action);
-        }
-
-        public void DisplayDebug()
-        {
-            Debug.Log("I'm not null");
         }
     }
 }

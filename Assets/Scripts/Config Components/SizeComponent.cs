@@ -29,14 +29,13 @@ namespace Studiosaurus
             vector2Controls?.UpdateDisplayedVector(newSize);
         }
 
+        // Scale to the smaller size 
         private Vector2 ScaleProportionally(Vector2 newSize)
         {
-            Vector2 currentSize = rectTransform.sizeDelta;
-
-            if (currentSize.x < currentSize.y)
+            if (newSize.x < newSize.y)
                 newSize.y = newSize.x / doItObject.SizeRatio;
 
-            if (currentSize.y < currentSize.x)
+            if (newSize.y < newSize.x)
                 newSize.x = newSize.y * doItObject.SizeRatio;
 
             return newSize;

@@ -23,22 +23,6 @@ namespace Studiosaurus
             rectTransform = transform.parent as RectTransform;
         }
 
-        private bool madeNull = false;
-
-        private void Update()
-        {
-            if (CursorState.interactingCursor == null && !madeNull)
-            {
-                madeNull = true;
-                Debug.Log("Interacting cursor set to null");
-            }
-
-            if (CursorState.interactingCursor != null)
-            {
-                madeNull = false;
-            }
-        }
-
         public void AdjustLeftEdge(PointerEventData eventData)
         {
             newPostion = CurrentPosition + new Vector2(eventData.delta.x / StudioCanvas.Instance.ScaleFactor, 0f) * 0.5f;

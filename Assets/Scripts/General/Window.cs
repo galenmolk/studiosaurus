@@ -16,7 +16,7 @@ namespace Studiosaurus
             closePanel.transform.SetSiblingIndex(siblingIndex--);
         }
 
-        public void Close()
+        public virtual void Close()
         {
             Destroy(closePanel.gameObject);
             Destroy(gameObject);
