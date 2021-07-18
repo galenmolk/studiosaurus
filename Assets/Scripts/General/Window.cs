@@ -12,7 +12,7 @@ namespace Studiosaurus
         {
             int siblingIndex = windowScope.GetSiblingIndex();
             closePanel = Instantiate(closePanelPrefab, windowScope.parent);
-            closePanel.CurrentWindow = this;
+            closePanel.currentWindow = this;
             closePanel.transform.SetSiblingIndex(siblingIndex--);
         }
 

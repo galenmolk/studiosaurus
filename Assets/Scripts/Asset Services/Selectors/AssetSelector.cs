@@ -55,7 +55,7 @@ namespace Studiosaurus
 
         public AssetSlot<TAsset> CreateSlot(TAsset asset)
         {
-            uploadPromptText.gameObject.SetActive(true);
+            uploadPromptText.gameObject.SetActive(false);
 
             if (!gallery.slotDictionary.TryGetValue(asset, out AssetSlot<TAsset> slot))
             {

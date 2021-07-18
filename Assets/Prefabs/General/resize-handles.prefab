@@ -146,9 +146,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  onDragEnd:
-    m_PersistentCalls:
-      m_Calls: []
 --- !u!114 &7402719767636170830
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -308,9 +305,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  onDragEnd:
-    m_PersistentCalls:
-      m_Calls: []
 --- !u!114 &8379320366063651150
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -470,9 +464,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  onDragEnd:
-    m_PersistentCalls:
-      m_Calls: []
 --- !u!114 &5517704937728801173
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -632,9 +623,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  onDragEnd:
-    m_PersistentCalls:
-      m_Calls: []
 --- !u!114 &4564234201447190140
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -794,9 +782,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  onDragEnd:
-    m_PersistentCalls:
-      m_Calls: []
 --- !u!114 &7664809081357790361
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -956,9 +941,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  onDragEnd:
-    m_PersistentCalls:
-      m_Calls: []
 --- !u!114 &1588368453537712918
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1118,9 +1100,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  onDragEnd:
-    m_PersistentCalls:
-      m_Calls: []
 --- !u!114 &3669999027565481380
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1146,7 +1125,7 @@ GameObject:
   - component: {fileID: 2243130166591920476}
   - component: {fileID: 8724570115933041980}
   - component: {fileID: 7648404173442073299}
-  - component: {fileID: 1208066971794979793}
+  - component: {fileID: 473526559}
   m_Layer: 5
   m_Name: body
   m_TagString: Untagged
@@ -1194,7 +1173,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0, g: 0, b: 0, a: 0}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -1224,7 +1203,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   handleAsset: {fileID: 11400000, guid: be57db607c5f442b2914319c6b120788, type: 2}
---- !u!114 &1208066971794979793
+--- !u!114 &473526559
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1236,6 +1215,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 935ab095527d34e2c86421baa333e59a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  rectTransform: {fileID: 0}
+  onDrag:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &8294547321431636633
 GameObject:
   m_ObjectHideFlags: 0
@@ -1382,9 +1365,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  onDragEnd:
-    m_PersistentCalls:
-      m_Calls: []
 --- !u!114 &533054703323883400
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1468,3 +1448,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 02896e5eb6bdf42318ab078a6f76e563, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  onPositionChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  onSizeChanged:
+    m_PersistentCalls:
+      m_Calls: []

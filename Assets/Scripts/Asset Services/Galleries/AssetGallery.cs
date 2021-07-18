@@ -51,6 +51,8 @@ namespace Studiosaurus
         private void UpdateAssetWithNewVersion(T newAsset)
         {
             assetDictionary.TryGetValue(newAsset.path, out T oldAsset);
+            slotDictionary.TryGetValue(oldAsset, out AssetSlot<T> slot);
+            slot.UpdateSlot(newAsset);
             int index = assetList.IndexOf(oldAsset);
             assetList.Remove(oldAsset);
             assetList.Insert(index, newAsset);

@@ -18,9 +18,9 @@ namespace Studiosaurus
             doItObject.onImageNativeSizeSet.AddListener(vector2Controls.UpdateDisplayedVector);
         }
 
-        private void SetSize(Vector2 size)
+        private void SetSize(Vector2 newSize)
         {
-            Vector2 newSize = new Vector2(Mathf.Clamp(size.x, 0f, Mathf.Infinity), Mathf.Clamp(size.y, 0f, Mathf.Infinity));
+            SetNegativeSizeLinesEnabled();
 
             if (Input.GetKey(KeyCode.LeftShift) && CursorState.handleType == HandleType.Corners)
                 newSize = ScaleProportionally(newSize);

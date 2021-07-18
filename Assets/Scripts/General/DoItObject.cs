@@ -11,6 +11,8 @@ namespace Studiosaurus
         [SerializeField] private ContextMenu contextMenuPrefab = null;
         [SerializeField] private ConfigComponent[] configComponentPrefabs;
 
+        public NegativeSizeLines negativeSizeLines;
+
         public Vector2Event onImageNativeSizeSet = new Vector2Event();
 
         public DragHandle dragHandle;

@@ -1202,7 +1202,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.12549017, g: 0.7248425, b: 0.7882353, a: 0.5882353}
+  m_Color: {r: 0.99215686, g: 0.8352941, b: 0.62352943, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -1233,6 +1233,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   xInput: {fileID: 2325710015732721772}
   yInput: {fileID: 8973481260880374177}
+  onVector2Inputted:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &6591271966909176792
 GameObject:
   m_ObjectHideFlags: 0

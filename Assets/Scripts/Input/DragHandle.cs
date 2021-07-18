@@ -19,6 +19,7 @@ namespace Studiosaurus
 
         public void OnDrag(PointerEventData eventData)
         {
+            rectTransform.SetAsLastSibling();
             MoveObject(eventData);
         }
 
@@ -29,7 +30,7 @@ namespace Studiosaurus
 
         public void MoveObject(PointerEventData eventData)
         {
-            StudioCanvas.MouseBounds bounds = StudioCanvas.Instance.GetMouseBoundsInfo();
+            MouseBounds bounds = StudioCanvas.Instance.GetMouseBoundsInfo();
 
             if (mouseExitedScreen && !bounds.OffScreen)
             {

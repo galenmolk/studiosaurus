@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.EventSystems;
 
 namespace Studiosaurus
 {
@@ -14,7 +13,7 @@ namespace Studiosaurus
         private Vector2 CurrentPosition { get { return rectTransform.anchoredPosition; } }
         private Vector2 CurrentSize { get { return rectTransform.sizeDelta; } }
 
-        private Vector2 newPostion;
+        private Vector2 newPosition;
         private Vector2 newSize;
 
         private void Awake()
@@ -23,52 +22,67 @@ namespace Studiosaurus
             rectTransform = transform.parent as RectTransform;
         }
 
-        public void AdjustLeftEdge(PointerEventData eventData)
+        public void AdjustLeftEdge(HandleDelta delta)
         {
-            newPostion = CurrentPosition + new Vector2(eventData.delta.x / StudioCanvas.Instance.ScaleFactor, 0f) * 0.5f;
-            newSize = CurrentSize + new Vector2(-eventData.delta.x / StudioCanvas.Instance.ScaleFactor, 0f);
+            SetEdgePositionAlongX(delta.position);
+            newSize = CurrentSize + new Vector2(-delta.size.x, 0f);
+        }
+        
+        public void AdjustRightEdge(HandleDelta delta)
+        {
+            SetEdgePositionAlongX(delta.position);
+            newSize = CurrentSize + new Vector2(delta.size.x, 0f);
         }
 
-        public void AdjustRightEdge(PointerEventData eventData)
+        public void AdjustTopEdge(HandleDelta delta)
         {
-            newPostion = CurrentPosition + new Vector2(eventData.delta.x / StudioCanvas.Instance.ScaleFactor, 0f) * 0.5f;
-            newSize = CurrentSize + new Vector2(eventData.delta.x / StudioCanvas.Instance.ScaleFactor, 0f);
+            SetEdgePositionAlongY(delta.position);
+            newSize = CurrentSize + new Vector2(0f, delta.size.y);
         }
 
-        public void AdjustTopEdge(PointerEventData eventData)
+        public void AdjustBottomEdge(HandleDelta delta)
         {
-            newPostion = CurrentPosition + new Vector2(0f, eventData.delta.y / StudioCanvas.Instance.ScaleFactor) * 0.5f;
-            newSize = CurrentSize + new Vector2(0f, eventData.delta.y / StudioCanvas.Instance.ScaleFactor);
+            SetEdgePositionAlongY(delta.position);
+            newSize = CurrentSize + new Vector2(0f, -delta.size.y);
         }
 
-        public void AdjustBottomEdge(PointerEventData eventData)
+        public void AdjustTopLeftCorner(HandleDelta delta)
         {
-            newPostion = CurrentPosition + new Vector2(0f, eventData.delta.y / StudioCanvas.Instance.ScaleFactor) * 0.5f;
-            newSize = CurrentSize + new Vector2(0f, -eventData.delta.y / StudioCanvas.Instance.ScaleFactor);
+            SetCornerPosition(delta.position);
+            newSize = CurrentSize + new Vector2(-delta.size.x, delta.size.y);
         }
 
-        public void AdjustTopLeftCorner(PointerEventData eventData)
+        public void AdjustTopRightCorner(HandleDelta delta)
         {
-            newPostion = CurrentPosition + eventData.delta/ StudioCanvas.Instance.ScaleFactor * 0.5f;
-            newSize = CurrentSize + new Vector2(-eventData.delta.x, eventData.delta.y) / StudioCanvas.Instance.ScaleFactor;
+            SetCornerPosition(delta.position);
+            newSize = CurrentSize + delta.size;
         }
 
-        public void AdjustTopRightCorner(PointerEventData eventData)
+        public void AdjustBottomLeftCorner(HandleDelta delta)
         {
-            newPostion = CurrentPosition + eventData.delta / StudioCanvas.Instance.ScaleFactor * 0.5f;
-            newSize = CurrentSize + eventData.delta / StudioCanvas.Instance.ScaleFactor;
+            SetCornerPosition(delta.position);
+            newSize = CurrentSize + -delta.size;
         }
 
-        public void AdjustBottomLeftCorner(PointerEventData eventData)
+        public void AdjustBottomRightCorner(HandleDelta delta)
         {
-            newPostion = CurrentPosition + eventData.delta / StudioCanvas.Instance.ScaleFactor * 0.5f;
-            newSize = CurrentSize - eventData.delta / StudioCanvas.Instance.ScaleFactor;
+            SetCornerPosition(delta.position);
+            newSize = CurrentSize + new Vector2(delta.size.x, -delta.size.y);
         }
 
-        public void AdjustBottomRightCorner(PointerEventData eventData)
+        private void SetEdgePositionAlongX(Vector2 delta)
         {
-            newPostion = CurrentPosition + eventData.delta / StudioCanvas.Instance.ScaleFactor * 0.5f;
-            newSize = CurrentSize + new Vector2(eventData.delta.x, -eventData.delta.y) / StudioCanvas.Instance.ScaleFactor;
+            newPosition = CurrentPosition + new Vector2(delta.x, 0f);
+        }
+
+        private void SetCornerPosition(Vector2 delta)
+        {
+            newPosition = CurrentPosition + delta;
+        }
+
+        private void SetEdgePositionAlongY(Vector2 delta)
+        {
+            newPosition = CurrentPosition + new Vector2(0f, delta.y);
         }
 
         public void SetHandlesVisibility(bool isVisible)
@@ -78,7 +92,7 @@ namespace Studiosaurus
 
         public void BroadcastResize()
         {
-            onPositionChanged?.Invoke(newPostion);
+            onPositionChanged?.Invoke(newPosition);
             onSizeChanged?.Invoke(newSize);
         }
     }

@@ -1,11 +1,8 @@
 using TMPro;
 using UnityEngine;
-using UnityEngine.Events;
 
 namespace Studiosaurus
 {
-    public class Vector2Event : UnityEvent<Vector2> { }
-
     public class Vector2Controls : ConfigControls
     {
         [SerializeField] private TMP_InputField xInput = null;
