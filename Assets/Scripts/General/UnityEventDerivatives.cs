@@ -15,6 +15,8 @@ namespace Studiosaurus
     [Serializable]
     public class Vector2Event : UnityEvent<Vector2> { }
 
+    public class FloatEvent : UnityEvent<float> { }
+
     [Serializable]
     public class HandleDeltaEvent : UnityEvent<HandleDelta> { }
 }

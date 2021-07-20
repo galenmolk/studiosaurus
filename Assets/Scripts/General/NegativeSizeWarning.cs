@@ -1,7 +1,7 @@
 using UnityEngine;
 
 namespace Studiosaurus {
-    public class NegativeSizeLines : MonoBehaviour
+    public class NegativeSizeWarning : MonoBehaviour
     {
         [SerializeField] private LineRenderer line1;
         [SerializeField] private LineRenderer line2;

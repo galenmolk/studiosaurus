@@ -20,13 +20,18 @@ namespace Studiosaurus
 
         private void SetSize(Vector2 newSize)
         {
-            SetNegativeSizeLinesEnabled();
-
             if (Input.GetKey(KeyCode.LeftShift) && CursorState.handleType == HandleType.Corners)
                 newSize = ScaleProportionally(newSize);
 
             rectTransform.sizeDelta = newSize;
+
+            SetNegativeWarningLinesEnabled(rectTransform.sizeDelta.x < 0 || rectTransform.sizeDelta.y < 0);
             vector2Controls?.UpdateDisplayedVector(newSize);
+        }
+
+        private void SetNegativeWarningLinesEnabled(bool isEnabled)
+        {
+            doItObject.negativeSizeWarning.SetEnabled(isEnabled);
         }
 
         // Scale to the smaller size 

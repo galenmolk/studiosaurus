@@ -11,15 +11,12 @@ namespace Studiosaurus
         [SerializeField] private ContextMenu contextMenuPrefab = null;
         [SerializeField] private ConfigComponent[] configComponentPrefabs;
 
-        public NegativeSizeLines negativeSizeLines;
-
-        public Vector2Event onImageNativeSizeSet = new Vector2Event();
-
-        public DragHandle dragHandle;
-        public ResizeHandles resizeHandles;
-
+        [HideInInspector] public NegativeSizeWarning negativeSizeWarning;
         [HideInInspector] public List<ConfigComponent> configComponents = new List<ConfigComponent>();
 
+        public Vector2Event onImageNativeSizeSet = new Vector2Event();
+        public DragHandle dragHandle;
+        public ResizeHandles resizeHandles;
         public float SizeRatio { get; set; }
 
         public RectTransform RectTransform
@@ -38,8 +35,14 @@ namespace Studiosaurus
 
         private void Awake()
         {
+            CacheReferences();
             SizeRatio = RectTransform.sizeDelta.x / RectTransform.sizeDelta.y;
             CreateConfigComponents();
+        }
+
+        private void CacheReferences()
+        {
+            negativeSizeWarning = GetComponentInChildren<NegativeSizeWarning>(true);
         }
 
         private void CreateConfigComponents()

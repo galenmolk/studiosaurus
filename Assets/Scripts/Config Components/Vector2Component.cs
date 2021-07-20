@@ -14,10 +14,5 @@ namespace Studiosaurus
             base.Awake();
             rectTransform = transform.parent as RectTransform;
         }
-
-        protected void SetNegativeSizeLinesEnabled()
-        {
-            doItObject.negativeSizeLines.SetEnabled(rectTransform.sizeDelta.x < 0 || rectTransform.sizeDelta.y < 0);
-        }
     }
 }

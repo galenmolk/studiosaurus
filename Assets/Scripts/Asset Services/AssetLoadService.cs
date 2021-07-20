@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.Networking;
 
 namespace Studiosaurus
@@ -10,6 +11,7 @@ namespace Studiosaurus
         [SerializeField] private AssetConstructor assetConstructor = null;
 
         public StringEvent broadcastLoadMessage = new StringEvent();
+        public FloatEvent onDownloadInProgress = new FloatEvent();
 
         private static AssetLoadService sharedInstance;
         public static AssetLoadService Instance
@@ -28,7 +30,7 @@ namespace Studiosaurus
         private const string INVALID_URL_MESSAGE = "Asset URL is invalid!";
 
         private Texture2D texture;
-
+        private readonly WaitForEndOfFrame endOfFrame = new WaitForEndOfFrame();
         private void Awake()
         {
             sharedInstance = this;
@@ -64,7 +66,9 @@ namespace Studiosaurus
         {
             using UnityWebRequest www = UnityWebRequestTexture.GetTexture(url);
 
-            yield return www.SendWebRequest();
+            www.SendWebRequest();
+
+            yield return WaitForDownload(www);
 
             if (RequestFailed(www))
                 yield break;
@@ -80,7 +84,9 @@ namespace Studiosaurus
         {
             using UnityWebRequest www = UnityWebRequestMultimedia.GetAudioClip(url, AudioType.UNKNOWN);
 
-            yield return www.SendWebRequest();
+            www.SendWebRequest();
+
+            yield return WaitForDownload(www);
 
             if (RequestFailed(www))
                 yield break;
@@ -88,6 +94,15 @@ namespace Studiosaurus
             AudioClip clip = DownloadHandlerAudioClip.GetContent(www);
             assetConstructor.AddNewAudioClip(clip, url);
             broadcastLoadMessage?.Invoke($"{LOAD_SUCCESS_MESSAGE}{url}");
+        }
+
+        private IEnumerator WaitForDownload(UnityWebRequest www)
+        {
+            while (!www.isDone)
+            {
+                Debug.Log(www.downloadProgress);
+                yield return endOfFrame;
+            }
         }
 
         private bool RequestFailed(UnityWebRequest request)

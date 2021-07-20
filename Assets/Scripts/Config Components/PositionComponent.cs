@@ -8,7 +8,6 @@ namespace Studiosaurus
         {
             base.Awake();
             doItObject.resizeHandles.onPositionChanged.AddListener(SetPosition);
-            doItObject.dragHandle.onDrag.AddListener(_ => SetNegativeSizeLinesEnabled());
         }
 
         public override void OpenControls(ContextMenu contextMenu)
@@ -21,8 +20,6 @@ namespace Studiosaurus
 
         private void SetPosition(Vector2 position)
         {
-            SetNegativeSizeLinesEnabled();
-
             if (Input.GetKey(KeyCode.LeftShift))
                 return;
 

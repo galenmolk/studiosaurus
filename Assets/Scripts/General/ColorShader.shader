@@ -41,7 +41,7 @@ Category {
             
             fixed4 frag (v2f i) : SV_Target
             {
-                return _MainColor;
+                return fixed4(sin(_Time.y * 10 * i.uv.x), sin(_Time.y * 15  * -i.uv.x), sin(_Time.y * 20 * i.uv.y), 1);
             }
             ENDCG 
         }

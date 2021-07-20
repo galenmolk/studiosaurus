@@ -2,6 +2,11 @@ MAIN ROADMAP
 add more objects!
  have a list of objects on a toolbar, with buttons, do it settings
 auto-select the slot that contains the asset that is already assigned to the component you're selecting for
+asset loading progress bar!
+move negative size warning lines into only size component
+rename to negativesizewarning
+upload new assets to cloudinary on building json
+TweenTo component
 
 message that indicates that sprite already exists. replace sprite?
 refactor out the asset deletion window to be a generic confirmation window that uses a delegate system. so you can use it for deleting assets AND for confirming replacement of assets, among other things in the future
@@ -21,7 +26,6 @@ add a hint bar on bottom of screen that tells you controls
 add opening animation/closing animation for selector
 find higher def handle sprites
 add DOTween classes so hovering over things can do some stuff
-change component control colors (second two to be more dino-ey less depressing)
 
 CONTINUAL
 improve naming of prefabs and hierarchy objects, class names, etc
