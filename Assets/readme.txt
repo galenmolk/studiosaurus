@@ -3,11 +3,10 @@ add more objects!
  have a list of objects on a toolbar, with buttons, do it settings
 auto-select the slot that contains the asset that is already assigned to the component you're selecting for
 asset loading progress bar!
-move negative size warning lines into only size component
-rename to negativesizewarning
 upload new assets to cloudinary on building json
 TweenTo component
-
+make studiocanvas clamp to actual canvas and not mouse pos on screen
+ignore escape key if file selector winow is open
 message that indicates that sprite already exists. replace sprite?
 refactor out the asset deletion window to be a generic confirmation window that uses a delegate system. so you can use it for deleting assets AND for confirming replacement of assets, among other things in the future
 

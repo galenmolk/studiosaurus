@@ -61,7 +61,10 @@ namespace Studiosaurus
 
         public void TrashButtonClicked()
         {
-            assetSelector.ConfirmDeleteSlot(this);
+            if (Input.GetKey(KeyCode.LeftShift) && Input.GetKey(KeyCode.LeftAlt))
+                assetSelector.DeleteSlot(this);
+            else
+                assetSelector.ConfirmDeleteSlot(this);
         }
 
         public void FileSlotDoubleClicked()

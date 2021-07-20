@@ -1,7 +1,5 @@
-using System;
 using System.Collections;
 using UnityEngine;
-using UnityEngine.Events;
 using UnityEngine.Networking;
 
 namespace Studiosaurus
@@ -25,7 +23,7 @@ namespace Studiosaurus
             }
         }
 
-        private const string LOAD_SUCCESS_MESSAGE = "Asset Loaded: ";
+        private const string LOAD_SUCCESS_MESSAGE = "<b>Asset Loaded:</b> ";
         private const string WWW_ERROR_MESSAGE = "Failed to Load Asset: ";
         private const string INVALID_URL_MESSAGE = "Asset URL is invalid!";
 
@@ -100,7 +98,7 @@ namespace Studiosaurus
         {
             while (!www.isDone)
             {
-                Debug.Log(www.downloadProgress);
+                onDownloadInProgress?.Invoke(www.downloadProgress);
                 yield return endOfFrame;
             }
         }
