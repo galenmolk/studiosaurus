@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.EventSystems;
 
 namespace Studiosaurus
 {
@@ -14,16 +13,18 @@ namespace Studiosaurus
             audioSource = GetComponent<AudioSource>();
         }
 
-        public override void OnPointerDown(PointerEventData eventData)
-        {
-            base.OnPointerDown(eventData);
-            audioSource.Play();
-        }
-
         public override void UpdateSlot(AudioClipAsset asset)
         {
             base.UpdateSlot(asset);
             audioSource.clip = asset.audioClip;
+        }
+
+        public void PlayStopButtonClicked()
+        {
+            if (audioSource.isPlaying)
+                audioSource.Stop();
+            else
+                audioSource.Play();
         }
     }
 }

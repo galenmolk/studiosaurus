@@ -33,7 +33,6 @@ namespace Studiosaurus {
                 progressBar.gameObject.SetActive(true);
 
             progressText.text = $"{LOADING_TEXT} {(int)(progress * 100)}%";
-            Debug.Log(progressText.text);
             progressBar.value = progress;
         }
     }

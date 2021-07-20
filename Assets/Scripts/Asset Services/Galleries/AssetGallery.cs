@@ -9,17 +9,14 @@ namespace Studiosaurus
 
         [HideInInspector] public AssetSlot<T> selectedSlot;
         public int AssetCount { get { return assetList.Count; } }
-
-        public Dictionary<string, T> assetDictionary = new Dictionary<string, T>();
-
-        public Dictionary<T, AssetSlot<T>> slotDictionary = new Dictionary<T, AssetSlot<T>>();
-
         public List<T> AssetList { get { return assetList; } }
+        public T lastSelectedAsset;
+
+        private readonly Dictionary<string, T> assetDictionary = new Dictionary<string, T>();
+        private readonly Dictionary<T, AssetSlot<T>> slotDictionary = new Dictionary<T, AssetSlot<T>>();
         private readonly List<T> assetList = new List<T>();
 
         private AssetSelector<T> assetSelector;
-
-        public T lastSelectedAsset;
 
         public void OpenGallery(AssetComponent<T> assetComponent)
         {
@@ -45,13 +42,24 @@ namespace Studiosaurus
 
             assetList.Add(asset);
             assetDictionary.Add(asset.path, asset);
-            assetSelector.CreateSlot(asset).SelectSlot();
+            assetSelector.AddAsset(asset).SelectSlot();
+        }
+
+        public void AddSlot(T asset, AssetSlot<T> slot)
+        {
+            slotDictionary.Add(asset, slot);
+        }
+
+        public bool SlotExists(T asset, out AssetSlot<T> slot)
+        {
+            return slotDictionary.TryGetValue(asset, out slot);
         }
 
         private void UpdateAssetWithNewVersion(T newAsset)
         {
-            assetDictionary.TryGetValue(newAsset.path, out T oldAsset);
-            slotDictionary.TryGetValue(oldAsset, out AssetSlot<T> slot);
+            T oldAsset = assetDictionary[newAsset.path];
+            Debug.Log(oldAsset);
+            AssetSlot<T> slot = slotDictionary[oldAsset];
             slot.UpdateSlot(newAsset);
             int index = assetList.IndexOf(oldAsset);
             assetList.Remove(oldAsset);
@@ -65,13 +73,14 @@ namespace Studiosaurus
 
         public void DeleteAsset(T asset)
         {
+            Debug.Log("Delete Asset");
             assetDictionary.Remove(asset.path);
             assetList.Remove(asset);
             slotDictionary.Remove(asset);
             asset.ReplaceAssetWith();
         }
 
-        public T GetAdjacentAsset(T asset)
+        public AssetSlot<T> GetAdjacentSlot(T asset)
         {
             int slotCount = assetList.Count;
 
@@ -81,10 +90,10 @@ namespace Studiosaurus
             int index = assetList.IndexOf(asset);
 
             if (index < slotCount - 1)
-                return assetList[index + 1];
+                return slotDictionary[assetList[index + 1]];
 
             if (index >= 1)
-                return assetList[index - 1];
+                return slotDictionary[assetList[index - 1]];
 
             return null;
         }

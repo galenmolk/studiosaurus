@@ -42,7 +42,7 @@ namespace Studiosaurus
         {
             for (int i = 0, count = gallery.AssetList.Count; i < count; i++)
             {
-                openSlots.Add(CreateSlot(gallery.AssetList[i]));
+                openSlots.Add(AddAsset(gallery.AssetList[i]));
 
                 if (gallery.AssetList[i] == gallery.lastSelectedAsset)
                     openSlots[i].SelectSlot();
@@ -53,17 +53,15 @@ namespace Studiosaurus
             UpdateChooseButton();
         }
 
-        public AssetSlot<TAsset> CreateSlot(TAsset asset)
+        public AssetSlot<TAsset> AddAsset(TAsset asset)
         {
             uploadPromptText.gameObject.SetActive(false);
 
-            if (!gallery.slotDictionary.TryGetValue(asset, out AssetSlot<TAsset> slot))
-            {
+            if (!gallery.SlotExists(asset, out AssetSlot<TAsset> slot))
                 slot = Instantiate(assetSlotPrefab, assetSlotContainer);
-                gallery.slotDictionary.Add(asset, slot);
-            }
 
             slot.assetSelector = this;
+            gallery.AddSlot(asset, slot);
             slot.UpdateSlot(asset);
             return slot;
         }
@@ -92,7 +90,7 @@ namespace Studiosaurus
 
         public void DeleteSlot(AssetSlot<TAsset> assetSlot)
         {
-            TAsset adjacentAsset = gallery.GetAdjacentAsset(assetSlot.Asset);
+            AssetSlot<TAsset> adjacentSlot = gallery.GetAdjacentSlot(assetSlot.Asset);
             gallery.DeleteAsset(assetSlot.Asset);
 
             if (gallery.selectedSlot != null && gallery.selectedSlot == assetSlot)
@@ -103,8 +101,8 @@ namespace Studiosaurus
 
             Destroy(assetSlot.gameObject);
 
-            if (adjacentAsset != null && gallery.slotDictionary.TryGetValue(adjacentAsset, out AssetSlot<TAsset> newSlot))
-                newSlot.SelectSlot();
+            if (adjacentSlot != null)
+                adjacentSlot.SelectSlot();
 
             if (gallery.AssetCount == 0)
                 uploadPromptText.gameObject.SetActive(true);

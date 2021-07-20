@@ -34,7 +34,7 @@ namespace Studiosaurus
             deleteButton.gameObject.SetActive(true);
         }
 
-        public virtual void OnPointerDown(PointerEventData eventData)
+        public void OnPointerDown(PointerEventData eventData)
         {
             SelectSlot();
         }
