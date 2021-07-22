@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 5705860291952378222}
   - component: {fileID: 3059929315733239702}
   - component: {fileID: 7512376515900650043}
+  - component: {fileID: 1382771541953799047}
   m_Layer: 5
   m_Name: context-menu
   m_TagString: Untagged
@@ -93,8 +94,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   closePanelPrefab: {fileID: 6051263255723106881, guid: a0c3b5c9af31348d08983903126485d9, type: 3}
-  rectTransform: {fileID: 2715790355370595618}
-  canvasGroup: {fileID: 7512376515900650043}
 --- !u!114 &667348961513727621
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -108,6 +107,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rectTransform: {fileID: 2715790355370595618}
+  onDrag:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &5705860291952378222
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -160,3 +162,32 @@ CanvasGroup:
   m_Interactable: 0
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
+--- !u!114 &1382771541953799047
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2715790355370595617}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 2
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 2715790355370595618}
+          m_TargetAssemblyTypeName: UnityEngine.Transform, UnityEngine
+          m_MethodName: SetAsLastSibling
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2

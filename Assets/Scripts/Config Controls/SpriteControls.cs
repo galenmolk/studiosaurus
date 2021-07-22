@@ -11,7 +11,7 @@ namespace Studiosaurus
 
         public override void OpenGallery()
         {
-            assetGallery.Open(spriteComponent);
+            SpriteGallery.Instance.Open(spriteComponent);
         }
     }
 }

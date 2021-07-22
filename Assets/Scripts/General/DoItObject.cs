@@ -55,21 +55,19 @@ namespace Studiosaurus
 
         public void InspectObject(PointerEventData eventData)
         {
-            StartCoroutine(OpenContextMenu(eventData));
+            OpenContextMenu(eventData);
         }
 
-        private IEnumerator OpenContextMenu(PointerEventData eventData)
+        private void OpenContextMenu(PointerEventData eventData)
         {
             if (contextMenu != null)
             {
                 contextMenu.PositionMenu(eventData.position);
-                yield break;
+                return;
             }
 
             contextMenu = Instantiate(contextMenuPrefab, StudioCanvas.Instance.RectTransform);
-
-            yield return StartCoroutine(contextMenu.Open(this));
-            contextMenu.PositionMenu(eventData.position);
+            StartCoroutine(contextMenu.Open(this, eventData.position));
         }
 
         public void SubscribeControls(UnityAction<Vector2> action)

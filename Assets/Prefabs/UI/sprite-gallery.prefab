@@ -1202,7 +1202,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   assetImage: {fileID: 771786824950895592}
   assetImageRectTransform: {fileID: 771786824950895595}
-  assetGallery: {fileID: 0}
+  assetGallery: {fileID: 1273254346979698815}
   canvasGroup: {fileID: 771786825658708037}
   assetTitleText: {fileID: 771786824683306894}
 --- !u!1 &771786825776949392
@@ -1489,10 +1489,11 @@ GameObject:
   m_Component:
   - component: {fileID: 1497000070068154573}
   - component: {fileID: 1497000070068154571}
-  - component: {fileID: 210734548431224431}
   - component: {fileID: 1497000070068154572}
+  - component: {fileID: 1273254346979698815}
+  - component: {fileID: 1635523651}
   m_Layer: 5
-  m_Name: sprite-selector
+  m_Name: sprite-gallery
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1533,26 +1534,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1497000070068154574}
   m_CullTransparentMesh: 1
---- !u!114 &210734548431224431
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1497000070068154574}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b3f5a4aeec32f4df3af260a8bda9ac18, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  closePanelPrefab: {fileID: 6051263255723106881, guid: a0c3b5c9af31348d08983903126485d9, type: 3}
-  deletionWindow: {fileID: 3919462867294860119}
-  chooseButton: {fileID: 5153835507421908111}
-  chooseButtonText: {fileID: 6476067772284740647}
-  fileUploadService: {fileID: 5399197142615391759}
-  assetSlotContainer: {fileID: 4577294961564075446}
-  uploadPromptText: {fileID: 7416036622654235138}
-  gallery: {fileID: 0}
 --- !u!114 &1497000070068154572
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1583,6 +1564,38 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &1273254346979698815
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1497000070068154574}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6517c9de8e16149a0b8690a5ce5e54d4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  closePanelPrefab: {fileID: 6051263255723106881, guid: a0c3b5c9af31348d08983903126485d9, type: 3}
+  fileUploadService: {fileID: 5399197142615391759}
+  chooseButton: {fileID: 5153835507421908111}
+  chooseButtonText: {fileID: 6476067772284740647}
+  uploadPromptText: {fileID: 7416036622654235138}
+  assetSlotContainer: {fileID: 4577294961564075446}
+  deletionWindow: {fileID: 3919462867294860119}
+  assetSlotPrefab: {fileID: 1759882850867324749, guid: 5c09a6838ede7433e8d6a113b3af928a, type: 3}
+--- !u!225 &1635523651
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1497000070068154574}
+  m_Enabled: 1
+  m_Alpha: 0
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &2571491297978602824
 GameObject:
   m_ObjectHideFlags: 0
@@ -3310,14 +3323,14 @@ PrefabInstance:
     - target: {fileID: 840587830387040581, guid: eed5c6f8c5ca2409ab92652e6112ad2d, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1273254346979698815}
     - target: {fileID: 840587830387040581, guid: eed5c6f8c5ca2409ab92652e6112ad2d, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: ChooseSlot
       objectReference: {fileID: 0}
     - target: {fileID: 840587830387040581, guid: eed5c6f8c5ca2409ab92652e6112ad2d, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: Studiosaurus.AssetSelector`1[[Studiosaurus.SpriteAsset, Assembly-CSharp
+      value: Studiosaurus.AssetGallery`1[[Studiosaurus.SpriteAsset, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 2429230153555846650, guid: eed5c6f8c5ca2409ab92652e6112ad2d, type: 3}
       propertyPath: m_AnchorMax.y
@@ -3366,14 +3379,14 @@ PrefabInstance:
     - target: {fileID: 7062635651941586375, guid: eed5c6f8c5ca2409ab92652e6112ad2d, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1273254346979698815}
     - target: {fileID: 7062635651941586375, guid: eed5c6f8c5ca2409ab92652e6112ad2d, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: Close
       objectReference: {fileID: 0}
     - target: {fileID: 7062635651941586375, guid: eed5c6f8c5ca2409ab92652e6112ad2d, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: Studiosaurus.AssetSelector`1[[Studiosaurus.SpriteAsset, Assembly-CSharp
+      value: Studiosaurus.AssetGallery`1[[Studiosaurus.SpriteAsset, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 7465204772045180232, guid: eed5c6f8c5ca2409ab92652e6112ad2d, type: 3}
       propertyPath: m_AnchorMax.y

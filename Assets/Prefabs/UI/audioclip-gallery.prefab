@@ -1202,7 +1202,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   assetImage: {fileID: 771786824950895592}
   assetImageRectTransform: {fileID: 771786824950895595}
-  assetSelector: {fileID: 7593111227428713741}
+  assetGallery: {fileID: 8942515497023102218}
   canvasGroup: {fileID: 771786825658708037}
   assetTitleText: {fileID: 771786824683306894}
 --- !u!1 &771786825776949392
@@ -1490,9 +1490,10 @@ GameObject:
   - component: {fileID: 1497000070068154573}
   - component: {fileID: 1497000070068154571}
   - component: {fileID: 1497000070068154572}
-  - component: {fileID: 7593111227428713741}
+  - component: {fileID: 8942515497023102218}
+  - component: {fileID: 384184437}
   m_Layer: 5
-  m_Name: audioclip-selector
+  m_Name: audioclip-gallery
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1563,7 +1564,7 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &7593111227428713741
+--- !u!114 &8942515497023102218
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1572,18 +1573,29 @@ MonoBehaviour:
   m_GameObject: {fileID: 1497000070068154574}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3b48c0da7d6f6451995345439c9fd271, type: 3}
+  m_Script: {fileID: 11500000, guid: 001003fd862c4422a85b98c2e6fcf7f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   closePanelPrefab: {fileID: 6051263255723106881, guid: a0c3b5c9af31348d08983903126485d9, type: 3}
-  assetSlotPrefab: {fileID: 6634109483356345855, guid: a1151b519180f498dab4a6627c2755f7, type: 3}
-  uploadPromptText: {fileID: 7416036622654235138}
-  deletionWindow: {fileID: 4971693741114757779}
+  fileUploadService: {fileID: 2676601725020783315}
   chooseButton: {fileID: 5153835507421908111}
   chooseButtonText: {fileID: 6476067772284740647}
+  uploadPromptText: {fileID: 7416036622654235138}
   assetSlotContainer: {fileID: 4577294961564075446}
-  fileUploadService: {fileID: 2676601725020783315}
-  gallery: {fileID: 0}
+  deletionWindow: {fileID: 4971693741114757779}
+  assetSlotPrefab: {fileID: 6634109483356345855, guid: a1151b519180f498dab4a6627c2755f7, type: 3}
+--- !u!225 &384184437
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1497000070068154574}
+  m_Enabled: 1
+  m_Alpha: 0
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &2571491297978602824
 GameObject:
   m_ObjectHideFlags: 0
@@ -3402,7 +3414,15 @@ PrefabInstance:
     - target: {fileID: 840587830387040581, guid: eed5c6f8c5ca2409ab92652e6112ad2d, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 7593111227428713741}
+      objectReference: {fileID: 8942515497023102218}
+    - target: {fileID: 840587830387040581, guid: eed5c6f8c5ca2409ab92652e6112ad2d, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: ChooseSlot
+      objectReference: {fileID: 0}
+    - target: {fileID: 840587830387040581, guid: eed5c6f8c5ca2409ab92652e6112ad2d, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: Studiosaurus.AssetGallery`1[[Studiosaurus.AudioClipAsset, Assembly-CSharp
+      objectReference: {fileID: 0}
     - target: {fileID: 2429230153555846650, guid: eed5c6f8c5ca2409ab92652e6112ad2d, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -3446,7 +3466,15 @@ PrefabInstance:
     - target: {fileID: 7062635651941586375, guid: eed5c6f8c5ca2409ab92652e6112ad2d, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 7593111227428713741}
+      objectReference: {fileID: 8942515497023102218}
+    - target: {fileID: 7062635651941586375, guid: eed5c6f8c5ca2409ab92652e6112ad2d, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: Close
+      objectReference: {fileID: 0}
+    - target: {fileID: 7062635651941586375, guid: eed5c6f8c5ca2409ab92652e6112ad2d, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: Studiosaurus.AssetGallery`1[[Studiosaurus.AudioClipAsset, Assembly-CSharp
+      objectReference: {fileID: 0}
     - target: {fileID: 7465204772045180232, guid: eed5c6f8c5ca2409ab92652e6112ad2d, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0

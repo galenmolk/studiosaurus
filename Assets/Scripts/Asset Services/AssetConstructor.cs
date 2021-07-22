@@ -5,10 +5,6 @@ namespace Studiosaurus
 {
     public class AssetConstructor : MonoBehaviour
     {
-        [Header("Asset Galleries")]
-        [SerializeField] private AssetGallery<SpriteAsset> sprites = null;
-        [SerializeField] private AssetGallery<AudioClipAsset> audioClips = null;
-
         public void AddNewSprite(Sprite sprite, string filePath)
         {
             string fileName = Path.GetFileName(filePath);
@@ -18,7 +14,7 @@ namespace Studiosaurus
 
             SpriteAsset newSpriteAsset = new SpriteAsset(fileName, filePath, sprite);
 
-            sprites.GetSlot(newSpriteAsset);
+            SpriteGallery.Instance.AddAsset(newSpriteAsset);
         }
 
         public void AddNewAudioClip(AudioClip audioClip, string filePath)
@@ -30,7 +26,7 @@ namespace Studiosaurus
 
             AudioClipAsset newAudioClipAsset = new AudioClipAsset(fileName, filePath, audioClip);
 
-            audioClips.GetSlot(newAudioClipAsset);
+            AudioClipGallery.Instance.AddAsset(newAudioClipAsset);
         }
     }
 }

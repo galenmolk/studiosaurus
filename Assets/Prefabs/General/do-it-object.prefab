@@ -303,7 +303,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   line1: {fileID: 416837472}
   line2: {fileID: 1860431942}
-  lineWidth: 0.04
+  lineWidth: 0.02
   topLeft: {fileID: 3064254177017482616}
   topRight: {fileID: 4153541174202293164}
   bottomLeft: {fileID: 4426695773398375937}
@@ -406,13 +406,13 @@ MonoBehaviour:
   - {fileID: -7229007288134894057, guid: 8ba1839f4093245cda381bb9ad9e942b, type: 3}
   - {fileID: 7326225852362477095, guid: 05582476841a84b3fa0fa53f9f3329be, type: 3}
   - {fileID: -5409625635938536847, guid: 9c6754af5356d41029df4ec532221888, type: 3}
-  negativeSizeLines: {fileID: 2059535682}
+  negativeSizeWarning: {fileID: 2059535682}
+  configComponents: []
   onImageNativeSizeSet:
     m_PersistentCalls:
       m_Calls: []
   dragHandle: {fileID: 54311196027469346}
   resizeHandles: {fileID: 3428482902194171822}
-  configComponents: []
 --- !u!114 &4017352101430399488
 MonoBehaviour:
   m_ObjectHideFlags: 0

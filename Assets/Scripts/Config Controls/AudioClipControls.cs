@@ -11,7 +11,7 @@ namespace Studiosaurus
 
         public override void OpenGallery()
         {
-            assetGallery.Open(audioClipComponent);
+            AudioClipGallery.Instance.Open(audioClipComponent);
         }
 
         public void PlayStopAudio()

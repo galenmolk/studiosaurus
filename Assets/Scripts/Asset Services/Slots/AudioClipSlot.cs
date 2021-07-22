@@ -13,6 +13,12 @@ namespace Studiosaurus
             audioSource = GetComponent<AudioSource>();
         }
 
+        public override void SelectSlot()
+        {
+            base.SelectSlot();
+            AudioClipGallery.Instance.SlotSelected(this);
+        }
+
         public override void UpdateSlot(AudioClipAsset asset)
         {
             base.UpdateSlot(asset);
@@ -25,6 +31,20 @@ namespace Studiosaurus
                 audioSource.Stop();
             else
                 audioSource.Play();
+        }
+
+        public override void TrashButtonClicked()
+        {
+            if (Input.GetKey(KeyCode.LeftShift) && Input.GetKey(KeyCode.LeftAlt))
+                AudioClipGallery.Instance.DeleteSlot(this);
+            else
+                AudioClipGallery.Instance.ConfirmDeleteSlot(this);
+        }
+
+        public override void FileSlotDoubleClicked()
+        {
+            base.FileSlotDoubleClicked();
+            AudioClipGallery.Instance.ChooseSlot();
         }
     }
 }

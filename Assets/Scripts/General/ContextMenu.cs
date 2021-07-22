@@ -6,22 +6,20 @@ namespace Studiosaurus
     public class ContextMenu : Window
     {
         private RectTransform rectTransform;
-        private CanvasGroup canvasGroup;
 
         private readonly WaitForEndOfFrame endOfFrame = new WaitForEndOfFrame();
 
-        private void Awake()
+        protected override void Awake()
         {
+            base.Awake();
             rectTransform = transform as RectTransform;
-            canvasGroup = GetComponent<CanvasGroup>();
         }
 
-        public IEnumerator Open(DoItObject doItObject)
+        public IEnumerator Open(DoItObject doItObject, Vector2 clickPos)
         {
-            doItObject.transform.SetAsLastSibling();
-            transform.SetAsLastSibling();
-            ActivateClosePanel(transform);
+            Open(doItObject.transform);
             yield return OpenConfigControls(doItObject);
+            PositionMenu(clickPos);
         }
 
         private IEnumerator OpenConfigControls(DoItObject doItObject)
@@ -43,7 +41,14 @@ namespace Studiosaurus
             Vector2 clickOffset = new Vector2(xOffset, yOffset);
 
             rectTransform.anchoredPosition = StudioCanvas.Instance.RectTransform.InverseTransformPoint(clickPos + clickOffset);
+            rectTransform.SetAsLastSibling();
             Utils.SetCanvasGroupEnabled(canvasGroup, true);
+        }
+
+        public override void Close()
+        {
+            base.Close();
+            Destroy(gameObject);
         }
     }
 }

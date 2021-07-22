@@ -1,7 +1,11 @@
-using UnityEngine;
-
 namespace Studiosaurus
 {
-    [CreateAssetMenu(fileName = "Sprite Gallery", menuName = "New Sprite Gallery")]
-    public class SpriteGallery : AssetGallery<SpriteAsset> { }
+    public class SpriteGallery : AssetGallery<SpriteAsset>
+    {
+        public override void Open(AssetComponent<SpriteAsset> assetComponent)
+        {
+            base.Open(assetComponent);
+            fileUploadService.onUrlReceived.AddListener(AssetLoadService.Instance.LoadSprite);
+        }
+    }
 }

@@ -4,8 +4,8 @@ namespace Studiosaurus
 {
     public class ResizeHandles : MonoBehaviour
     {
-        public Vector2Event onPositionChanged = new Vector2Event();
-        public Vector2Event onSizeChanged = new Vector2Event();
+        [HideInInspector] public Vector2Event onPositionChanged = new Vector2Event();
+        [HideInInspector] public Vector2Event onSizeChanged = new Vector2Event();
 
         private CanvasGroup canvasGroup;
         private RectTransform rectTransform;
