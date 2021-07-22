@@ -2,15 +2,12 @@ using UnityEngine;
 
 namespace Studiosaurus
 {
-    public class AssetControls<T> : ConfigControls where T : GenericAsset<T>
+    public abstract class AssetControls<T> : ConfigControls where T : GenericAsset<T>
     {
-        [SerializeField] private AssetGallery<T> assetGallery = null;
+        [SerializeField] protected AssetGallery<T> assetGallery = null;
 
-        [HideInInspector] public AssetComponent<T> assetComponent;
+        public abstract void OpenGallery();
 
-        public void OpenGallery()
-        {
-            assetGallery.OpenGallery(assetComponent);
-        }
+        public abstract void Initialize(AssetComponent<T> assetComponent);
     }
 }

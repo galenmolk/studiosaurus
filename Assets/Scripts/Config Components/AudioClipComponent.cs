@@ -23,9 +23,12 @@ namespace Studiosaurus
             base.AssignAsset(newAsset);
         }
 
-        public void PlayAudio()
+        public void PlayStopAudio()
         {
-            audioSource.Play();
+            if (audioSource.isPlaying)
+                audioSource.Stop();
+            else
+                audioSource.Play();
         }
     }
 }

@@ -14,7 +14,7 @@ namespace Studiosaurus
         [SerializeField] private Image selectionBox = null;
         [SerializeField] private Button deleteButton = null;
 
-        [HideInInspector] public AssetSelector<TAsset> assetSelector;
+        [HideInInspector] public AssetGallery<TAsset> assetGallery;
 
         public abstract TAsset Asset { get; set; }
 
@@ -50,7 +50,7 @@ namespace Studiosaurus
             slotSelected = true;
             hoverBox.color = Color.clear;
             selectionBox.color = Color.white;
-            assetSelector.SlotSelected(this);
+            assetGallery.SlotSelected(this);
         }
 
         public void DeselectSlot()
@@ -62,15 +62,15 @@ namespace Studiosaurus
         public void TrashButtonClicked()
         {
             if (Input.GetKey(KeyCode.LeftShift) && Input.GetKey(KeyCode.LeftAlt))
-                assetSelector.DeleteSlot(this);
+                assetGallery.DeleteSlot(this);
             else
-                assetSelector.ConfirmDeleteSlot(this);
+                assetGallery.ConfirmDeleteSlot(this);
         }
 
         public void FileSlotDoubleClicked()
         {
             SelectSlot();
-            assetSelector.ChooseSlot();
+            assetGallery.ChooseSlot();
         }
     }
 }

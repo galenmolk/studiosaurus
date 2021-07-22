@@ -4,16 +4,17 @@ using UnityEngine.UI;
 
 namespace Studiosaurus
 {
-    public class AssetDeletionWindow<T> : MonoBehaviour where T : GenericAsset<T>
+    public class AssetDeletionWindow<TAsset> : MonoBehaviour where TAsset : GenericAsset<TAsset>
     {
         [SerializeField] protected Image assetImage = null;
         [SerializeField] protected RectTransform assetImageRectTransform;
-        [SerializeField] private AssetSelector<T> assetSelector = null;
+
+        [SerializeField] private AssetGallery<TAsset> assetGallery;
 
         [SerializeField] private CanvasGroup canvasGroup = null;
         [SerializeField] private TMP_Text assetTitleText = null;
 
-        private AssetSlot<T> slot;
+        private AssetSlot<TAsset> slot;
         protected Vector2 thumbnailSize;
 
         protected void Awake()
@@ -22,7 +23,7 @@ namespace Studiosaurus
             CloseWindow();
         }
 
-        public virtual void OpenWindow(AssetSlot<T> slot)
+        public virtual void OpenWindow(AssetSlot<TAsset> slot)
         {
             this.slot = slot;
             assetTitleText.text = slot.Asset.assetName;
@@ -39,7 +40,7 @@ namespace Studiosaurus
 
         public void DeleteAsset()
         {
-            assetSelector.DeleteSlot(slot);
+            assetGallery.DeleteSlot(slot);
             CloseWindow();
         }
     }

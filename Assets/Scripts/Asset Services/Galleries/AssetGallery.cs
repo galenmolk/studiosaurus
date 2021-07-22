@@ -1,30 +1,56 @@
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace Studiosaurus
 {
-    public class AssetGallery<T> : ScriptableObject where T : GenericAsset<T>
+    public class AssetGallery<TAsset> : Window where TAsset : GenericAsset<TAsset>
     {
-        [SerializeField] private AssetSelector<T> assetSelectorPrefab = null;
+        [SerializeField] private AssetUI<TAsset> assetUIPrefab = null;
+        [SerializeField] protected AssetSlot<TAsset> assetSlotPrefab = null;
 
-        [HideInInspector] public AssetSlot<T> selectedSlot;
-        public int AssetCount { get { return assetList.Count; } }
-        public List<T> AssetList { get { return assetList; } }
-        public T lastSelectedAsset;
+        private readonly Dictionary<string, TAsset> assetDictionary = new Dictionary<string, TAsset>();
+        private readonly Dictionary<TAsset, AssetSlot<TAsset>> slotDictionary = new Dictionary<TAsset, AssetSlot<TAsset>>();
+        private readonly List<TAsset> assetList = new List<TAsset>();
+        private readonly List<AssetSlot<TAsset>> slots = new List<AssetSlot<TAsset>>();
 
-        private readonly Dictionary<string, T> assetDictionary = new Dictionary<string, T>();
-        private readonly Dictionary<T, AssetSlot<T>> slotDictionary = new Dictionary<T, AssetSlot<T>>();
-        private readonly List<T> assetList = new List<T>();
+        private AssetSlot<TAsset> selectedSlot;
+        private TAsset lastSelectedAsset;
+        private AssetUI<TAsset> assetUI;
+        private AssetComponent<TAsset> assetComponent;
+        public AssetDeletionWindow<TAsset> deletionWindow = null;
+        [SerializeField] protected Button chooseButton = null;
+        [SerializeField] protected TMP_Text chooseButtonText = null;
+        [SerializeField] protected FileUploadService fileUploadService = null;
+        public Transform assetSlotContainer = null;
+        public TMP_Text uploadPromptText = null;
 
-        private AssetSelector<T> assetSelector;
+        [HideInInspector] public AssetGallery<TAsset> gallery;
 
-        public void OpenGallery(AssetComponent<T> assetComponent)
+        protected const string CHOOSE_BUTTON_TEXT = "Choose";
+        protected const string ASSET_NAME_TEXT_COLOR = "#c0c0c0ff";
+
+        public void UpdateChooseButton(string selectionName = null)
         {
-            assetSelector = Instantiate(assetSelectorPrefab, StudioCanvas.Instance.transform);
-            assetSelector.Open(this, assetComponent);
+            chooseButtonText.text = CHOOSE_BUTTON_TEXT;
+            chooseButton.interactable = selectionName != null;
+
+            if (selectionName != null)
+                chooseButtonText.text = $"{chooseButtonText.text}: <b><color={ASSET_NAME_TEXT_COLOR}>{selectionName}</color></b>";
         }
 
-        public void Close()
+        public void Open(AssetComponent<TAsset> assetComponent)
+        {
+            this.assetComponent = assetComponent;
+            assetUI = Instantiate(assetUIPrefab, StudioCanvas.Instance.transform);
+            CreateSlots();
+            transform.SetAsLastSibling();
+            ActivateClosePanel(transform);
+            UpdateChooseButton(selectedSlot?.Asset.assetName);
+        }
+
+        public override void Close()
         {
             slotDictionary.Clear();
 
@@ -32,7 +58,21 @@ namespace Studiosaurus
                 lastSelectedAsset = selectedSlot.Asset;
         }
 
-        public void AddAsset(T asset)
+        protected void CreateSlots()
+        {
+            for (int i = 0, count = assetList.Count; i < count; i++)
+            {
+                slots.Add(GetSlot(assetList[i]));
+
+                if (assetList[i] == lastSelectedAsset)
+                    slots[i].SelectSlot();
+
+                if (i == count - 1 && selectedSlot == null)
+                    slots[i].SelectSlot();
+            }
+        }
+
+        public void AddAsset(TAsset asset)
         {
             if (assetDictionary.ContainsKey(asset.path))
             {
@@ -42,24 +82,28 @@ namespace Studiosaurus
 
             assetList.Add(asset);
             assetDictionary.Add(asset.path, asset);
-            assetSelector.AddAsset(asset).SelectSlot();
+            GetSlot(asset).SelectSlot();
         }
 
-        public void AddSlot(T asset, AssetSlot<T> slot)
+        public AssetSlot<TAsset> GetSlot(TAsset asset)
         {
+            uploadPromptText.gameObject.SetActive(false);
+
+            if (!slotDictionary.TryGetValue(asset, out AssetSlot<TAsset> slot))
+                slot = Instantiate(assetSlotPrefab, assetSlotContainer);
+
+            slot.assetGallery = this;
             slotDictionary.Add(asset, slot);
+            slot.UpdateSlot(asset);
+            return slot;
         }
 
-        public bool SlotExists(T asset, out AssetSlot<T> slot)
-        {
-            return slotDictionary.TryGetValue(asset, out slot);
-        }
 
-        private void UpdateAssetWithNewVersion(T newAsset)
+        private void UpdateAssetWithNewVersion(TAsset newAsset)
         {
-            T oldAsset = assetDictionary[newAsset.path];
+            TAsset oldAsset = assetDictionary[newAsset.path];
             Debug.Log(oldAsset);
-            AssetSlot<T> slot = slotDictionary[oldAsset];
+            AssetSlot<TAsset> slot = slotDictionary[oldAsset];
             slot.UpdateSlot(newAsset);
             int index = assetList.IndexOf(oldAsset);
             assetList.Remove(oldAsset);
@@ -71,16 +115,32 @@ namespace Studiosaurus
             Debug.Log("Replacing sprite " + newAsset.path);
         }
 
-        public void DeleteAsset(T asset)
+        public void DeleteSlot(AssetSlot<TAsset> slot)
         {
+            AssetSlot<TAsset> adjacentSlot = GetAdjacentSlot(slot.Asset);
+
             Debug.Log("Delete Asset");
-            assetDictionary.Remove(asset.path);
-            assetList.Remove(asset);
-            slotDictionary.Remove(asset);
-            asset.ReplaceAssetWith();
+            assetDictionary.Remove(slot.Asset.path);
+            assetList.Remove(slot.Asset);
+            slotDictionary.Remove(slot.Asset);
+            slot.Asset.ReplaceAssetWith();
+
+            if (selectedSlot != null && selectedSlot == slot)
+            {
+                selectedSlot = null;
+                UpdateChooseButton();
+            }
+
+            Destroy(slot.gameObject);
+
+            if (adjacentSlot != null)
+                adjacentSlot.SelectSlot();
+
+            if (assetList.Count == 0)
+                uploadPromptText.gameObject.SetActive(true);
         }
 
-        public AssetSlot<T> GetAdjacentSlot(T asset)
+        public AssetSlot<TAsset> GetAdjacentSlot(TAsset asset)
         {
             int slotCount = assetList.Count;
 
@@ -96,6 +156,28 @@ namespace Studiosaurus
                 return slotDictionary[assetList[index - 1]];
 
             return null;
+        }
+
+        public void ChooseSlot()
+        {
+            if (assetComponent != null)
+                assetComponent.AssignAsset(selectedSlot != null ? selectedSlot.Asset : null);
+
+            Close();
+        }
+
+        public void SlotSelected(AssetSlot<TAsset> assetSlot)
+        {
+            if (selectedSlot != null && selectedSlot != assetSlot)
+                selectedSlot.DeselectSlot();
+
+            selectedSlot = assetSlot;
+            UpdateChooseButton(assetSlot.Asset.assetName);
+        }
+
+        public void ConfirmDeleteSlot(AssetSlot<TAsset> fileSlot)
+        {
+            deletionWindow.OpenWindow(fileSlot);
         }
     }
 }

@@ -18,7 +18,7 @@ namespace Studiosaurus
 
             SpriteAsset newSpriteAsset = new SpriteAsset(fileName, filePath, sprite);
 
-            sprites.AddAsset(newSpriteAsset);
+            sprites.GetSlot(newSpriteAsset);
         }
 
         public void AddNewAudioClip(AudioClip audioClip, string filePath)
@@ -30,7 +30,7 @@ namespace Studiosaurus
 
             AudioClipAsset newAudioClipAsset = new AudioClipAsset(fileName, filePath, audioClip);
 
-            audioClips.AddAsset(newAudioClipAsset);
+            audioClips.GetSlot(newAudioClipAsset);
         }
     }
 }
