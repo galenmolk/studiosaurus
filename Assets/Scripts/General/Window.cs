@@ -16,7 +16,7 @@ namespace Studiosaurus
             Utils.SetCanvasGroupEnabled(canvasGroup, false);
         }
 
-        protected void Open(Transform windowScope)
+        protected void OpenWindow(Transform windowScope)
         {
             ActivateClosePanel(windowScope);
         }
@@ -34,7 +34,8 @@ namespace Studiosaurus
 
         public virtual void Close()
         {
-            Destroy(closePanel.gameObject);
+            Destroy(closePanel?.gameObject);
+            Utils.SetCanvasGroupEnabled(canvasGroup, false);
         }
     }
 }

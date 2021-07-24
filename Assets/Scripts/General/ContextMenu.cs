@@ -17,7 +17,7 @@ namespace Studiosaurus
 
         public IEnumerator Open(DoItObject doItObject, Vector2 clickPos)
         {
-            Open(doItObject.transform);
+            OpenWindow(doItObject.transform);
             yield return OpenConfigControls(doItObject);
             PositionMenu(clickPos);
         }

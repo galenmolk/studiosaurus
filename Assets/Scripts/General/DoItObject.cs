@@ -18,6 +18,7 @@ namespace Studiosaurus
         public DragHandle dragHandle;
         public ResizeHandles resizeHandles;
         public float SizeRatio { get; set; }
+        private Vector2 originalSize = Vector2.zero;
 
         public RectTransform RectTransform
         {
@@ -36,7 +37,8 @@ namespace Studiosaurus
         private void Awake()
         {
             CacheReferences();
-            SizeRatio = RectTransform.sizeDelta.x / RectTransform.sizeDelta.y;
+            originalSize = RectTransform.sizeDelta;
+            SizeRatio = originalSize.x / originalSize.y;
             CreateConfigComponents();
         }
 
@@ -55,6 +57,12 @@ namespace Studiosaurus
 
         public void InspectObject(PointerEventData eventData)
         {
+            if (negativeSizeWarning.gameObject.activeInHierarchy)
+            {
+                resizeHandles.onSizeChanged.Invoke(originalSize);
+                return;
+            }
+
             OpenContextMenu(eventData);
         }
 

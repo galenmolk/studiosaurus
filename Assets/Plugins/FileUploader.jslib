@@ -4,6 +4,7 @@ var FileUploader = {
     if (!document.getElementById(objectName.concat('FileUploaderInput'))) {
       var fileInput = document.createElement('input');
       fileInput.setAttribute('type', 'file');
+      fileInput.setAttribute('multiple', 'multiple');
       fileInput.setAttribute('id', objectName.concat('FileUploaderInput'));
       fileInput.style.width = "100%";
       fileInput.style.visibility = 'hidden';
