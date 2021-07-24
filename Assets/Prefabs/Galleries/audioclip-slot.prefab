@@ -202,7 +202,6 @@ MonoBehaviour:
   hoverBox: {fileID: 1803912326866805626}
   selectionBox: {fileID: 1865017920101989450}
   deleteButton: {fileID: 5120934891467190442}
-  assetSelector: {fileID: 0}
 --- !u!82 &7102570529739772708
 AudioSource:
   m_ObjectHideFlags: 0
@@ -388,8 +387,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 683a738974fc64f5d82aba3a58fc084f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  firstStateSprite: {fileID: 21300000, guid: 0ce555506016a48c99a1c8a395239543, type: 3}
-  secondStateSprite: {fileID: 21300000, guid: 60a6cbb5f71444b589dfae0c30d02104, type: 3}
+  playSprite: {fileID: 21300000, guid: 0ce555506016a48c99a1c8a395239543, type: 3}
+  stopSprite: {fileID: 21300000, guid: 60a6cbb5f71444b589dfae0c30d02104, type: 3}
+  audioSource: {fileID: 7102570529739772708}
 --- !u!114 &9069313277919630982
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -434,9 +434,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 6634109483356345855}
-        m_TargetAssemblyTypeName: Studiosaurus.AudioClipSlot, Assembly-CSharp
-        m_MethodName: PlayStopButtonClicked
+      - m_Target: {fileID: 5153064344615486470}
+        m_TargetAssemblyTypeName: AudioToggleButton, Assembly-CSharp
+        m_MethodName: Switch
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

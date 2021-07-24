@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 7056517251566246079}
   - component: {fileID: 3271454145352773789}
   m_Layer: 5
-  m_Name: audioclip-icon
+  m_Name: audioclip-play-stop
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -89,8 +89,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 683a738974fc64f5d82aba3a58fc084f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  firstStateSprite: {fileID: 21300000, guid: 0ce555506016a48c99a1c8a395239543, type: 3}
-  secondStateSprite: {fileID: 21300000, guid: 60a6cbb5f71444b589dfae0c30d02104, type: 3}
+  playSprite: {fileID: 21300000, guid: 0ce555506016a48c99a1c8a395239543, type: 3}
+  stopSprite: {fileID: 21300000, guid: 60a6cbb5f71444b589dfae0c30d02104, type: 3}
+  audioSource: {fileID: 0}
 --- !u!114 &3271454145352773789
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -135,9 +136,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 6534603915186883217}
-        m_TargetAssemblyTypeName: Studiosaurus.AudioClipControls, Assembly-CSharp
-        m_MethodName: PlayStopAudio
+      - m_Target: {fileID: 7056517251566246079}
+        m_TargetAssemblyTypeName: AudioToggleButton, Assembly-CSharp
+        m_MethodName: Switch
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -429,4 +430,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ad94440caf62b498292989b6011f4716, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  assetGallery: {fileID: 11400000, guid: fc6f264900d104255941138585e968be, type: 2}
+  assetGallery: {fileID: 0}
+  audioToggle: {fileID: 7056517251566246079}

@@ -5,7 +5,7 @@ namespace Studiosaurus
     [RequireComponent(typeof(AudioSource))]
     public class AudioClipComponent : AssetComponent<AudioClipAsset>
     {
-        private AudioSource audioSource;
+        [HideInInspector] public AudioSource audioSource;
 
         public override AudioClipAsset Asset { get; protected set; }
 
@@ -21,14 +21,6 @@ namespace Studiosaurus
                 audioSource.clip = newAsset?.audioClip;
 
             base.AssignAsset(newAsset);
-        }
-
-        public void PlayStopAudio()
-        {
-            if (audioSource.isPlaying)
-                audioSource.Stop();
-            else
-                audioSource.Play();
         }
     }
 }

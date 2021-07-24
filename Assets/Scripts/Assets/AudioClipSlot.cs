@@ -25,14 +25,6 @@ namespace Studiosaurus
             audioSource.clip = asset.audioClip;
         }
 
-        public void PlayStopButtonClicked()
-        {
-            if (audioSource.isPlaying)
-                audioSource.Stop();
-            else
-                audioSource.Play();
-        }
-
         public override void TrashButtonClicked()
         {
             if (Input.GetKey(KeyCode.LeftShift) && Input.GetKey(KeyCode.LeftAlt))
