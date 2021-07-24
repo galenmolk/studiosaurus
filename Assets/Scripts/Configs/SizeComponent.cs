@@ -4,10 +4,24 @@ namespace Studiosaurus
 {
     public class SizeComponent : Vector2Component
     {
+        private float sizeRatio;
+        private Vector2 originalSize;
+
         protected override void Awake()
         {
             base.Awake();
             doItObject.resizeHandles.onSizeChanged.AddListener(SetSize);
+            SetNewSizeParameters();
+            doItObject.fixNegativeSize.AddListener(() => SetSize(originalSize));
+        }
+
+        private void SetNewSizeParameters()
+        {
+            originalSize = rectTransform.sizeDelta;
+            sizeRatio = originalSize.x / originalSize.y;
+
+            if (vector2Controls != null)
+                vector2Controls.UpdateDisplayedVector(originalSize);
         }
 
         public override void OpenControls(ContextMenu contextMenu)
@@ -15,7 +29,7 @@ namespace Studiosaurus
             vector2Controls = Instantiate(vector2ControlsPrefab, contextMenu.transform);
             vector2Controls.onVector2Inputted.AddListener(SetSize);
             vector2Controls.UpdateDisplayedVector(doItObject.RectTransform.sizeDelta);
-            doItObject.onImageNativeSizeSet.AddListener(vector2Controls.UpdateDisplayedVector);
+            doItObject.onNewSpriteAssigned.AddListener(SetNewSizeParameters);
         }
 
         private void SetSize(Vector2 newSize)
@@ -38,10 +52,10 @@ namespace Studiosaurus
         private Vector2 ScaleProportionally(Vector2 newSize)
         {
             if (newSize.x < newSize.y)
-                newSize.y = newSize.x / doItObject.SizeRatio;
+                newSize.y = newSize.x / sizeRatio;
 
             if (newSize.y < newSize.x)
-                newSize.x = newSize.y * doItObject.SizeRatio;
+                newSize.x = newSize.y * sizeRatio;
 
             return newSize;
         }

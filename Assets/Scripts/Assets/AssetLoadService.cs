@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
 
@@ -29,25 +30,32 @@ namespace Studiosaurus
 
         private Texture2D texture;
         private readonly WaitForEndOfFrame endOfFrame = new WaitForEndOfFrame();
+
+        private readonly List<string> urls = new List<string>();
+
         private void Awake()
         {
             sharedInstance = this;
         }
 
-        public void LoadSprite(string url)
+        public void LoadSprite(string urlText)
         {
-            if (!UrlContainsText(url))
+            if (!UrlContainsText(urlText))
                 return;
 
-            StartCoroutine(SendTextureRequest(url));
+            ReadyUrls(urlText);
+
+            StartCoroutine(SendAllTextureRequests());
         }
-
-        public void LoadAudioClip(string url)
+        
+        public void LoadAudioClip(string urlText)
         {
-            if (!UrlContainsText(url))
+            if (!UrlContainsText(urlText))
                 return;
 
-            StartCoroutine(SendAudioClipRequest(url));
+            ReadyUrls(urlText);
+
+            StartCoroutine(SendAllAudioClipRequests());
         }
 
         private bool UrlContainsText(string url)
@@ -58,6 +66,45 @@ namespace Studiosaurus
                 broadcastLoadMessage?.Invoke(INVALID_URL_MESSAGE);
 
             return urlIsValid;
+        }
+
+        private void ReadyUrls(string urlText)
+        {
+            urls.Clear();
+            string[] newUrls = urlText.Split(',');
+            for (int i = 0, length = newUrls.Length; i < length; i++)
+            {
+                Debug.Log("Url #" + i + ": " + newUrls[i]);
+                urls.Add(newUrls[i]);
+            }
+        }
+
+        private IEnumerator SendAllTextureRequests()
+        {
+            while (urls.Count > 0)
+            {
+                Debug.Log("URL count: " + urls.Count);
+                string currentRequestUrl = urls[urls.Count - 1];
+                Debug.Log("Current URL: " + currentRequestUrl);
+
+                yield return StartCoroutine(SendTextureRequest(currentRequestUrl));
+
+                urls.Remove(currentRequestUrl);
+            }
+        }
+
+        private IEnumerator SendAllAudioClipRequests()
+        {
+            while (urls.Count > 0)
+            {
+                Debug.Log("URL count: " + urls.Count);
+                string currentRequestUrl = urls[urls.Count - 1];
+                Debug.Log("Current URL: " + currentRequestUrl);
+
+                yield return StartCoroutine(SendAudioClipRequest(currentRequestUrl));
+
+                urls.Remove(currentRequestUrl);
+            }
         }
 
         private IEnumerator SendTextureRequest(string url)
