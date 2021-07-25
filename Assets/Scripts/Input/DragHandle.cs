@@ -7,7 +7,7 @@ namespace Studiosaurus
     {
         [SerializeField] private RectTransform rectTransform;
 
-        public Vector2Event onDrag = new Vector2Event();
+        public Vector2Event onDragPositionBroadcasted = new Vector2Event();
 
         private bool mouseExitedScreen = false;
         private Vector2 dragOffset;
@@ -44,7 +44,7 @@ namespace Studiosaurus
             delta.y = bounds.offScreenY ? 0f : delta.y;
 
             rectTransform.anchoredPosition += delta / StudioCanvas.Instance.ScaleFactor;
-            onDrag?.Invoke(rectTransform.anchoredPosition);
+            onDragPositionBroadcasted?.Invoke(rectTransform.anchoredPosition);
         }
     }
 }

@@ -14,7 +14,7 @@ namespace Studiosaurus
         {
             vector2Controls = Instantiate(vector2ControlsPrefab, parent);
             vector2Controls.onVector2Inputted.AddListener(SetPosition);
-            doItObject.dragHandle.onDrag.AddListener(vector2Controls.UpdateDisplayedVector);
+            doItObject.dragHandle.onDragPositionBroadcasted.AddListener(vector2Controls.UpdateDisplayedVector);
             vector2Controls.UpdateDisplayedVector(doItObject.RectTransform.anchoredPosition);
             return vector2Controls;
         }

@@ -5,13 +5,14 @@ namespace Studiosaurus
 {
     public class ContextMenu : Window
     {
-        [SerializeField] private ConfigControlsSection configControlsSectionPrefab = null;
+        [SerializeField] private ControlsSectionDropdown dropdownPrefab = null;
 
+        private ControlsSectionDropdown dropdown;
         private RectTransform rectTransform;
-
         private readonly WaitForEndOfFrame endOfFrame = new WaitForEndOfFrame();
-
         private ConfigSection activeConfigSection;
+
+        private Vector2? lastClickPos = null;
 
         protected override void Awake()
         {
@@ -21,28 +22,51 @@ namespace Studiosaurus
 
         public IEnumerator Open(DoItObject doItObject, Vector2 clickPos)
         {
+            lastClickPos = clickPos;
             OpenWindow(doItObject.transform);
-            yield return OpenConfigControls(doItObject);
-            PositionMenu(clickPos);
+            OpenConfigControls(doItObject);
+            //PositionMenu(clickPos);
+            yield return null;
         }
 
-        private IEnumerator OpenConfigControls(DoItObject doItObject)
+        private void OpenConfigControls(DoItObject doItObject)
         {
-            foreach (ConfigSection section in doItObject.configSections)
+            dropdown = Instantiate(dropdownPrefab, transform);
+            for (int sectionIndex = 0;  sectionIndex < doItObject.configSections.Length; sectionIndex++)
             {
-                Instantiate(configControlsSectionPrefab, transform).SetSection(section);
-                foreach (ConfigComponent configComponent in section.configComponents)
+                ConfigSection section = doItObject.configSections[sectionIndex];
+                dropdown.AddSection(section);
+                for (int componentIndex = 0; componentIndex < section.configComponents.Count; componentIndex++)
                 {
-                    section.configControls.Add(configComponent.OpenControls(transform));
+                    ConfigComponent component = section.configComponents[componentIndex];
+                    section.configControls.Add(component.OpenControls(transform));
                 }
             }
-            yield return endOfFrame;
+            dropdown.Create();
+        }
+
+        public IEnumerator ChangeConfigSectionTo(ConfigSection section)
+        {
+            bool settingToActive = !section.isSectionActive;
+            yield return StartCoroutine(section.SetSectionAsActive(settingToActive));
+
+            if (activeConfigSection != null)
+                yield return StartCoroutine(activeConfigSection.SetSectionAsActive(false));
+
+            activeConfigSection = settingToActive ? section : null;
+
+            if (lastClickPos.HasValue)
+            {
+                PositionMenu(lastClickPos.Value);
+                lastClickPos = null;
+            }
         }
 
         public void PositionMenu(Vector2 clickPos)
         {
-            Vector2 menuSize = rectTransform.sizeDelta * StudioCanvas.Instance.ScaleFactor;
-
+            Vector2 menuSize = rectTransform.rect.size * StudioCanvas.Instance.ScaleFactor;
+            Debug.Log(menuSize);
+            Debug.Log(rectTransform.rect.size);
             // Always make sure the ContextMenu appears on screen
             float xOffset = Screen.width - clickPos.x > menuSize.x ? menuSize.x * 0.5f : menuSize.x * -0.5f;
             float yOffset = clickPos.y > menuSize.y ? menuSize.y * -0.5f : menuSize.y * 0.5f;
@@ -57,16 +81,6 @@ namespace Studiosaurus
         {
             base.Close();
             Destroy(gameObject);
-        }
-
-        public void ToggleConfigSection(ConfigSection section)
-        {
-            bool settingToActive = !section.isSectionActive;
-            section.SetSectionAsActive(settingToActive);
-
-            activeConfigSection?.SetSectionAsActive(false);
-
-            activeConfigSection = settingToActive ? section : null;
         }
     }
 }

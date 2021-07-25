@@ -81,7 +81,7 @@ namespace Studiosaurus
 
         public void SubscribeControls(UnityAction<Vector2> action)
         {
-            dragHandle.onDrag.AddListener(action);
+            dragHandle.onDragPositionBroadcasted.AddListener(action);
         }
     }
 }
