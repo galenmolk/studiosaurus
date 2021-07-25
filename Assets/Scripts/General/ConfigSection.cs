@@ -1,5 +1,4 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -31,7 +30,7 @@ namespace Studiosaurus {
 
         private int configCount = -1;
 
-        public IEnumerator SetSectionAsActive(bool isActive)
+        public void SetSectionAsActive(bool isActive)
         {
             isSectionActive = isActive;
             for (int i = 0; i < ConfigCount; i++)
@@ -39,7 +38,6 @@ namespace Studiosaurus {
                 configControls[i].gameObject.SetActive(isActive);
                 configComponents[i].displayChangesOnObject = isActive;
             }
-            yield return new WaitForEndOfFrame();
         }
 
         public void ResetSection()
@@ -51,6 +49,7 @@ namespace Studiosaurus {
                 wasLastSectionActive = true;
 
             isSectionActive = false;
+
             for (int i = 0; i < ConfigCount; i++)
             {
                 configComponents[i].displayChangesOnObject = false;

@@ -2,7 +2,6 @@ using UnityEngine;
 using TMPro;
 using System.Collections.Generic;
 using static TMPro.TMP_Dropdown;
-using System.Collections;
 
 namespace Studiosaurus
 {
@@ -25,23 +24,15 @@ namespace Studiosaurus
             sections.Add(section);
         }
 
-        public void Create()
+        public void Create(int startingIndex)
         {
-            int startingSectionIndex = 0;
             for (int i = 0; i < sections.Count; i++)
             {
                 OptionData optionData = new OptionData(sections[i].sectionName);
                 optionDatas.Add(optionData);
-                if (sections[i].wasLastSectionActive)
-                {
-                    startingSectionIndex = i;
-                    sections[i].wasLastSectionActive = false;
-                }
             }
             dropdown.AddOptions(optionDatas);
-            Debug.Log("Opening: " + startingSectionIndex);
-            dropdown.SetValueWithoutNotify(startingSectionIndex);
-            OnDropdownSelected(startingSectionIndex);
+            dropdown.SetValueWithoutNotify(startingIndex);
         }
 
         public void OnDropdownSelected(int selection)

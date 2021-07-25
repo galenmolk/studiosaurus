@@ -12,7 +12,7 @@ namespace Studiosaurus
         [HideInInspector] public NegativeSizeWarning negativeSizeWarning;
         [HideInInspector] public List<ConfigComponent> configComponents = new List<ConfigComponent>();
 
-        public ConfigSection[] configSections = null;
+        public ConfigSection[] configSections;
 
         [HideInInspector] public UnityEvent onNewSpriteAssigned = new UnityEvent();
         [HideInInspector] public UnityEvent fixNegativeSize = new UnityEvent();
@@ -76,7 +76,7 @@ namespace Studiosaurus
             }
 
             contextMenu = Instantiate(contextMenuPrefab, StudioCanvas.Instance.RectTransform);
-            StartCoroutine(contextMenu.Open(this, eventData.position));
+            contextMenu.Open(this, eventData.position);
         }
 
         public void SubscribeControls(UnityAction<Vector2> action)
