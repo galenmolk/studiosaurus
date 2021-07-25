@@ -1,3 +1,6 @@
+please specify audio type
+we broke the audio upload with the multiple files thing
+
 Unable to determine the audio type from the URL (blob:null/7fe0223b-6c99-a44c-b371-31d393d3c21d). Please specify the type.
 
 Cross-Origin Request Blocked: The Same Origin Policy disallows reading the remote resource at https://www.galenmolk.com/uploads/1/1/7/9/117904336/hckrtesting_1.png. (Reason: CORS header ‘Access-Control-Allow-Origin’ missing).

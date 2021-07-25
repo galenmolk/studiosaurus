@@ -59,7 +59,11 @@ public class AudioToggleButton : MonoBehaviour
 
     private void OnDisable()
     {
-        if (resetSpriteCoroutine != null)
-            StopCoroutine(resetSpriteCoroutine);
+        Stop();
+    }
+
+    private void OnDestroy()
+    {
+        Stop();
     }
 }

@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using UnityEngine;
 using UnityEngine.Networking;
 
@@ -118,16 +119,21 @@ namespace Studiosaurus
 
         private IEnumerator SendAudioClipRequest(string url)
         {
-            using UnityWebRequest www = UnityWebRequestMultimedia.GetAudioClip(url, AudioType.UNKNOWN);
+            WWW data = new WWW(url);
+            yield return data;
+            AudioClip clip = data.GetAudioClipCompressed(false, AudioType.UNKNOWN) as AudioClip;
+            //AudioType audioType = TryGetAudioType(url);
+            //Debug.Log(audioType.ToString());
+            //using UnityWebRequest www = UnityWebRequestMultimedia.GetAudioClip(url, audioType);
 
-            www.SendWebRequest();
+            //www.SendWebRequest();
 
-            yield return WaitForDownload(www);
+            //yield return WaitForDownload(www);
 
-            if (RequestFailed(www))
-                yield break;
+            //if (RequestFailed(www))
+            //    yield break;
 
-            AudioClip clip = DownloadHandlerAudioClip.GetContent(www);
+            //AudioClip clip = DownloadHandlerAudioClip.GetContent(www);
             assetConstructor.AddNewAudioClip(clip, url);
             broadcastLoadMessage?.Invoke($"{LOAD_SUCCESS_MESSAGE}{url}");
         }
@@ -149,6 +155,29 @@ namespace Studiosaurus
                 broadcastLoadMessage?.Invoke($"{WWW_ERROR_MESSAGE}{request.error}");
 
             return didRequestFail;
+        }
+
+        private AudioType TryGetAudioType(string url)
+        {
+            string extension = new FileInfo(url).Extension;
+            extension = extension.ToLower();
+
+            AudioType audioType = AudioType.UNKNOWN;
+
+            switch (extension)
+            {
+                case ".mp3":
+                    audioType = AudioType.MPEG;
+                    break;
+                case ".ogg":
+                    audioType = AudioType.OGGVORBIS;
+                    break;
+                case ".wav":
+                    audioType = AudioType.WAV;
+                    break;
+            }
+
+            return audioType;
         }
     }
 }

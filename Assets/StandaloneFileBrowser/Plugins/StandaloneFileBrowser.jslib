@@ -10,12 +10,18 @@ var StandaloneFileBrowserWebGLPlugin = {
     // multiselect: Allows multiple file selection
     UploadFile: function(gameObjectNamePtr, methodNamePtr, filterPtr, multiselect) {
         gameObjectName = Pointer_stringify(gameObjectNamePtr);
+        console.log("gameObjectName: ");
+        console.log(gameObjectName);
         methodName = Pointer_stringify(methodNamePtr);
+        console.log("methodName: ");
+        console.log(methodName);
         filter = Pointer_stringify(filterPtr);
-
+        console.log("filter: ");
+        console.log(filter);
         // Delete if element exist
         var fileInput = document.getElementById(gameObjectName)
         if (fileInput) {
+             console.log("deleting fileInput element");
             document.body.removeChild(fileInput);
         }
 
@@ -25,13 +31,17 @@ var StandaloneFileBrowserWebGLPlugin = {
         fileInput.setAttribute('style','display:none;');
         fileInput.setAttribute('style','visibility:hidden;');
         if (multiselect) {
+            console.log("multiselect is on");
+
             fileInput.setAttribute('multiple', '');
         }
         if (filter) {
+            console.log("adding accept filter");
             fileInput.setAttribute('accept', filter);
         }
         fileInput.onclick = function (event) {
             // File dialog opened
+            console.log("file dialog opened");
             this.value = null;
         };
         fileInput.onchange = function (event) {
@@ -39,6 +49,9 @@ var StandaloneFileBrowserWebGLPlugin = {
             var urls = [];
             for (var i = 0; i < event.target.files.length; i++) {
                 urls.push(URL.createObjectURL(event.target.files[i]));
+                console.log("file");
+                console.log(i);
+                console.log(urls[i]);
             }
             // File selected
             SendMessage(gameObjectName, methodName, urls.join());

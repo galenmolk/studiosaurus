@@ -54,15 +54,29 @@ namespace Studiosaurus {
                 return;
 
             linesEnabled = isEnabled;
-            gameObject.SetActive(isEnabled);
+
+            if (linesEnabled)
+                ActivateLines();
         }
 
         private void Update()
         {
             if (!linesEnabled)
+            {
+                if (gameObject.activeInHierarchy)
+                    gameObject.SetActive(false);
+
                 return;
+            }
 
             ShowLines();
+        }
+
+        // Place lines "manually" once before activating game object so it doesn't appear in the wrong place for a frame
+        private void ActivateLines()
+        {
+            ShowLines();
+            gameObject.SetActive(true);
         }
 
         public void ShowLines()

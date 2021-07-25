@@ -12,11 +12,9 @@ namespace Studiosaurus
 {
     public class FileUploadService : MonoBehaviour, IPointerDownHandler, IPointerEnterHandler, IPointerExitHandler
     {
-
 #if !UNITY_EDITOR
-    //[DllImport("__Internal")] private static extern void FileUploaderCaptureClick(string objectName);
-    [DllImport("__Internal")]
-    private static extern void UploadFile(string gameObjectName, string methodName, string filter, bool multiple);
+    [DllImport("__Internal")] private static extern void FileUploaderCaptureClick(string objectName);
+    [DllImport("__Internal")] private static extern void UploadFile(string gameObjectName, string methodName, string filter, bool multiple);
     [DllImport("__Internal")] private static extern void OpenUrlWindow(string objectName);
 #endif
 
@@ -32,17 +30,14 @@ namespace Studiosaurus
         private string lastDirectory = string.Empty;
         private string extensionsParameter = string.Empty;
 
-        private const string EDITOR_FILE_EXTENSION_DELIMITER = ",";
-        private const string JAVASCRIPT_FILE_EXTENSION_DELIMITER = ", ";
-
-        private string currentPlatformDelimiter = EDITOR_FILE_EXTENSION_DELIMITER;
+        private const string FILE_EXTENSION_DELIMITER = ",";
 
         private void Awake()
         {
             animator.speed = 0f;
             CreateExtensionsParamater();
 #if !UNITY_EDITOR
-            currentPlatformDelimiter = JAVASCRIPT_FILE_EXTENSION_DELIMITER;
+Debug.Log("Not UnityEditor");
             urlUploadPromptText.gameObject.SetActive(false);
             urlInputField.gameObject.SetActive(false);
             urlUploadButton.interactable = true;
@@ -59,12 +54,11 @@ namespace Studiosaurus
                 string extension = fileExtensions[i];
 #if !UNITY_EDITOR
                 extension = $".{extension}";
-
 #endif
                 extensionsParameter += extension;
 
                 if (i < length - 1)
-                    extensionsParameter += currentPlatformDelimiter;
+                    extensionsParameter += FILE_EXTENSION_DELIMITER;
             }
         }
 
@@ -83,7 +77,7 @@ namespace Studiosaurus
                 FileSelected("file:///" + path);
             }
 #else
-Debug.Log("Upload: " + gameObject.name);
+                Debug.Log("Upload: " + gameObject.name);
 UploadFile(gameObject.name, "FileSelected", extensionsParameter, true);
         //FileUploaderCaptureClick(gameObject.name);
 #endif
@@ -102,6 +96,7 @@ Debug.Log("URL WINDOW: " + gameObject.name);
 
         public void FileSelected(string url)
         {
+            Debug.Log("File Selected: " + url);
             onUrlReceived?.Invoke(url);
         }
 
