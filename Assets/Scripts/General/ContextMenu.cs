@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 namespace Studiosaurus
 {
@@ -13,29 +14,19 @@ namespace Studiosaurus
 
         private Vector2 lastClickPos;
 
+
         protected override void Awake()
         {
             base.Awake();
             rectTransform = transform as RectTransform;
         }
 
-        private void Update()
-        {
-            if (Input.GetKeyDown(KeyCode.Tab))
-                Tab.SelectNext();
-        }
-
         public void Open(DoItObject doItObject, Vector2 clickPos)
         {
+            SelectionEvents.selectionEventsEnabled = true;
             lastClickPos = clickPos;
             OpenWindow(doItObject.transform);
             StartCoroutine(OpenConfigControls(doItObject));
-        }
-
-        private struct SectionIndex
-        {
-            public ConfigSection section;
-            public int index;
         }
 
         private IEnumerator OpenConfigControls(DoItObject doItObject)
@@ -84,7 +75,6 @@ namespace Studiosaurus
         public void PositionMenu(Vector2 clickPos)
         {
             Vector2 size = rectTransform.sizeDelta * StudioCanvas.Instance.ScaleFactor;
-            Debug.Log(size);
 
             // ContextMenu Pivot Y is set to 1 so LayoutGroup only expands downward.
             // Because Pivot is not in the center (0.5, 0.5), click position must be modified here for offset calculation.
@@ -108,6 +98,7 @@ namespace Studiosaurus
         public override void Close()
         {
             base.Close();
+            SelectionEvents.selectionEventsEnabled = false;
             Destroy(gameObject);
         }
     }

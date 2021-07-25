@@ -8,8 +8,6 @@ namespace Studiosaurus
     {
         public static AssetGallery<TAsset> Instance;
 
-        [SerializeField] protected FileUploadService fileUploadService = null;
-
         [Header("Components")]
         [SerializeField] private Button chooseButton = null;
         [SerializeField] private TMP_Text chooseButtonText = null;

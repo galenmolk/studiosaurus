@@ -14,9 +14,20 @@ namespace Studiosaurus
         {
             vector2Controls = Instantiate(vector2ControlsPrefab, parent);
             vector2Controls.onVector2Inputted.AddListener(SetPosition);
-            doItObject.dragHandle.onDragPositionBroadcasted.AddListener(vector2Controls.UpdateDisplayedVector);
-            vector2Controls.UpdateDisplayedVector(doItObject.RectTransform.anchoredPosition);
+            doItObject.dragHandle.onDrag.AddListener((vector) => Apply(vector));
+
+            if (currentVector.HasValue)
+                SetPosition(currentVector.Value);
+            else
+                Apply(doItObject.RectTransform.anchoredPosition, true); 
+
             return vector2Controls;
+        }
+
+        public override void Activate()
+        {
+            base.Activate();
+            SetPosition(currentVector.Value);
         }
 
         private void SetPosition(Vector2 position)
@@ -24,13 +35,9 @@ namespace Studiosaurus
             if (Input.GetKey(KeyCode.LeftShift))
                 return;
 
-            Apply(position);
-        }
-
-        private void Apply(Vector2 position)
-        {
             rectTransform.anchoredPosition = position;
-            vector2Controls?.UpdateDisplayedVector(position);
+
+            Apply(position);
         }
     }
 }

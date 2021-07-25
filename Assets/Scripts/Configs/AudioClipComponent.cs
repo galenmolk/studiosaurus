@@ -22,5 +22,10 @@ namespace Studiosaurus
 
             base.AssignAsset(newAsset);
         }
+
+        public override string GetComponentAsJSON()
+        {
+            throw new System.NotImplementedException();
+        }
     }
 }

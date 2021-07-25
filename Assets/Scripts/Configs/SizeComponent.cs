@@ -28,7 +28,12 @@ namespace Studiosaurus
         {
             vector2Controls = Instantiate(vector2ControlsPrefab, parent);
             vector2Controls.onVector2Inputted.AddListener(SetSize);
-            vector2Controls.UpdateDisplayedVector(doItObject.RectTransform.sizeDelta);
+
+            if (currentVector.HasValue)
+                SetSize(currentVector.Value);
+            else
+                Apply(doItObject.RectTransform.sizeDelta, true);
+
             doItObject.onNewSpriteAssigned.AddListener(SetNewSizeParameters);
             return vector2Controls;
         }
@@ -41,7 +46,13 @@ namespace Studiosaurus
             rectTransform.sizeDelta = newSize;
 
             SetNegativeWarningLinesEnabled(rectTransform.sizeDelta.x < 0 || rectTransform.sizeDelta.y < 0);
-            vector2Controls?.UpdateDisplayedVector(newSize);
+            Apply(newSize);
+        }
+
+        public override void Activate()
+        {
+            base.Activate();
+            SetSize(currentVector.Value);
         }
 
         private void SetNegativeWarningLinesEnabled(bool isEnabled)

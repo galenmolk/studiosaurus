@@ -6,9 +6,13 @@ namespace Studiosaurus
     {
         protected DoItObject doItObject;
 
-        public string JSONKey;
+        public ConfigKey configKey;
 
-        [HideInInspector] public bool displayChangesOnObject = false;
+        [HideInInspector] public bool componentIsActive = false;
+        public virtual void Activate()
+        {
+            componentIsActive = true;
+        }
 
         protected virtual void Awake()
         {
@@ -16,5 +20,7 @@ namespace Studiosaurus
         }
 
         public abstract ConfigControls OpenControls(Transform parent);
+
+        public abstract string GetComponentAsJSON();
     }
 }

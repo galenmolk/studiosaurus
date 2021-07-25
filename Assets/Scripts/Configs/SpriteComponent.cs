@@ -7,7 +7,7 @@ namespace Studiosaurus
     {
         public override SpriteAsset Asset { get; protected set; }
 
-        [SerializeField] private Image image = null;
+        private Image image = null;
 
         protected override void Awake()
         {
@@ -25,6 +25,11 @@ namespace Studiosaurus
             }
 
             base.AssignAsset(newAsset);
+        }
+
+        public override string GetComponentAsJSON()
+        {
+            throw new System.NotImplementedException();
         }
     }
 }

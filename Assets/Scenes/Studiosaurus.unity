@@ -141,6 +141,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 631760214}
     m_Modifications:
+    - target: {fileID: 1635523651, guid: 66e263e1c322c4d8fa0bc75673b36b72, type: 3}
+      propertyPath: m_Alpha
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 771786824841583567, guid: 66e263e1c322c4d8fa0bc75673b36b72, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -211,7 +215,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1497000070068154573, guid: 66e263e1c322c4d8fa0bc75673b36b72, type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1497000070068154573, guid: 66e263e1c322c4d8fa0bc75673b36b72, type: 3}
       propertyPath: m_AnchorMax.x
@@ -545,6 +549,7 @@ GameObject:
   - component: {fileID: 631760212}
   - component: {fileID: 631760211}
   - component: {fileID: 631760215}
+  - component: {fileID: 631760216}
   m_Layer: 5
   m_Name: StudioCanvas
   m_TagString: Untagged
@@ -648,6 +653,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   screenEdgeBuffer: 5
+--- !u!114 &631760216
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 631760210}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5033396d7c73c4188b140d3f3dc2d713, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &868431631
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -655,6 +672,42 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 631760214}
     m_Modifications:
+    - target: {fileID: 1111848378749534494, guid: 631fc5492e7554724b7917d2467701d7, type: 3}
+      propertyPath: configSections.Array.data[0].configComponentPrefabs.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1111848378749534494, guid: 631fc5492e7554724b7917d2467701d7, type: 3}
+      propertyPath: configSections.Array.data[1].configComponentPrefabs.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 1111848378749534494, guid: 631fc5492e7554724b7917d2467701d7, type: 3}
+      propertyPath: configSections.Array.data[0].configComponentPrefabs.Array.data[0]
+      value: 
+      objectReference: {fileID: 7745963411971204452, guid: b462fca852fa34e13bdafcf270409914, type: 3}
+    - target: {fileID: 1111848378749534494, guid: 631fc5492e7554724b7917d2467701d7, type: 3}
+      propertyPath: configSections.Array.data[0].configComponentPrefabs.Array.data[1]
+      value: 
+      objectReference: {fileID: 7326225852362477095, guid: 0461b64344eec4ee08a831a7d279a394, type: 3}
+    - target: {fileID: 1111848378749534494, guid: 631fc5492e7554724b7917d2467701d7, type: 3}
+      propertyPath: configSections.Array.data[0].configComponentPrefabs.Array.data[2]
+      value: 
+      objectReference: {fileID: -5409625635938536847, guid: bcc0dd31c77714c1591f3466c30fbe43, type: 3}
+    - target: {fileID: 1111848378749534494, guid: 631fc5492e7554724b7917d2467701d7, type: 3}
+      propertyPath: configSections.Array.data[1].configComponentPrefabs.Array.data[0]
+      value: 
+      objectReference: {fileID: -7229007288134894057, guid: ad6a31310801246b0a778f04cfd5a261, type: 3}
+    - target: {fileID: 1111848378749534494, guid: 631fc5492e7554724b7917d2467701d7, type: 3}
+      propertyPath: configSections.Array.data[1].configComponentPrefabs.Array.data[1]
+      value: 
+      objectReference: {fileID: 7745963411971204452, guid: 56f8742d516194590a3c146bec9b3744, type: 3}
+    - target: {fileID: 1111848378749534494, guid: 631fc5492e7554724b7917d2467701d7, type: 3}
+      propertyPath: configSections.Array.data[1].configComponentPrefabs.Array.data[2]
+      value: 
+      objectReference: {fileID: 7326225852362477095, guid: eb3243e164f174fb882886a41621b1b6, type: 3}
+    - target: {fileID: 1111848378749534494, guid: 631fc5492e7554724b7917d2467701d7, type: 3}
+      propertyPath: configSections.Array.data[1].configComponentPrefabs.Array.data[3]
+      value: 
+      objectReference: {fileID: -5409625635938536847, guid: 578b9aa1b43bc48d89eca8b588f63424, type: 3}
     - target: {fileID: 8536367071925750698, guid: 631fc5492e7554724b7917d2467701d7, type: 3}
       propertyPath: m_Name
       value: do-it-object
@@ -673,7 +726,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8536367071925750699, guid: 631fc5492e7554724b7917d2467701d7, type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8536367071925750699, guid: 631fc5492e7554724b7917d2467701d7, type: 3}
       propertyPath: m_AnchorMax.x
@@ -897,7 +950,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1497000070068154573, guid: 849f6c8fd23ae428dbbdaad60619d223, type: 3}
       propertyPath: m_RootOrder
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 1497000070068154573, guid: 849f6c8fd23ae428dbbdaad60619d223, type: 3}
       propertyPath: m_AnchorMax.x

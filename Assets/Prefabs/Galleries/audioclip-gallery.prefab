@@ -1327,14 +1327,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   closePanelPrefab: {fileID: 6051263255723106881, guid: a0c3b5c9af31348d08983903126485d9, type: 3}
-  fileUploadService: {fileID: 2676601725020783315}
   chooseButton: {fileID: 5153835507421908111}
   chooseButtonText: {fileID: 6476067772284740647}
   uploadPromptText: {fileID: 7416036622654235138}
   assetSlotContainer: {fileID: 4577294961564075446}
   confirmationWindow: {fileID: 8275319338995748902}
   assetSlotPrefab: {fileID: 6634109483356345855, guid: a1151b519180f498dab4a6627c2755f7, type: 3}
-  localDriveUploadArea: {fileID: 627709797610121913}
+  fileUploadService: {fileID: 2676601725020783315}
+  localDriveUploadArea: {fileID: 0}
 --- !u!225 &384184437
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -2766,11 +2766,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!1 &627709797610121913 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6504626788894356143, guid: 577a1ee2eb549406f98c2179af996b1c, type: 3}
-  m_PrefabInstance: {fileID: 5977122392233531414}
-  m_PrefabAsset: {fileID: 0}
 --- !u!114 &2676601725020783315 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 8635144533259262661, guid: 577a1ee2eb549406f98c2179af996b1c, type: 3}

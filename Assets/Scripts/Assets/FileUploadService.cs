@@ -27,6 +27,8 @@ namespace Studiosaurus
 
         public StringEvent onUrlReceived = new StringEvent();
 
+        public bool localDriveUploadEnabled = true;
+
         private string lastDirectory = string.Empty;
         private string extensionsParameter = string.Empty;
 
@@ -37,7 +39,6 @@ namespace Studiosaurus
             animator.speed = 0f;
             CreateExtensionsParamater();
 #if !UNITY_EDITOR
-Debug.Log("Not UnityEditor");
             urlUploadPromptText.gameObject.SetActive(false);
             urlInputField.gameObject.SetActive(false);
             urlUploadButton.interactable = true;
@@ -77,9 +78,10 @@ Debug.Log("Not UnityEditor");
                 FileSelected("file:///" + path);
             }
 #else
-                Debug.Log("Upload: " + gameObject.name);
+if (localDriveUploadEnabled)
+{
 UploadFile(gameObject.name, "FileSelected", extensionsParameter, true);
-        //FileUploaderCaptureClick(gameObject.name);
+}
 #endif
         }
 
@@ -88,8 +90,6 @@ UploadFile(gameObject.name, "FileSelected", extensionsParameter, true);
 #if UNITY_EDITOR
             FileSelected(urlInputField.text);
 #else
-Debug.Log("URL WINDOW: " + gameObject.name);
-
         OpenUrlWindow(gameObject.name);
 #endif
         }

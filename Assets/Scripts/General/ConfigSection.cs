@@ -3,6 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 
 namespace Studiosaurus {
+    public struct SectionIndex
+    {
+        public ConfigSection section;
+        public int index;
+    }
 
     [Serializable]
     public class ConfigSection
@@ -36,7 +41,11 @@ namespace Studiosaurus {
             for (int i = 0; i < ConfigCount; i++)
             {
                 configControls[i].gameObject.SetActive(isActive);
-                configComponents[i].displayChangesOnObject = isActive;
+
+                if (isActive)
+                    configComponents[i].Activate();
+                else
+                    configComponents[i].componentIsActive = false;
             }
 
             if (isActive)
@@ -55,7 +64,7 @@ namespace Studiosaurus {
 
             for (int i = 0; i < ConfigCount; i++)
             {
-                configComponents[i].displayChangesOnObject = false;
+                configComponents[i].componentIsActive = false;
             }
         }
     }
