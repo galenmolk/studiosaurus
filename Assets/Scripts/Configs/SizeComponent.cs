@@ -24,12 +24,13 @@ namespace Studiosaurus
                 vector2Controls.UpdateDisplayedVector(originalSize);
         }
 
-        public override void OpenControls(ContextMenu contextMenu)
+        public override ConfigControls OpenControls(Transform parent)
         {
-            vector2Controls = Instantiate(vector2ControlsPrefab, contextMenu.transform);
+            vector2Controls = Instantiate(vector2ControlsPrefab, parent);
             vector2Controls.onVector2Inputted.AddListener(SetSize);
             vector2Controls.UpdateDisplayedVector(doItObject.RectTransform.sizeDelta);
             doItObject.onNewSpriteAssigned.AddListener(SetNewSizeParameters);
+            return vector2Controls;
         }
 
         private void SetSize(Vector2 newSize)

@@ -23,9 +23,11 @@ namespace Studiosaurus
             onAssetAssigned.Invoke(Asset);
         }
 
-        public override void OpenControls(ContextMenu contextMenu)
+        public override ConfigControls OpenControls(Transform parent)
         {
-            Instantiate(assetControlsPrefab, contextMenu.transform).Initialize(this);
+            AssetControls<TAsset> assetControls = Instantiate(assetControlsPrefab, parent);
+            assetControls.Initialize(this);
+            return assetControls;
         }
     }
 }

@@ -1,7 +1,3 @@
-do all the classes that are currently generic HAVE To be generic? AssetControls?? etc
-auto switch play stop button back t o stop on end of audioclip
-allow for context menu to stay open as your resize
-
 Unable to determine the audio type from the URL (blob:null/7fe0223b-6c99-a44c-b371-31d393d3c21d). Please specify the type.
 
 Cross-Origin Request Blocked: The Same Origin Policy disallows reading the remote resource at https://www.galenmolk.com/uploads/1/1/7/9/117904336/hckrtesting_1.png. (Reason: CORS header ‘Access-Control-Allow-Origin’ missing).
@@ -11,18 +7,10 @@ webgl build still garbles the file/path names
 
 add more objects!
  have a list of objects on a toolbar, with buttons, do it settings
-auto-select the slot that contains the asset that is already assigned to the component you're selecting for
 upload new assets to cloudinary on building json
 TweenTo component
 make studiocanvas clamp to actual canvas and not mouse pos on screen
 ignore escape key if file selector winow is open
-message that indicates that sprite already exists. replace sprite?
-refactor out the asset deletion window to be a generic confirmation window that uses a delegate system. so you can use it for deleting assets AND for confirming replacement of assets, among other things in the future
-refactor assetselector and assetgallery. assetgallery creates the slots. simplify that. we shouldn't two dictionaries and a list for this shit.
-fix that bug!!
-don't switch play stop button if there is no audio
-the icons look different now
-no difference between mousing over choose audio button and the play stop button
 
 use new input system for escape key close panel and shift modifier
 
@@ -31,7 +19,6 @@ add tab feature to position controls later on. all fields add themselves to a st
 get rid of red question mark... throw error if it is going to be generated
 show a bit of handles if you mouse over but only show fully handles if you "select" an object
 (punt this until later when we've expanded the scope of this to selecting multiple objects)
-upload multiple files at once
 
 POLISH
 after changing size, clamp position to screen (will possibly be fixed by having toolbar)
@@ -43,3 +30,7 @@ add DOTween classes so hovering over things can do some stuff
 
 CONTINUAL
 improve naming of prefabs and hierarchy objects, class names, etc
+
+WON'T FIX FOR NOW
+message that indicates that sprite already exists. replace sprite?
+refactor out the asset deletion window to be a generic confirmation window that uses a delegate system. so you can use it for deleting assets AND for confirming replacement of assets, among other things in the future

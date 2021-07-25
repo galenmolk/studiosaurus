@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
@@ -9,13 +8,14 @@ namespace Studiosaurus
     public class DoItObject : MonoBehaviour
     {
         [SerializeField] private ContextMenu contextMenuPrefab = null;
-        [SerializeField] private ConfigComponent[] configComponentPrefabs;
 
         [HideInInspector] public NegativeSizeWarning negativeSizeWarning;
         [HideInInspector] public List<ConfigComponent> configComponents = new List<ConfigComponent>();
 
-        public UnityEvent onNewSpriteAssigned = new UnityEvent();
-        public UnityEvent fixNegativeSize = new UnityEvent();
+        public ConfigSection[] configSections = null;
+
+        [HideInInspector] public UnityEvent onNewSpriteAssigned = new UnityEvent();
+        [HideInInspector] public UnityEvent fixNegativeSize = new UnityEvent();
 
         public DragHandle dragHandle;
         public ResizeHandles resizeHandles;
@@ -47,9 +47,12 @@ namespace Studiosaurus
 
         private void CreateConfigComponents()
         {
-            for (int i = 0, length = configComponentPrefabs.Length; i < length; i++)
+            foreach (ConfigSection configSection in configSections)
             {
-                configComponents.Add(Instantiate(configComponentPrefabs[i], transform));
+                foreach (ConfigComponent configComponent in configSection.configComponentPrefabs)
+                {
+                    configSection.configComponents.Add(Instantiate(configComponent, transform));
+                }
             }
         }
 

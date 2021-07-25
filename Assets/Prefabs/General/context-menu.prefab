@@ -94,6 +94,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   closePanelPrefab: {fileID: 6051263255723106881, guid: a0c3b5c9af31348d08983903126485d9, type: 3}
+  configControlsSectionPrefab: {fileID: 1737502391, guid: db1ef466d51b74cb69530419cf3d567d, type: 3}
 --- !u!114 &667348961513727621
 MonoBehaviour:
   m_ObjectHideFlags: 0

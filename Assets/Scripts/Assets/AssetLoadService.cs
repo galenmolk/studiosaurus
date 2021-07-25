@@ -74,7 +74,6 @@ namespace Studiosaurus
             string[] newUrls = urlText.Split(',');
             for (int i = 0, length = newUrls.Length; i < length; i++)
             {
-                Debug.Log("Url #" + i + ": " + newUrls[i]);
                 urls.Add(newUrls[i]);
             }
         }
@@ -83,12 +82,8 @@ namespace Studiosaurus
         {
             while (urls.Count > 0)
             {
-                Debug.Log("URL count: " + urls.Count);
                 string currentRequestUrl = urls[urls.Count - 1];
-                Debug.Log("Current URL: " + currentRequestUrl);
-
                 yield return StartCoroutine(SendTextureRequest(currentRequestUrl));
-
                 urls.Remove(currentRequestUrl);
             }
         }
@@ -97,12 +92,8 @@ namespace Studiosaurus
         {
             while (urls.Count > 0)
             {
-                Debug.Log("URL count: " + urls.Count);
                 string currentRequestUrl = urls[urls.Count - 1];
-                Debug.Log("Current URL: " + currentRequestUrl);
-
                 yield return StartCoroutine(SendAudioClipRequest(currentRequestUrl));
-
                 urls.Remove(currentRequestUrl);
             }
         }

@@ -102,8 +102,6 @@ Debug.Log("URL WINDOW: " + gameObject.name);
 
         public void FileSelected(string url)
         {
-            Debug.Log("File Recieved " + url);
-
             onUrlReceived?.Invoke(url);
         }
 

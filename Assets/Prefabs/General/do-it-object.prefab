@@ -317,9 +317,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8536367071925750699}
+  - component: {fileID: 1111848378749534494}
   - component: {fileID: 8536367071925750697}
   - component: {fileID: 8536367071925750696}
-  - component: {fileID: 9100029388670610504}
   - component: {fileID: 4017352101430399488}
   - component: {fileID: 228441834}
   m_Layer: 5
@@ -350,6 +350,45 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1111848378749534494
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8536367071925750698}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e6440ea11be65451f85315ba7d1a3d3d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  contextMenuPrefab: {fileID: 2120588949231371061, guid: a2751917ab21f47e8ac5ed89342a4fe8, type: 3}
+  negativeSizeWarning: {fileID: 0}
+  configComponents: []
+  configSections:
+  - sectionName: Starting State
+    configComponentPrefabs:
+    - {fileID: 7745963411971204452, guid: 7d8657ad233134609872dea2719cd61d, type: 3}
+    - {fileID: 7326225852362477095, guid: 05582476841a84b3fa0fa53f9f3329be, type: 3}
+    - {fileID: -5409625635938536847, guid: 9c6754af5356d41029df4ec532221888, type: 3}
+    isSectionActive: 0
+    configComponents: []
+    configControls: []
+  - sectionName: Found State
+    configComponentPrefabs:
+    - {fileID: 7745963411971204452, guid: 7d8657ad233134609872dea2719cd61d, type: 3}
+    - {fileID: -7229007288134894057, guid: 8ba1839f4093245cda381bb9ad9e942b, type: 3}
+    isSectionActive: 0
+    configComponents: []
+    configControls: []
+  onNewSpriteAssigned:
+    m_PersistentCalls:
+      m_Calls: []
+  fixNegativeSize:
+    m_PersistentCalls:
+      m_Calls: []
+  dragHandle: {fileID: 54311196027469346}
+  resizeHandles: {fileID: 3428482902194171822}
 --- !u!222 &8536367071925750697
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -388,31 +427,6 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &9100029388670610504
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8536367071925750698}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e6440ea11be65451f85315ba7d1a3d3d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  contextMenuPrefab: {fileID: 2120588949231371061, guid: a2751917ab21f47e8ac5ed89342a4fe8, type: 3}
-  configComponentPrefabs:
-  - {fileID: 7745963411971204452, guid: 7d8657ad233134609872dea2719cd61d, type: 3}
-  - {fileID: -7229007288134894057, guid: 8ba1839f4093245cda381bb9ad9e942b, type: 3}
-  - {fileID: 7326225852362477095, guid: 05582476841a84b3fa0fa53f9f3329be, type: 3}
-  - {fileID: -5409625635938536847, guid: 9c6754af5356d41029df4ec532221888, type: 3}
-  negativeSizeWarning: {fileID: 2059535682}
-  configComponents: []
-  onImageNativeSizeSet:
-    m_PersistentCalls:
-      m_Calls: []
-  dragHandle: {fileID: 54311196027469346}
-  resizeHandles: {fileID: 3428482902194171822}
 --- !u!114 &4017352101430399488
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -428,7 +442,7 @@ MonoBehaviour:
   onDoubleClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 9100029388670610504}
+      - m_Target: {fileID: 1111848378749534494}
         m_TargetAssemblyTypeName: Studiosaurus.DoItObject, Assembly-CSharp
         m_MethodName: InspectObject
         m_Mode: 0
@@ -455,7 +469,7 @@ MonoBehaviour:
   onRightClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 9100029388670610504}
+      - m_Target: {fileID: 1111848378749534494}
         m_TargetAssemblyTypeName: Studiosaurus.DoItObject, Assembly-CSharp
         m_MethodName: InspectObject
         m_Mode: 0

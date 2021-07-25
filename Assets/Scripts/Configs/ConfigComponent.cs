@@ -8,11 +8,13 @@ namespace Studiosaurus
 
         public string JSONKey;
 
+        [HideInInspector] public bool displayChangesOnObject = false;
+
         protected virtual void Awake()
         {
             doItObject = transform.parent.GetComponent<DoItObject>();
         }
 
-        public abstract void OpenControls(ContextMenu contextMenu);
+        public abstract ConfigControls OpenControls(Transform parent);
     }
 }

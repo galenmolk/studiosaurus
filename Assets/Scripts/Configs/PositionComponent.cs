@@ -10,12 +10,13 @@ namespace Studiosaurus
             doItObject.resizeHandles.onPositionChanged.AddListener(SetPosition);
         }
 
-        public override void OpenControls(ContextMenu contextMenu)
+        public override ConfigControls OpenControls(Transform parent)
         {
-            vector2Controls = Instantiate(vector2ControlsPrefab, contextMenu.transform);
+            vector2Controls = Instantiate(vector2ControlsPrefab, parent);
             vector2Controls.onVector2Inputted.AddListener(SetPosition);
             doItObject.dragHandle.onDrag.AddListener(vector2Controls.UpdateDisplayedVector);
             vector2Controls.UpdateDisplayedVector(doItObject.RectTransform.anchoredPosition);
+            return vector2Controls;
         }
 
         private void SetPosition(Vector2 position)

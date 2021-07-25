@@ -5,9 +5,13 @@ namespace Studiosaurus
 {
     public class ContextMenu : Window
     {
+        [SerializeField] private ConfigControlsSection configControlsSectionPrefab = null;
+
         private RectTransform rectTransform;
 
         private readonly WaitForEndOfFrame endOfFrame = new WaitForEndOfFrame();
+
+        private ConfigSection activeConfigSection;
 
         protected override void Awake()
         {
@@ -24,9 +28,13 @@ namespace Studiosaurus
 
         private IEnumerator OpenConfigControls(DoItObject doItObject)
         {
-            for (int i = 0, count = doItObject.configComponents.Count; i < count; i++)
+            foreach (ConfigSection section in doItObject.configSections)
             {
-                doItObject.configComponents[i].OpenControls(this);
+                Instantiate(configControlsSectionPrefab, transform).SetSection(section);
+                foreach (ConfigComponent configComponent in section.configComponents)
+                {
+                    section.configControls.Add(configComponent.OpenControls(transform));
+                }
             }
             yield return endOfFrame;
         }
@@ -49,6 +57,16 @@ namespace Studiosaurus
         {
             base.Close();
             Destroy(gameObject);
+        }
+
+        public void ToggleConfigSection(ConfigSection section)
+        {
+            bool settingToActive = !section.isSectionActive;
+            section.SetSectionAsActive(settingToActive);
+
+            activeConfigSection?.SetSectionAsActive(false);
+
+            activeConfigSection = settingToActive ? section : null;
         }
     }
 }

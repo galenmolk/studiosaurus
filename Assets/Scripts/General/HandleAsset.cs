@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace Studiosaurus
 {
-    [CreateAssetMenu(menuName = "CursorAsset", fileName = "New Cursor")]
+    [CreateAssetMenu(menuName = "Custom Assets/HandleAsset", fileName = "New HandleAsset")]
     public class HandleAsset : ScriptableObject
     {
         public Texture2D texture;
