@@ -1231,6 +1231,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a038921c9262a42909b86e3cb493f494, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  selectables:
+  - {fileID: 2325710015732721772}
+  - {fileID: 8973481260880374177}
   xInput: {fileID: 2325710015732721772}
   yInput: {fileID: 8973481260880374177}
   onVector2Inputted:

@@ -38,6 +38,9 @@ namespace Studiosaurus {
                 configControls[i].gameObject.SetActive(isActive);
                 configComponents[i].displayChangesOnObject = isActive;
             }
+
+            if (isActive)
+                Tab.SetCurrentSelectables(configControls);
         }
 
         public void ResetSection()

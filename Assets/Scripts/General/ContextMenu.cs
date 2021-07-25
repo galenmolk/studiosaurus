@@ -19,6 +19,12 @@ namespace Studiosaurus
             rectTransform = transform as RectTransform;
         }
 
+        private void Update()
+        {
+            if (Input.GetKeyDown(KeyCode.Tab))
+                Tab.SelectNext();
+        }
+
         public void Open(DoItObject doItObject, Vector2 clickPos)
         {
             lastClickPos = clickPos;
