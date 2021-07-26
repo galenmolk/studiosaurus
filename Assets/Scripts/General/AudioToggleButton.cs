@@ -8,15 +8,32 @@ public class AudioToggleButton : MonoBehaviour
     [SerializeField] private Sprite playSprite = null;
     [SerializeField] private Sprite stopSprite = null;
 
+    private Button button;
+
+    private Sprite defaultSprite;
+
     public AudioSource audioSource;
 
     private Image image;
     private Coroutine resetSpriteCoroutine;
 
+    private SpriteState playingState = new SpriteState();
+    private SpriteState stoppedState = new SpriteState();
+
     private void Awake()
     {
         image = GetComponent<Image>();
-        image.sprite = playSprite;
+        button = GetComponent<Button>();
+        defaultSprite = image.sprite;
+        SetSpriteStates();
+    }
+
+    private void SetSpriteStates()
+    {
+        playingState.highlightedSprite = stopSprite;
+        playingState.pressedSprite = stopSprite;
+        stoppedState.highlightedSprite = playSprite;
+        stoppedState.pressedSprite = playSprite;
     }
 
     public void Switch()
@@ -24,7 +41,12 @@ public class AudioToggleButton : MonoBehaviour
         if (!audioSource.isPlaying)
             Play();
         else
+        {
+            if (resetSpriteCoroutine != null)
+                StopCoroutine(resetSpriteCoroutine);
+
             Stop();
+        }
     }
 
     private void Play()
@@ -33,7 +55,7 @@ public class AudioToggleButton : MonoBehaviour
             return;
 
         image.sprite = stopSprite;
-
+        button.spriteState = playingState;
         audioSource.Play();
 
         if (resetSpriteCoroutine != null)
@@ -42,19 +64,19 @@ public class AudioToggleButton : MonoBehaviour
         resetSpriteCoroutine = StartCoroutine(ResetSpriteOnClipFinish(audioSource.clip.length));
     }
 
-    private void Stop()
+    public void Stop()
     {
-        if (resetSpriteCoroutine != null)
-            StopCoroutine(resetSpriteCoroutine);
+        button.spriteState = stoppedState;
+        image.sprite = defaultSprite;
 
-        image.sprite = playSprite;
-        audioSource.Stop();
+        if (audioSource.isPlaying)
+            audioSource.Stop();
     }
 
     private IEnumerator ResetSpriteOnClipFinish(float clipLength)
     {
         yield return new WaitForSeconds(clipLength);
-        image.sprite = playSprite;
+        Stop();
     }
 
     private void OnDisable()
