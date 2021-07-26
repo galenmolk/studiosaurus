@@ -1,3 +1,4 @@
+using System.IO;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -5,8 +6,6 @@ namespace Studiosaurus
 {
     public class SpriteComponent : AssetComponent<SpriteAsset>
     {
-        public override SpriteAsset Asset { get; protected set; }
-
         private Image image = null;
 
         protected override void Awake()
@@ -27,9 +26,22 @@ namespace Studiosaurus
             base.AssignAsset(newAsset);
         }
 
+        [UnityEngine.ContextMenu("Json")]
         public override string GetComponentAsJSON()
         {
-            throw new System.NotImplementedException();
+            if (Asset == null)
+            {
+                Debug.LogWarning("No Sprite Found Assigned to SpriteComponent");
+                return string.Empty;
+            }
+
+            string path = $"{Application.persistentDataPath}/{GetInstanceID()}.png";
+            File.WriteAllBytes(path, Asset.sprite.texture.EncodeToPNG());
+            string uploadName = CloudinaryUploader.UploadImage(path);
+            Debug.Log(uploadName);
+            string json = JsonSerializer.GetAsset(configKey.key, uploadName);
+            Debug.Log(json);
+            return json;
         }
     }
 }

@@ -119,6 +119,33 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  onEndDrag:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 3410518727315873939}
+        m_TargetAssemblyTypeName: Studiosaurus.ResizeHandles, Assembly-CSharp
+        m_MethodName: SetIsResizing
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 3410518727315873939}
+        m_TargetAssemblyTypeName: Studiosaurus.ResizeHandles, Assembly-CSharp
+        m_MethodName: SetHandlesVisibility
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   onDrag:
     m_PersistentCalls:
       m_Calls:
@@ -145,6 +172,18 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 3410518727315873939}
+        m_TargetAssemblyTypeName: Studiosaurus.ResizeHandles, Assembly-CSharp
+        m_MethodName: SetIsResizing
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
         m_CallState: 2
 --- !u!114 &7402719767636170830
 MonoBehaviour:
@@ -278,6 +317,33 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  onEndDrag:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 3410518727315873939}
+        m_TargetAssemblyTypeName: Studiosaurus.ResizeHandles, Assembly-CSharp
+        m_MethodName: SetIsResizing
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 3410518727315873939}
+        m_TargetAssemblyTypeName: Studiosaurus.ResizeHandles, Assembly-CSharp
+        m_MethodName: SetHandlesVisibility
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   onDrag:
     m_PersistentCalls:
       m_Calls:
@@ -304,6 +370,18 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 3410518727315873939}
+        m_TargetAssemblyTypeName: Studiosaurus.ResizeHandles, Assembly-CSharp
+        m_MethodName: SetIsResizing
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
         m_CallState: 2
 --- !u!114 &8379320366063651150
 MonoBehaviour:
@@ -437,6 +515,33 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  onEndDrag:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 3410518727315873939}
+        m_TargetAssemblyTypeName: Studiosaurus.ResizeHandles, Assembly-CSharp
+        m_MethodName: SetIsResizing
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 3410518727315873939}
+        m_TargetAssemblyTypeName: Studiosaurus.ResizeHandles, Assembly-CSharp
+        m_MethodName: SetHandlesVisibility
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   onDrag:
     m_PersistentCalls:
       m_Calls:
@@ -463,6 +568,18 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 3410518727315873939}
+        m_TargetAssemblyTypeName: Studiosaurus.ResizeHandles, Assembly-CSharp
+        m_MethodName: SetIsResizing
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
         m_CallState: 2
 --- !u!114 &5517704937728801173
 MonoBehaviour:
@@ -596,6 +713,33 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  onEndDrag:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 3410518727315873939}
+        m_TargetAssemblyTypeName: Studiosaurus.ResizeHandles, Assembly-CSharp
+        m_MethodName: SetIsResizing
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 3410518727315873939}
+        m_TargetAssemblyTypeName: Studiosaurus.ResizeHandles, Assembly-CSharp
+        m_MethodName: SetHandlesVisibility
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   onDrag:
     m_PersistentCalls:
       m_Calls:
@@ -622,6 +766,18 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 3410518727315873939}
+        m_TargetAssemblyTypeName: Studiosaurus.ResizeHandles, Assembly-CSharp
+        m_MethodName: SetIsResizing
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
         m_CallState: 2
 --- !u!114 &4564234201447190140
 MonoBehaviour:
@@ -755,6 +911,33 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  onEndDrag:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 3410518727315873939}
+        m_TargetAssemblyTypeName: Studiosaurus.ResizeHandles, Assembly-CSharp
+        m_MethodName: SetIsResizing
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 3410518727315873939}
+        m_TargetAssemblyTypeName: Studiosaurus.ResizeHandles, Assembly-CSharp
+        m_MethodName: SetHandlesVisibility
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   onDrag:
     m_PersistentCalls:
       m_Calls:
@@ -781,6 +964,18 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 3410518727315873939}
+        m_TargetAssemblyTypeName: Studiosaurus.ResizeHandles, Assembly-CSharp
+        m_MethodName: SetIsResizing
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
         m_CallState: 2
 --- !u!114 &7664809081357790361
 MonoBehaviour:
@@ -914,6 +1109,33 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  onEndDrag:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 3410518727315873939}
+        m_TargetAssemblyTypeName: Studiosaurus.ResizeHandles, Assembly-CSharp
+        m_MethodName: SetIsResizing
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 3410518727315873939}
+        m_TargetAssemblyTypeName: Studiosaurus.ResizeHandles, Assembly-CSharp
+        m_MethodName: SetHandlesVisibility
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   onDrag:
     m_PersistentCalls:
       m_Calls:
@@ -940,6 +1162,18 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 3410518727315873939}
+        m_TargetAssemblyTypeName: Studiosaurus.ResizeHandles, Assembly-CSharp
+        m_MethodName: SetIsResizing
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
         m_CallState: 2
 --- !u!114 &1588368453537712918
 MonoBehaviour:
@@ -1073,6 +1307,33 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  onEndDrag:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 3410518727315873939}
+        m_TargetAssemblyTypeName: Studiosaurus.ResizeHandles, Assembly-CSharp
+        m_MethodName: SetIsResizing
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 3410518727315873939}
+        m_TargetAssemblyTypeName: Studiosaurus.ResizeHandles, Assembly-CSharp
+        m_MethodName: SetHandlesVisibility
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   onDrag:
     m_PersistentCalls:
       m_Calls:
@@ -1099,6 +1360,18 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 3410518727315873939}
+        m_TargetAssemblyTypeName: Studiosaurus.ResizeHandles, Assembly-CSharp
+        m_MethodName: SetIsResizing
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
         m_CallState: 2
 --- !u!114 &3669999027565481380
 MonoBehaviour:
@@ -1338,6 +1611,33 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  onEndDrag:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 3410518727315873939}
+        m_TargetAssemblyTypeName: Studiosaurus.ResizeHandles, Assembly-CSharp
+        m_MethodName: SetIsResizing
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 3410518727315873939}
+        m_TargetAssemblyTypeName: Studiosaurus.ResizeHandles, Assembly-CSharp
+        m_MethodName: SetHandlesVisibility
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   onDrag:
     m_PersistentCalls:
       m_Calls:
@@ -1364,6 +1664,18 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 3410518727315873939}
+        m_TargetAssemblyTypeName: Studiosaurus.ResizeHandles, Assembly-CSharp
+        m_MethodName: SetIsResizing
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
         m_CallState: 2
 --- !u!114 &533054703323883400
 MonoBehaviour:
@@ -1432,7 +1744,7 @@ CanvasGroup:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9118200248159647321}
   m_Enabled: 1
-  m_Alpha: 0.25
+  m_Alpha: 0
   m_Interactable: 1
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
@@ -1448,6 +1760,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 02896e5eb6bdf42318ab078a6f76e563, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  handleFadeSpeed: 6
   onPositionChanged:
     m_PersistentCalls:
       m_Calls: []

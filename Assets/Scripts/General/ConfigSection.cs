@@ -61,11 +61,6 @@ namespace Studiosaurus {
                 wasLastSectionActive = true;
 
             isSectionActive = false;
-
-            for (int i = 0; i < ConfigCount; i++)
-            {
-                configComponents[i].componentIsActive = false;
-            }
         }
     }
 }

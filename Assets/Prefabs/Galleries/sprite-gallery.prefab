@@ -1327,7 +1327,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   closePanelPrefab: {fileID: 6051263255723106881, guid: a0c3b5c9af31348d08983903126485d9, type: 3}
-  fileUploadService: {fileID: 5399197142615391759}
   chooseButton: {fileID: 5153835507421908111}
   chooseButtonText: {fileID: 6476067772284740647}
   uploadPromptText: {fileID: 7416036622654235138}
@@ -2232,17 +2231,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 577a1ee2eb549406f98c2179af996b1c, type: 3}
---- !u!114 &5399197142615391759 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 8635144533259262661, guid: 577a1ee2eb549406f98c2179af996b1c, type: 3}
-  m_PrefabInstance: {fileID: 4412400645420082378}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bf90701d24e294cd6bc6f6771158df31, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!224 &8759165112632341044 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 4950917522208986878, guid: 577a1ee2eb549406f98c2179af996b1c, type: 3}

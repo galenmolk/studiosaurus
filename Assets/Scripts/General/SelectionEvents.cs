@@ -7,7 +7,9 @@ namespace Studiosaurus
     {
         public static bool selectionEventsEnabled = false;
 
-        private GameObject lastSelectedGameObject = null;
+        private GameObject lastSelectable = null;
+
+        private static DoItObject lastSelectedDoItObject = null;
 
         private void Update()
         {
@@ -18,11 +20,20 @@ namespace Studiosaurus
                 Tab.SelectNext();
 
             GameObject gameObject = EventSystem.current.currentSelectedGameObject;
-            if (lastSelectedGameObject != gameObject)
+            if (lastSelectable != gameObject)
             {
-                lastSelectedGameObject = gameObject;
+                lastSelectable = gameObject;
                 Tab.NewObjectSelected(gameObject);
             }
+        }
+
+        public static void DoitObjectSelected(DoItObject doItObject)
+        {
+            if (lastSelectedDoItObject != null && doItObject != lastSelectedDoItObject)
+                lastSelectedDoItObject.resizeHandles.SetHandlesVisibility(false);
+
+            lastSelectedDoItObject = doItObject;
+            doItObject.resizeHandles.SetHandlesVisibility(true);
         }
     }
 }

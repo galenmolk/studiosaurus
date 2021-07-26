@@ -1,12 +1,15 @@
 using System.Collections;
 using UnityEngine;
-using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 namespace Studiosaurus
 {
     public class ContextMenu : Window
     {
         [SerializeField] private ControlsSectionDropdown dropdownPrefab = null;
+        [SerializeField] private Button deleteButtonPrefab = null;
+
+        private Button deleteButton = null;
 
         private RectTransform rectTransform;
         private readonly WaitForEndOfFrame endOfFrame = new WaitForEndOfFrame();
@@ -14,6 +17,7 @@ namespace Studiosaurus
 
         private Vector2 lastClickPos;
 
+        private DoItObject doItObject;
 
         protected override void Awake()
         {
@@ -23,6 +27,8 @@ namespace Studiosaurus
 
         public void Open(DoItObject doItObject, Vector2 clickPos)
         {
+
+            this.doItObject = doItObject;
             SelectionEvents.selectionEventsEnabled = true;
             lastClickPos = clickPos;
             OpenWindow(doItObject.transform);
@@ -69,7 +75,19 @@ namespace Studiosaurus
                 activeConfigSection.SetSectionAsActive(false);
 
             activeConfigSection = settingToActive ? section : null;
+
+            CreateDeleteButton();
+
             yield return endOfFrame;
+        }
+
+        private void CreateDeleteButton()
+        {
+            if (deleteButton != null)
+                return;
+
+            deleteButton = Instantiate(deleteButtonPrefab, transform);
+            deleteButton.onClick.AddListener(() => doItObject.onConfirmDelete.Invoke(doItObject));
         }
 
         public void PositionMenu(Vector2 clickPos)

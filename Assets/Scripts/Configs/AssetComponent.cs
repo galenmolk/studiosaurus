@@ -8,7 +8,7 @@ namespace Studiosaurus
 
         public AssetEvent<TAsset> onAssetAssigned = new AssetEvent<TAsset>();
 
-        public abstract TAsset Asset { get; protected set; }
+        public TAsset Asset { get; protected set; }
 
         public virtual void AssignAsset(TAsset newAsset = null)
         {
@@ -28,6 +28,12 @@ namespace Studiosaurus
             AssetControls<TAsset> assetControls = Instantiate(assetControlsPrefab, parent);
             assetControls.Initialize(this);
             return assetControls;
+        }
+
+        public override void Activate()
+        {
+            base.Activate();
+            AssignAsset(Asset);
         }
     }
 }

@@ -13,6 +13,7 @@ namespace Studiosaurus
         [HideInInspector] public List<ConfigComponent> configComponents = new List<ConfigComponent>();
 
         public ConfigSection[] configSections;
+        public DoitObjectEvent onConfirmDelete = new DoitObjectEvent();
 
         [HideInInspector] public UnityEvent onNewSpriteAssigned = new UnityEvent();
         [HideInInspector] public UnityEvent fixNegativeSize = new UnityEvent();

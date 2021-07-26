@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 namespace Studiosaurus
@@ -17,12 +18,10 @@ namespace Studiosaurus
             rectTransform = transform.parent as RectTransform;
         }
 
-        [UnityEngine.ContextMenu("JSON")]
+        [UnityEngine.ContextMenu("Size")]
         public override string GetComponentAsJSON()
         {
-            string json = JsonSerializer.GetVector2(this);
-            Debug.Log(json);
-            return json;
+            return JsonSerializer.GetVector2(this);
         }
 
         protected void Apply(Vector2 vector, bool forceApply = false)

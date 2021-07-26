@@ -20,4 +20,6 @@ namespace Studiosaurus
 
     [Serializable]
     public class HandleDeltaEvent : UnityEvent<HandleDelta> { }
+
+    public class DoitObjectEvent : UnityEvent<DoItObject> { }
 }

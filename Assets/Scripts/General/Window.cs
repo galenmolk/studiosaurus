@@ -3,7 +3,7 @@ using UnityEngine;
 namespace Studiosaurus
 {
     [RequireComponent(typeof(CanvasGroup))]
-    public abstract class Window : MonoBehaviour
+    public class Window : MonoBehaviour
     {
         [SerializeField] private ClosePanel closePanelPrefab = null;
 
@@ -16,7 +16,7 @@ namespace Studiosaurus
             Utils.SetCanvasGroupEnabled(canvasGroup, false);
         }
 
-        protected void OpenWindow(Transform windowScope)
+        public void OpenWindow(Transform windowScope)
         {
             ActivateClosePanel(windowScope);
         }

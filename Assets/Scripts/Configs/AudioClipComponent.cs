@@ -7,8 +7,6 @@ namespace Studiosaurus
     {
         [HideInInspector] public AudioSource audioSource;
 
-        public override AudioClipAsset Asset { get; protected set; }
-
         protected override void Awake()
         {
             base.Awake();
@@ -23,9 +21,23 @@ namespace Studiosaurus
             base.AssignAsset(newAsset);
         }
 
+        [UnityEngine.ContextMenu("Json")]
         public override string GetComponentAsJSON()
         {
-            throw new System.NotImplementedException();
+            if (Asset == null)
+            {
+                Debug.LogWarning("No AudioClip Found Assigned to AudioClipComponent");
+                return string.Empty;
+            }
+
+            string path = $"{Application.persistentDataPath}/{GetInstanceID()}.wav";
+            SavWav.Save(path, Asset.audioClip);
+            Debug.Log(path);
+            string uploadName = CloudinaryUploader.UploadAudioClip(path);
+            Debug.Log(uploadName);
+            string json = JsonSerializer.GetAsset(configKey.key, uploadName);
+            Debug.Log(json);
+            return json;
         }
     }
 }

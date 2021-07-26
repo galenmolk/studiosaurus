@@ -119,21 +119,21 @@ namespace Studiosaurus
 
         private IEnumerator SendAudioClipRequest(string url)
         {
-            WWW data = new WWW(url);
-            yield return data;
-            AudioClip clip = data.GetAudioClipCompressed(false, AudioType.UNKNOWN) as AudioClip;
+            //WWW data = new WWW(url);
+            //yield return data;
+            //AudioClip clip = data.GetAudioClip(,) as AudioClip;
             //AudioType audioType = TryGetAudioType(url);
             //Debug.Log(audioType.ToString());
-            //using UnityWebRequest www = UnityWebRequestMultimedia.GetAudioClip(url, audioType);
+            using UnityWebRequest www = UnityWebRequestMultimedia.GetAudioClip(url, AudioType.UNKNOWN);
 
-            //www.SendWebRequest();
+            www.SendWebRequest();
 
-            //yield return WaitForDownload(www);
+            yield return WaitForDownload(www);
 
-            //if (RequestFailed(www))
-            //    yield break;
+            if (RequestFailed(www))
+                yield break;
 
-            //AudioClip clip = DownloadHandlerAudioClip.GetContent(www);
+            AudioClip clip = DownloadHandlerAudioClip.GetContent(www);
             assetConstructor.AddNewAudioClip(clip, url);
             broadcastLoadMessage?.Invoke($"{LOAD_SUCCESS_MESSAGE}{url}");
         }

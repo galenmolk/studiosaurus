@@ -9,6 +9,7 @@ namespace Studiosaurus
         public ConfigKey configKey;
 
         [HideInInspector] public bool componentIsActive = false;
+
         public virtual void Activate()
         {
             componentIsActive = true;

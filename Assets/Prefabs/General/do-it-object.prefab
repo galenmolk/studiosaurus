@@ -368,17 +368,21 @@ MonoBehaviour:
   configSections:
   - sectionName: Starting State
     configComponentPrefabs:
-    - {fileID: 7745963411971204452, guid: 7d8657ad233134609872dea2719cd61d, type: 3}
-    - {fileID: 7326225852362477095, guid: 05582476841a84b3fa0fa53f9f3329be, type: 3}
-    - {fileID: -5409625635938536847, guid: 9c6754af5356d41029df4ec532221888, type: 3}
+    - {fileID: 7745963411971204452, guid: b462fca852fa34e13bdafcf270409914, type: 3}
+    - {fileID: 7326225852362477095, guid: 0461b64344eec4ee08a831a7d279a394, type: 3}
+    - {fileID: -5409625635938536847, guid: bcc0dd31c77714c1591f3466c30fbe43, type: 3}
     isSectionActive: 0
+    wasLastSectionActive: 0
     configComponents: []
     configControls: []
   - sectionName: Found State
     configComponentPrefabs:
-    - {fileID: 7745963411971204452, guid: 7d8657ad233134609872dea2719cd61d, type: 3}
-    - {fileID: -7229007288134894057, guid: 8ba1839f4093245cda381bb9ad9e942b, type: 3}
+    - {fileID: -7229007288134894057, guid: ad6a31310801246b0a778f04cfd5a261, type: 3}
+    - {fileID: 7745963411971204452, guid: 56f8742d516194590a3c146bec9b3744, type: 3}
+    - {fileID: 7326225852362477095, guid: eb3243e164f174fb882886a41621b1b6, type: 3}
+    - {fileID: -11157053768622864, guid: 578b9aa1b43bc48d89eca8b588f63424, type: 3}
     isSectionActive: 0
+    wasLastSectionActive: 0
     configComponents: []
     configControls: []
   onNewSpriteAssigned:
@@ -492,26 +496,6 @@ PrefabInstance:
       propertyPath: rectTransform
       value: 
       objectReference: {fileID: 8536367071925750699}
-    - target: {fileID: 3410518727315873939, guid: 047c7cd91e47847ebaca82138bc54c6e, type: 3}
-      propertyPath: topLeft
-      value: 
-      objectReference: {fileID: 3064254177017482616}
-    - target: {fileID: 3410518727315873939, guid: 047c7cd91e47847ebaca82138bc54c6e, type: 3}
-      propertyPath: topRight
-      value: 
-      objectReference: {fileID: 4153541174202293164}
-    - target: {fileID: 3410518727315873939, guid: 047c7cd91e47847ebaca82138bc54c6e, type: 3}
-      propertyPath: bottomLeft
-      value: 
-      objectReference: {fileID: 4426695773398375937}
-    - target: {fileID: 3410518727315873939, guid: 047c7cd91e47847ebaca82138bc54c6e, type: 3}
-      propertyPath: bottomRight
-      value: 
-      objectReference: {fileID: 6107760794561443036}
-    - target: {fileID: 3410518727315873939, guid: 047c7cd91e47847ebaca82138bc54c6e, type: 3}
-      propertyPath: negativeSizeLines
-      value: 
-      objectReference: {fileID: 2059535682}
     - target: {fileID: 7290378200938824642, guid: 047c7cd91e47847ebaca82138bc54c6e, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5

@@ -95,6 +95,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   closePanelPrefab: {fileID: 6051263255723106881, guid: a0c3b5c9af31348d08983903126485d9, type: 3}
   dropdownPrefab: {fileID: 3516184005014550058, guid: b96100a7363f04e6e953dc82139cbd9e, type: 3}
+  deleteButtonPrefab: {fileID: 4693386463154554453, guid: 56dd56325ed534d9eadc15a9cd0dd203, type: 3}
 --- !u!114 &667348961513727621
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -108,7 +109,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rectTransform: {fileID: 2715790355370595618}
-  onDragPositionBroadcasted:
+  onDrag:
     m_PersistentCalls:
       m_Calls: []
 --- !u!114 &5705860291952378222
