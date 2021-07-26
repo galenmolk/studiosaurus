@@ -56,6 +56,8 @@ namespace Studiosaurus
 
         public void ExportJson()
         {
+            string json = FindablesJsonBuilder.CreateFindablesJsonArray(allFindables);
+            Debug.Log(json);
             studioControlMenu.Close();
             Debug.Log("Export JSON");
         }

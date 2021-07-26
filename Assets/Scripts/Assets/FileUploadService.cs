@@ -70,6 +70,9 @@ namespace Studiosaurus
 
         public void OnPointerDown(PointerEventData eventData)
         {
+            if (!localDriveUploadEnabled)
+                return;
+
 #if UNITY_EDITOR
             string path = UnityEditor.EditorUtility.OpenFilePanel(filePanelTitle, lastDirectory, extensionsParameter);
             if (!string.IsNullOrWhiteSpace(path))
@@ -78,10 +81,7 @@ namespace Studiosaurus
                 FileSelected("file:///" + path);
             }
 #else
-if (localDriveUploadEnabled)
-{
 UploadFile(gameObject.name, "FileSelected", extensionsParameter, true);
-}
 #endif
         }
 

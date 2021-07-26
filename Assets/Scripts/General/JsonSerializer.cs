@@ -1,10 +1,8 @@
 using UnityEngine;
-using CloudinaryDotNet;
 
 namespace Studiosaurus {
     public static class JsonSerializer
     {
-
         public static string GetKey(string key)
         {
             return $"\"{key}\": ";
@@ -14,7 +12,7 @@ namespace Studiosaurus {
         {
             string jsonKey = $"{GetKey(vector2Component.configKey.key)}";
             Vector2 vector2 = vector2Component.currentVector.Value;
-            string jsonVector = $"{{{GetKey("x")} {vector2.x}, {GetKey("x")} {vector2.y}}}";
+            string jsonVector = $"{{\n{GetKey("x")} {vector2.x},\n {GetKey("y")} {vector2.y}\n}}";
             return jsonKey + jsonVector;
         }
 
@@ -34,7 +32,7 @@ namespace Studiosaurus {
         public static string GetAsset(string key, string path)
         {
             string jsonKey = $"{GetKey(key)}";
-            string assetPath = $"{{{GetKey("awsInternalPath")} \"{path}\"}}"; // unfinished
+            string assetPath = $"{{\n{GetKey("awsInternalPath")} \"{path}\"\n}}"; // unfinished
 
             return jsonKey + assetPath;
         }

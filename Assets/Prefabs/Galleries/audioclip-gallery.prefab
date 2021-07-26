@@ -1334,7 +1334,7 @@ MonoBehaviour:
   confirmationWindow: {fileID: 8275319338995748902}
   assetSlotPrefab: {fileID: 6634109483356345855, guid: a1151b519180f498dab4a6627c2755f7, type: 3}
   fileUploadService: {fileID: 2676601725020783315}
-  localDriveUploadArea: {fileID: 0}
+  localDriveUploadArea: {fileID: 1702414479470206844}
 --- !u!225 &384184437
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -2766,6 +2766,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &1702414479470206844 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4995391210321430378, guid: 577a1ee2eb549406f98c2179af996b1c, type: 3}
+  m_PrefabInstance: {fileID: 5977122392233531414}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &2676601725020783315 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 8635144533259262661, guid: 577a1ee2eb549406f98c2179af996b1c, type: 3}

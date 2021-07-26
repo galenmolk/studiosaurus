@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.EventSystems;
@@ -10,7 +9,6 @@ namespace Studiosaurus
         [SerializeField] private ContextMenu contextMenuPrefab = null;
 
         [HideInInspector] public NegativeSizeWarning negativeSizeWarning;
-        [HideInInspector] public List<ConfigComponent> configComponents = new List<ConfigComponent>();
 
         public ConfigSection[] configSections;
         public DoitObjectEvent onConfirmDelete = new DoitObjectEvent();
