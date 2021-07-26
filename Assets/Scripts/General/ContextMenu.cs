@@ -103,7 +103,13 @@ namespace Studiosaurus
             // Default to a standard menu placement of below and to the right of the mouse click
             // If either of those axes would place menu offscreen, go in the other direction
             float xOffset = Screen.width - clickPos.x > size.x ? size.x * 0.5f : size.x * -0.5f;
-            float yOffset = clickPos.y > heightWithPivotCompensation ? size.y * -0.5f : size.y * 0.5f;
+
+            float yOffset = 0f;
+            if (clickPos.y < heightWithPivotCompensation)
+                yOffset = size.y * 0.5f;
+            else
+                yOffset = size.y * -0.5f;
+            //float yOffset = clickPos.y > heightWithPivotCompensation ? size.y * -0.5f : size.y * 0.5f;
 
             Vector2 offset = new Vector2(xOffset, yOffset);
 

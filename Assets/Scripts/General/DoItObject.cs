@@ -84,5 +84,11 @@ namespace Studiosaurus
         {
             dragHandle.onDrag.AddListener(action);
         }
+
+        private void OnDestroy()
+        {
+            if (contextMenu != null)
+                contextMenu.Close();
+        }
     }
 }
