@@ -1,1 +1,1 @@
-# A prototype object editor tool build in Unity.
+A prototype object editor tool build in Unity.
